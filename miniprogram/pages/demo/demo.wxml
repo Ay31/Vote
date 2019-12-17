@@ -1,2 +1,3 @@
 <!--miniprogram/pages/demo/demo.wxml-->
 <text>miniprogram/pages/demo/demo.wxml</text>
+<button bintap = "click">click</button>

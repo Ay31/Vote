@@ -1,0 +1,32 @@
+<view class="vote-add">
+    <view class="cu-form-group">
+        <view class="title">投标标题</view>
+        <input placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
+    </view>
+    <radio-group class="block" bindchange="radioChange">
+        <view class="cu-form-group margin-top">
+            <view class="title">
+                投票类型
+                <label wx:for="{{voteTypes}}" wx:key="{{inedx}}">   
+                    <radio class="blue vote-radio" value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+                </label>
+            </view>
+        </view>
+    </radio-group>
+    <view class="cu-form-group align-start margin-top" >
+        <view class="title">投票描述</view>
+        <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="多行文本输入框" value="{{desTextareaData}}"></textarea>
+    </view>
+    <view class="cu-bar bg-white margin-top">
+        <view class="action">投票配图</view>
+        <view class="action">{{imgList.length}}/4</view>
+    </view>
+    <view class="cu-form-group margin-top">
+        <view class="title">设置选项</view>
+        <input placeholder="input"></input>
+    </view>
+    <view class="padding flex flex-direction">
+        <button class="cu-btn bg-blue lg" bindtap="postVote">提交</button>
+        <!-- <button class="cu-btn bg-red margin-tb-sm lg">嫣红</button> -->
+    </view>
+</view>

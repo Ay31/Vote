@@ -1,6 +1,5 @@
-// miniprogram/pages/demo/demo.js
-const db = wx.cloud.database()
-const products = db.collection('todos')
+// miniprogram/pages/vote/vote.js
+const app = getApp();
 
 Page({
 
@@ -8,20 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    newVoteTitle: '',
+    desTextareaData: '',
+    voteTypes: [
+      { name: 'F', value: '公开', checked: true },
+      { name: 'T', value: '私密' }
+  ],
+    imgList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('ok');
-    db.collection('todos').doc('person').get({
-      success: function(res) {
-        // res.data 包含该记录的数据
-        console.log(res.data);
-      }
-    });
+
   },
 
   /**
@@ -72,9 +71,30 @@ Page({
   onShareAppMessage: function () {
 
   },
-  click: function() {
-    products.get().then(res => {
-      console.log(res);
-    });
+
+  radioChange() {
+    let self = this;
+    self.setData({
+      
+    })
+  },
+
+  bindTitleInput(e) {
+    let self = this;
+    self.setData({
+      newVoteTitle: e.detail.value
+    })
+  },
+
+  bindDesTextAreaInput(e) {
+    let self = this;
+    self.setData({
+      desTextareaData: e.detail.value
+    })
+  },
+
+  postVote() {
+    console.log(this.data.newVoteTitle);
+    console.log(this.data.desTextareaData);
   },
 })

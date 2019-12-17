@@ -19,10 +19,12 @@
     <navigator url="../demo/demo" open-type="navigate" class="uploader-text">
       <text>跳转</text>
     </navigator>
-
-
   </view>
-    
+
+   <view>
+    <button type="primary" hover-class="none" bindtap="targetToAdd">创建投票</button>
+   </view>
+      
 
   
   <!-- 上传图片 -->
