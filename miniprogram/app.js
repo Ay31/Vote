@@ -1,7 +1,11 @@
 //app.js
 App({
+  globalData: {
+    // userInfo: null
+  },
+  
   onLaunch: function () {
-    
+
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -14,7 +18,16 @@ App({
         traceUser: true,
       })
     }
-
-    this.globalData = {}
+    this.getUserInfo();
+  },
+  getUserInfo() {
+    let self = this;
+    let demo = {};
+    wx.cloud.callFunction({ 
+      name: 'login'
+    })
+    .then(data => self.globalData.userInfo = data.result.event.userInfo)
+    // .then(data => console.log(data))
+    .catch(err => console.err(err));
   }
 })
