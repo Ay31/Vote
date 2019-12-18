@@ -1,1 +1,17 @@
 /* miniprogram/pages/vote/vote.wxss */
+.addButton {
+	background: red;
+	width: 50rpx;
+	height: 50rpx;
+	display: inline-block;
+	line-height: 50rpx;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0rpx;
+	margin: 20rpx;
+	color: white;
+}
+
+.vote-option {
+    color: #ec7357;
+}

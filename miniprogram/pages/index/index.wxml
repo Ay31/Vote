@@ -20,12 +20,16 @@
       <text>跳转</text>
     </navigator>
   </view>
+    <button class="addButton" size="20">+</button>
+
 
    <view>
     <button type="primary" hover-class="none" bindtap="targetToAdd">创建投票</button>
    </view>
       
-
+   <view>
+    <button type="primary" hover-class="none" bindtap="click">创建投票</button>
+   </view>
   
   <!-- 上传图片 -->
   <view class="uploader">

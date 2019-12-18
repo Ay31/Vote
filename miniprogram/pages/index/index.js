@@ -7,7 +7,8 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    openid: '',
   },
 
   onLoad: function() {
@@ -34,10 +35,29 @@ Page({
     //     }
     //   }
     // })
+    this.getOpenId();
+    // console.log(this.openid);
   },
 
-  onShow() {
-    console.log(app.globalData.userInfo);
+  getOpenId() {
+    let self = this;
+    wx.cloud.callFunction({
+      name: 'login',
+    })
+    .then(data => {
+      console.log('云函数获取到的openid: ', data.result.openId)
+      // var openid = data.result.openId;
+      self.setData({
+       openid: data.result.openId
+      });
+    })
+  },
+
+  click() {
+    // this.setData({
+    //   openid: 123
+    //  });
+    console.log(this.data.openid);
   },
 
   onGetUserInfo: function(e) {

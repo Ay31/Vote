@@ -18,16 +18,24 @@ App({
         traceUser: true,
       })
     }
-    this.getUserInfo();
-  },
-  getUserInfo() {
-    let self = this;
-    let demo = {};
-    wx.cloud.callFunction({ 
-      name: 'login'
+    // this.getUserInfo();
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let custom = wx.getMenuButtonBoundingClientRect();
+        this.globalData.Custom = custom;  
+        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+      }
     })
-    .then(data => self.globalData.userInfo = data.result.event.userInfo)
-    // .then(data => console.log(data))
-    .catch(err => console.err(err));
-  }
+  },
+  // getUserInfo() {
+  //   let self = this;
+  //   let demo = {};
+  //   wx.cloud.callFunction({ 
+  //     name: 'login'
+  //   })
+  //   .then(data => self.globalData.userInfo = data.result.event.userInfo)
+  //   // .then(data => console.log(data))
+  //   .catch(err => console.log(err));
+  // }
 })
