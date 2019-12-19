@@ -7,20 +7,27 @@
         <view class="title">投标标题</view>
         <input placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
     </view>
-    <radio-group class="block" bindchange="radioChange">
-        <view class="cu-form-group margin-top">
-            <view class="title">
-                投票类型
-                <label wx:for="{{voteTypes}}" wx:key="{{inedx}}">
-                    <radio class="blue vote-radio" value="{{item.name}}" checked="{{item.checked}}" />
-                    {{item.value}}
-                </label>
-            </view>
-        </view>
-    </radio-group>
     <view class="cu-form-group align-start margin-top">
         <view class="title">投票描述</view>
         <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="多行文本输入框" value="{{desTextareaData}}"></textarea>
+    </view>
+    <view class="cu-form-group margin-top">
+        <view class="title">设置选项</view>
+    </view>
+    <!-- 选项渲染 -->
+    <view class="cu-list menu">
+        <view class="cu-item" wx:for="{{voteOptionList}}" key="{{index}}">
+            <view class="content">
+                <i class="minus-option fa fa-minus-circle fa-lg" bindtap="deleteVoteOption" data-index="{{index}}"></i>
+                <input placeholder="选项" bindinput="bindVoteInput" data-index="{{index}}" value="{{item.content}}"></input>
+            </view>
+        </view>
+    </view>
+    <view class="cu-form-group">
+        <view class="title" bindtap="addVoteOption">
+            <i class="add-option fa fa-plus-circle fa-lg"></i>
+            <span>添加选项</span>
+        </view>
     </view>
     <view class="cu-bar bg-white margin-top">
         <view class="action">投票配图</view>
@@ -39,24 +46,23 @@
             </view>
         </view>
     </view>
-    <view class="cu-form-group margin-top">
-        <view class="title">设置选项</view>
-        <view class="vote-option" wx:for="{{voteOptionList}}" wx:key="{{index}}">
-            <input placeholder="请输入投票内容" bindinput="bindVoteInput" value="{{newVoteOption}}"></input>
+    <radio-group class="block" bindchange="radioChange">
+        <view class="cu-form-group margin-top">
+            <view class="title">
+                投票类型
+                <!-- <label wx:for="{{voteTypes}}" wx:key="{{inedx}}"> -->
+                <label for="" class="vote-type">
+                    <radio class="blue vote-radio" value="公开" />
+                    公开
+                </label>
+                <label for="" class="vote-type">
+                    <radio class="blue vote-radio" value="私密" />
+                    私密
+                </label>
+                <!-- </label> -->
+            </view>
         </view>
-    </view>
-    <view class="vote-option">
-        <i class="fa fa-minus-circle"></i>
-        <text class="vote-option-content"></text>
-    </view>
-    <view class="vote-option">
-        <i class="fa fa-plus-circle"></i>
-        <text class="vote-option-content"></text>
-    </view>
-    <button type="defalut">
-        <i class="fa fa-plus"></i>
-        添加投票选项
-    </button>
+    </radio-group>
     <view class="padding flex flex-direction">
         <button class="cu-btn bg-blue lg" bindtap="postVote">提交</button>
     </view>

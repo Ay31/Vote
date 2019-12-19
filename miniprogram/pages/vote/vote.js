@@ -8,13 +8,20 @@ Page({
   data: {
     newVoteTitle: '',
     desTextareaData: '',
-    voteTypes: [
-      { name: 'F', value: '公开', checked: true },
-      { name: 'T', value: '私密' }
-  ],
+    voteTypes: [{
+        name: 'F',
+        value: '公开',
+        checked: true
+      },
+      {
+        name: 'T',
+        value: '私密'
+      }
+    ],
     imgList: [],
     voteOptionList: [],
-    newVoteOption: {}
+    newVoteOption: {},
+    testList: [1, 2, 3, 4]
   },
 
   //投票标题
@@ -34,13 +41,14 @@ Page({
   },
 
   postVote() {
-    vote.add({
-      data: {
-        newVoteTitle: this.data.newVoteTitle,
-        desTextareaData: this.data.desTextareaData
-      }
-    })
-    .then(data => console.log(data))
+    // vote.add({
+    //     data: {
+    //       newVoteTitle: this.data.newVoteTitle,
+    //       desTextareaData: this.data.desTextareaData
+    //     }
+    //   })
+    //   .then(data => console.log(data))
+    console.log(this.data);
   },
 
   ViewImage(e) {
@@ -87,7 +95,37 @@ Page({
   },
 
   addVoteOption() {
-    this.voteOptionList.push({});
-  }
+    let self = this;
+    self.data.voteOptionList.push({
+      content: ''
+    });
+    self.setData({
+      voteOptionList: self.data.voteOptionList
+    });
+    // console.log(self.data.voteOptionList);
+  },
 
+  deleteVoteOption(e) {
+    // console.log(e.currentTarget.dataset.index);
+    let self = this;
+    let index = e.currentTarget.dataset.index;
+    console.log(index);
+    // self.data.voteOptionList.splice(index, 1);
+    let delData = self.data.voteOptionList;
+    delData.splice(index, 1);
+    self.setData({
+      // voteOptionList: self.data.voteOptionList
+      voteOptionList: delData
+    })
+  },
+
+  bindVoteInput(e) {
+    let self = this;
+    let index = e.currentTarget.dataset.index;
+    self.data.voteOptionList[index].content = e.detail.value;
+    self.setData({
+      voteOptionList: self.data.voteOptionList
+    })
+    // self.data.newVoteOption = e.detail.value; 
+  }
 })

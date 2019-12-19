@@ -12,6 +12,27 @@
 	color: white;
 }
 
+.minus-option {
+	color: #e54d42;
+	margin-right: 2vw;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.add-option {
+	color: royalblue;
+	margin-right: 2vw;
+}
+
 .vote-option {
-    color: #ec7357;
+	display: block;
+}
+
+.content input {
+	display: inline-block;
+}
+
+.vote-type {
+	margin: 0 1vw;
 }
