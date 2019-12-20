@@ -1,0 +1,19 @@
+<!--miniprogram/pages/info/info.wxml-->
+<text>miniprogram/pages/info/info.wxml</text>
+  <view class="bg-white vote-content" wx:if="false">
+    <!-- <view class="grid col-1 text-center"> -->
+      <view class="">
+        <image class="quickVote" src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
+        <button class="cu-btn bg-blue margin-tb-sm lg">快速投票</button>
+      </view>
+      <view class="">
+        <view class="">
+          <image class="quickVote" src="../../style/icon/files2.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
+          <button class="cu-btn bg-blue margin-tb-sm lg">多项投票</button>
+        </view>
+      </view>
+      <!-- <view class="{{index%2==0?'bg-cyan':'bg-blue'}} padding" wx:for="{{(index+1)*2}}" wx:key>
+        {{index+1}}
+      </view> -->
+    <!-- </view> -->
+  </view>

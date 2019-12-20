@@ -1,4 +1,4 @@
-// miniprogram/pages/login/login.js
+// miniprogram/pages/info/info.js
 Page({
 
   /**

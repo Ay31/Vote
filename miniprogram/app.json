@@ -2,8 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/vote/vote",
-    "pages/login/login",
-    "pages/userConsole/userConsole"
+    "pages/info/info"
   ],
   "sitemapLocation": "sitemap.json",
   "style": "v2",
@@ -11,6 +10,24 @@
     "navigationStyle": "custom"
   },
   "usingComponents": {
-      "cu-custom":"/colorui/components/cu-custom"
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "tabBar": {
+    "color": "#8799a3",
+    "selectedColor": "#0081ff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首 页",
+        "iconPath": "/style/icon/home.png",
+        "selectedIconPath": "/style/icon/home2.png"
+      },
+      {
+        "pagePath": "pages/info/info",
+        "text": "我 的",
+        "iconPath": "/style/icon/me.png",
+        "selectedIconPath": "/style/icon/me2.png"
+      }
+    ]
   }
 }
