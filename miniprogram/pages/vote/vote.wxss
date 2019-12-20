@@ -14,14 +14,16 @@
 
 .minus-option {
 	color: #e54d42;
-	margin-right: 2vw;
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
+	margin: 1vw;
+	margin-right: 2vw;
 }
 
 .add-option {
 	color: royalblue;
+	margin: 1vw;
 	margin-right: 2vw;
 }
 

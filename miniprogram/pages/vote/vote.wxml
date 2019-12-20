@@ -1,16 +1,20 @@
 <view class="vote-add">
+    <!-- 导航栏 -->
     <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
         <view slot="backText">返回</view>
         <view slot="content">创建投票</view>
     </cu-custom>
+    <!-- 标题 -->
     <view class="cu-form-group">
         <view class="title">投标标题</view>
         <input placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
     </view>
+    <!-- 描述 -->
     <view class="cu-form-group align-start margin-top">
         <view class="title">投票描述</view>
         <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="多行文本输入框" value="{{desTextareaData}}"></textarea>
     </view>
+    <!-- 投票选项标题 -->
     <view class="cu-form-group margin-top">
         <view class="title">设置选项</view>
     </view>
@@ -23,12 +27,14 @@
             </view>
         </view>
     </view>
+    <!-- 添加选项 -->
     <view class="cu-form-group">
         <view class="title" bindtap="addVoteOption">
             <i class="add-option fa fa-plus-circle fa-lg"></i>
             <span>添加选项</span>
         </view>
     </view>
+    <!-- 投票配图 -->
     <view class="cu-bar bg-white margin-top">
         <view class="action">投票配图</view>
         <view class="action">{{imgList.length}}/4</view>
@@ -46,23 +52,23 @@
             </view>
         </view>
     </view>
+    <!-- 投票类型 -->
     <radio-group class="block" bindchange="radioChange">
         <view class="cu-form-group margin-top">
             <view class="title">
                 投票类型
-                <!-- <label wx:for="{{voteTypes}}" wx:key="{{inedx}}"> -->
-                <label for="" class="vote-type">
-                    <radio class="blue vote-radio" value="公开" />
+                <label for="public" class="vote-type">
+                    <radio class="blue vote-radio" value="公开" name="public" id="public" />
                     公开
                 </label>
-                <label for="" class="vote-type">
-                    <radio class="blue vote-radio" value="私密" />
+                <label for="private" class="vote-type">
+                    <radio class="blue vote-radio" value="私密" name="private" id="private" checked="true" />
                     私密
                 </label>
-                <!-- </label> -->
             </view>
         </view>
     </radio-group>
+    <!-- 提交 -->
     <view class="padding flex flex-direction">
         <button class="cu-btn bg-blue lg" bindtap="postVote">提交</button>
     </view>

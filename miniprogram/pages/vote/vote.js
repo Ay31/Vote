@@ -8,20 +8,10 @@ Page({
   data: {
     newVoteTitle: '',
     desTextareaData: '',
-    voteTypes: [{
-        name: 'F',
-        value: '公开',
-        checked: true
-      },
-      {
-        name: 'T',
-        value: '私密'
-      }
-    ],
+    voteType: 'private',
     imgList: [],
-    voteOptionList: [],
-    newVoteOption: {},
-    testList: [1, 2, 3, 4]
+    voteOptionList: [{}, {}],
+    // newVoteOption: {},
   },
 
   //投票标题
@@ -94,6 +84,7 @@ Page({
     });
   },
 
+  //添加投票选项
   addVoteOption() {
     let self = this;
     self.data.voteOptionList.push({
@@ -102,30 +93,47 @@ Page({
     self.setData({
       voteOptionList: self.data.voteOptionList
     });
-    // console.log(self.data.voteOptionList);
   },
 
+  //删除投票选项
   deleteVoteOption(e) {
-    // console.log(e.currentTarget.dataset.index);
-    let self = this;
-    let index = e.currentTarget.dataset.index;
-    console.log(index);
-    // self.data.voteOptionList.splice(index, 1);
-    let delData = self.data.voteOptionList;
-    delData.splice(index, 1);
-    self.setData({
-      // voteOptionList: self.data.voteOptionList
-      voteOptionList: delData
-    })
+    const self = this;
+    console.log(self.data.voteOptionList.length);
+    if (self.data.voteOptionList.length <= 2) {
+      wx.showToast({
+        title: '选项至少为2项',
+        icon: 'none',
+        duration: 1000
+      });
+    } else {
+      let index = e.currentTarget.dataset.index;
+      // console.log(index);
+      let delData = self.data.voteOptionList;
+      delData.splice(index, 1);
+      self.setData({
+        voteOptionList: delData
+      })
+    }
   },
 
+  //选项内容输入
   bindVoteInput(e) {
-    let self = this;
+    const self = this;
     let index = e.currentTarget.dataset.index;
     self.data.voteOptionList[index].content = e.detail.value;
     self.setData({
       voteOptionList: self.data.voteOptionList
     })
-    // self.data.newVoteOption = e.detail.value; 
+  },
+
+  //投票类型
+  radioChange(e) {
+    const self = this;
+    let voteType;
+    if (e.detail.value === '公开') voteType = 'public'
+    else voteType = 'pritvate'
+    self.setData({
+      voteType: voteType
+    });
   }
 })
