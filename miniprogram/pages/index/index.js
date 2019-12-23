@@ -89,4 +89,12 @@ Page({
     })
   },
 
+  targetToQuick() {
+    wx.navigateTo({
+      url: '/pages/quickVote/quickVote',
+      success(data) {
+        console.log(data);
+      },
+    })
+  },
 })

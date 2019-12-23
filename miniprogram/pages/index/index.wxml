@@ -8,22 +8,18 @@
       授权登录
     </button>
   </view>
-  <view class="cu-form-group margin-top" hidden="true">
-    <view></view>
-    s
-    <button type="primary" hover-class="none" bindtap="targetToAdd">创建投票</button>
-  </view>
+
   <view class="option">
-    <view class="quick">
-      <view class="label text-center">
-        <image class="quickVote" src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-        <button class="cu-btn bg-blue margin-tb-sm lg">快速投票</button>
+    <view class="flex-item">
+      <view class="optiion-tem text-center margin-top">
+        <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
+        <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToQuick">快速投票</button>
       </view>
     </view>
-    <view class="more">
-      <view class="label text-center">
-        <image class="quickVote" src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-          <button class="cu-btn bg-blue margin-tb-sm lg">多项投票</button>
+    <view class="flex-item">
+      <view class="option-item text-center margin-top">
+        <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
+          <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToAdd">多项投票</button>
       </view>
     </view>
   </view>

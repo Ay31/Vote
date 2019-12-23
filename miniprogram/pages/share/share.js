@@ -1,18 +1,42 @@
-// pages/chooseLib/chooseLib.js
+// miniprogram/pages/share/share.js
+
+const app = getApp();
+const db = wx.cloud.database();
+const vote = db.collection('vote');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    voteData: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const self = this;
+    console.log(options);
+    vote.where({
+      _id: '7799745c5e0060060626e1b708df62ab'
+      // _id: options.voteId
+    })
+    .get()
+    .then(data => {
+      self.setData({
+        voteData: data.data[0]
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
+    
+  },
 
+  click() {
+    console.log(this.data.voteData);
   },
 
   /**

@@ -1,0 +1,26 @@
+<view class>
+    <!-- 导航栏 -->
+    <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+        <view slot="backText">返回</view>
+        <view slot="content">投票</view>
+    </cu-custom>
+    <view class="column">
+        <view class="column-item">
+            <text class="text-black text-bold">{{voteData.voteTitle}}</text>
+        </view>
+        <view class="column-item">
+            <van-panel title="投票描述" desc="描述信息" status="状态">
+                <view>{{voteData.desTextareaData}}</view>
+            </van-panel>
+        </view>
+        <view class="column-item">
+            <view wx:for="{{voteData.voteOptionList}}" wx:key="index">
+                {{index+1}} {{item.content}}
+            </view>
+        </view>
+        <view>
+            <button bindtap="click">click</button>
+            >
+        </view>
+    </view>
+</view>

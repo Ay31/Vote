@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/vote/vote",
-    "pages/info/info"
+    "pages/info/info",
+    "pages/quickVote/quickVote",
+    "pages/share/share"
   ],
   "sitemapLocation": "sitemap.json",
   "style": "v2",
