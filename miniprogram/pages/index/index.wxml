@@ -11,7 +11,7 @@
 
   <view class="option">
     <view class="flex-item">
-      <view class="optiion-tem text-center margin-top">
+      <view class="option-item text-center margin-top">
         <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
         <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToQuick">快速投票</button>
       </view>

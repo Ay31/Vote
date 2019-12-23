@@ -6,21 +6,12 @@
     </cu-custom>
     <view class="column">
         <view class="column-item">
-            <text class="text-black text-bold">{{voteData.voteTitle}}</text>
-        </view>
-        <view class="column-item">
-            <van-panel title="投票描述" desc="描述信息" status="状态">
-                <view>{{voteData.desTextareaData}}</view>
-            </van-panel>
-        </view>
-        <view class="column-item">
-            <view wx:for="{{voteData.voteOptionList}}" wx:key="index">
-                {{index+1}} {{item.content}}
-            </view>
-        </view>
-        <view>
-            <button bindtap="click">click</button>
-            >
+            <view class="title">投票标题</view>
+            <view class="content">{{voteData.voteTitle}}</view>
         </view>
     </view>
+    <van-cell-group>
+        <van-cell title="单元格" value="内容" />
+        <van-cell title="单元格" value="{{voteData.desTextareaData}}" label="描述信息" border="{{ true }}" />
+    </van-cell-group>
 </view>

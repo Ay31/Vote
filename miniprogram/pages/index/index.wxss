@@ -17,7 +17,7 @@ image {
   height: 43vh;
 }
 
-.optiion-item {
+.option-item {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
