@@ -1,5 +1,7 @@
 //index.js
-const app = getApp()
+const app = getApp();
+const db = wx.cloud.database();
+const info = db.collection('info');
 
 Page({
   data: {
@@ -10,10 +12,11 @@ Page({
     requestResult: '',
     openid: '',
     isHide: false
+
   },
 
   onLoad: function () {
-    const that = this;
+    const self = this;
     wx.getSetting({
       success: function (res) {
         console.log(res);
@@ -28,7 +31,7 @@ Page({
             }
           });
         } else {
-          that.setData({
+          self.setData({
             isHide: true
           });
         }
@@ -38,16 +41,45 @@ Page({
   },
 
   bindGetUserInfo: function (e) {
+    // let 
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
-      var that = this;
+      var self = this;
+      let userInfo = e.detail.userInfo;
       // 获取到用户的信息了，打印到控制台上看下
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo);
       //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-      that.setData({
+      self.setData({
         isHide: false
       });
+      info.where({
+          // userInfo: {
+          //   avataUrl: userInfo.avataUrl,
+          //   nickName: userInfo.nickName,
+          //   country: userInfo.country,
+          //   city: userInfo.city
+          // }
+          openId: self.data.openid
+        }).get()
+        .then(res => {
+          console.log(res);
+          if (!res.data.length) {
+            console.log(self.data.openid);
+            info.doc('dbff9fc75e017eab066a8023574270bc').update({
+              data: {
+                userInfo: {
+                  avatarUrl: userInfo.avatarUrl,
+                  nickName: userInfo.nickName,
+                  country: userInfo.country,
+                  city: userInfo.city
+                }
+              }
+            })
+          } else {
+            console.log('hi');
+          }
+        })
     } else {
       //用户按了拒绝按钮
       wx.showModal({
@@ -76,6 +108,19 @@ Page({
         self.setData({
           openid: data.result.openId
         });
+        info.where({
+            oppeId: data.result.openId
+          })
+          .get()
+          .then(data => {
+            if (!data.data.length) {
+              info.add({
+                data: {
+                  oppeId: self.data.openid
+                }
+              })
+            }
+          })
       })
   },
 

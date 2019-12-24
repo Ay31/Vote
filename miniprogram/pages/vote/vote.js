@@ -34,13 +34,13 @@ Page({
     const self = this;
     let isPrivate = self.data.voteType === 'private' ? true : false;
     vote.add({
-      data: {
-        voteTitle: self.data.newVoteTitle,
-        desTextareaData: self.data.desTextareaData,
-        isPrivate,
-        imgList: self.data.imgList,
-        voteOptionList: self.data.voteOptionList
-      }
+        data: {
+          voteTitle: self.data.newVoteTitle,
+          desTextareaData: self.data.desTextareaData,
+          isPrivate,
+          imgList: self.data.imgList,
+          voteOptionList: self.data.voteOptionList
+        }
       })
       .then(data => console.log(data))
     // console.log(this.data);
