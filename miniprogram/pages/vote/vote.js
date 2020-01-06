@@ -39,16 +39,24 @@ Page({
   postVote() {
     const self = this;
     let isPrivate = self.data.voteType === 'private' ? true : false;
+<<<<<<< HEAD
     self.data.imgList.forEach((item) => {
       self.postImgae(item);
     })
     setTimeout(function () {
       vote.add({
+=======
+    vote.add({
+>>>>>>> 13a4fdab08b074793d7e517abd1c207b0deca951
         data: {
           voteTitle: self.data.newVoteTitle,
           desTextareaData: self.data.desTextareaData,
           isPrivate,
+<<<<<<< HEAD
           imgIdList: self.data.imgIdList,
+=======
+          imgList: self.data.imgList,
+>>>>>>> 13a4fdab08b074793d7e517abd1c207b0deca951
           voteOptionList: self.data.voteOptionList
         }
       })

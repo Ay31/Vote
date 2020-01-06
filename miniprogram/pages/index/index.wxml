@@ -1,17 +1,30 @@
 <view class="index-wrapper">
+  <!-- 导航栏 -->
   <cu-custom bgColor="bg-gradual-blue">
     <view slot="content">首页</view>
   </cu-custom>
+<<<<<<< HEAD
   <view class="cu-form-group">
     <view></view>
     <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
       授权登录
     </button>
+=======
+  <!-- 授权登录 -->
+  <view class="cu-form-group" hidden="{{isHide}}">
+    <view class="login">
+      <image src="../../style/icon/login.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
+      <view class="solid-bottom text-df padding">需要您的授权才能使用</view>
+      <button class="cu-btn bg-blue margin-tb-df lg" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+        授权登录
+      </button>
+    </view>
+>>>>>>> 13a4fdab08b074793d7e517abd1c207b0deca951
   </view>
-
-  <view class="option">
+  <!-- 创建投票 -->
+  <view class="option" hidden="{{isHide}}">
     <view class="flex-item">
-      <view class="option-item text-center margin-top">
+      <view class="option-item text-center margin-top-xl">
         <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
         <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToQuick">快速投票</button>
       </view>
@@ -19,7 +32,7 @@
     <view class="flex-item">
       <view class="option-item text-center margin-top">
         <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-          <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToAdd">多项投票</button>
+        <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToAdd">多项投票</button>
       </view>
     </view>
   </view>
