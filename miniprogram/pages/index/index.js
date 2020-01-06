@@ -38,12 +38,16 @@ Page({
   },
 
   bindGetUserInfo: function (e) {
+    const self = this;
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
       // 获取到用户的信息了，打印到控制台上看下
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo);
+      self.setData({
+        userInfo: self.data.userInfo
+      });
       //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
       that.setData({
         isHide: false
@@ -82,7 +86,7 @@ Page({
   //跳转至创建投票页
   targetToAdd() {
     wx.navigateTo({
-      url: '/pages/vote/vote',
+      url: `/pages/vote/vote?`,
       success(data) {
         console.log(data);
       },

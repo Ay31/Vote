@@ -33,7 +33,7 @@ Page({
   },
 
   postVote() {
-
+    
   },
 
   ViewImage(e) {

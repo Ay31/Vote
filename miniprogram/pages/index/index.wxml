@@ -2,7 +2,7 @@
   <cu-custom bgColor="bg-gradual-blue">
     <view slot="content">首页</view>
   </cu-custom>
-  <view class="cu-form-group" hidden="true">
+  <view class="cu-form-group">
     <view></view>
     <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
       授权登录

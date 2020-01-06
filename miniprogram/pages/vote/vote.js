@@ -10,8 +10,14 @@ Page({
     desTextareaData: '',
     voteType: 'private',
     imgList: [],
+    imgIdList: [],
     voteOptionList: [{}, {}],
     // newVoteOption: {},
+  },
+
+  onLoad(options) {
+    console.log(123);
+    console.log(options);
   },
 
   //投票标题
@@ -33,17 +39,20 @@ Page({
   postVote() {
     const self = this;
     let isPrivate = self.data.voteType === 'private' ? true : false;
-    vote.add({
-      data: {
-        voteTitle: self.data.newVoteTitle,
-        desTextareaData: self.data.desTextareaData,
-        isPrivate,
-        imgList: self.data.imgList,
-        voteOptionList: self.data.voteOptionList
-      }
+    self.data.imgList.forEach((item) => {
+      self.postImgae(item);
+    })
+    setTimeout(function () {
+      vote.add({
+        data: {
+          voteTitle: self.data.newVoteTitle,
+          desTextareaData: self.data.desTextareaData,
+          isPrivate,
+          imgIdList: self.data.imgIdList,
+          voteOptionList: self.data.voteOptionList
+        }
       })
-      .then(data => console.log(data))
-    // console.log(this.data);
+    }, 0);
   },
 
   ViewImage(e) {
@@ -87,6 +96,20 @@ Page({
         }
       }
     });
+  },
+
+   postImgae(tmpUrl) {
+    const tmp = tmpUrl.split("/");
+    const name = tmp[tmp.length - 1];
+    const path = `images/${name}`;
+    const self = this;
+    wx.cloud.uploadFile({
+      cloudPath: path,
+      filePath: tmpUrl,
+    }).then(data => {
+      self.data.imgIdList.push(data.fileID)
+    }).catch(err => console.error(err));
+
   },
 
   //添加投票选项
