@@ -12,15 +12,13 @@ Page({
     imgList: [],
     imgIdList: [],
     voteOptionList: [{}, {}],
-    // newVoteOption: {},
   },
 
   onLoad(options) {
-    console.log(123);
-    console.log(options);
+
   },
 
-  //投票标题
+  // 投票标题
   bindTitleInput(e) {
     let self = this;
     self.setData({
@@ -28,7 +26,7 @@ Page({
     })
   },
 
-  //投票描述
+  // 投票描述
   bindDesTextAreaInput(e) {
     let self = this;
     self.setData({
@@ -36,33 +34,52 @@ Page({
     })
   },
 
+  // 提交投票
   postVote() {
     const self = this;
     let isPrivate = self.data.voteType === 'private' ? true : false;
-<<<<<<< HEAD
-    self.data.imgList.forEach((item) => {
-      self.postImgae(item);
-    })
-    setTimeout(function () {
+    self.postImgae().then(() => {
       vote.add({
-=======
-    vote.add({
->>>>>>> 13a4fdab08b074793d7e517abd1c207b0deca951
         data: {
           voteTitle: self.data.newVoteTitle,
           desTextareaData: self.data.desTextareaData,
           isPrivate,
-<<<<<<< HEAD
           imgIdList: self.data.imgIdList,
-=======
-          imgList: self.data.imgList,
->>>>>>> 13a4fdab08b074793d7e517abd1c207b0deca951
           voteOptionList: self.data.voteOptionList
         }
       })
-    }, 0);
+    });
   },
 
+  // 上传图片
+  postImgae() {
+    const self = this;
+    return new Promise((res, rej) => {
+      let arr = [];
+      self.data.imgList.forEach((tmpUrl, index) => {
+        arr[index] = new Promise((res, rej) => {
+          const tmp = tmpUrl.split("/");
+          const name = tmp[tmp.length - 1];
+          const path = `images/${name}`;
+          wx.cloud.uploadFile({
+            cloudPath: path,
+            filePath: tmpUrl,
+          }).then(data => {
+            self.data.imgIdList.push(data.fileID);
+            res();
+          })
+        })
+      });
+      Promise.all(arr).then(() => {
+        self.setData({
+          imgIdList: self.data.imgIdList
+        });
+        res();
+      })
+    })
+  },
+
+  // 预览图片
   ViewImage(e) {
     wx.previewImage({
       urls: this.data.imgList,
@@ -70,6 +87,7 @@ Page({
     });
   },
 
+  // 删除图片
   DelImg(e) {
     wx.showModal({
       title: '召唤师',
@@ -87,6 +105,7 @@ Page({
     })
   },
 
+  // 选择图片
   ChooseImage() {
     wx.chooseImage({
       count: 4, //默认9
@@ -106,21 +125,7 @@ Page({
     });
   },
 
-   postImgae(tmpUrl) {
-    const tmp = tmpUrl.split("/");
-    const name = tmp[tmp.length - 1];
-    const path = `images/${name}`;
-    const self = this;
-    wx.cloud.uploadFile({
-      cloudPath: path,
-      filePath: tmpUrl,
-    }).then(data => {
-      self.data.imgIdList.push(data.fileID)
-    }).catch(err => console.error(err));
-
-  },
-
-  //添加投票选项
+  // 添加投票选项
   addVoteOption() {
     let self = this;
     self.data.voteOptionList.push({
@@ -131,7 +136,7 @@ Page({
     });
   },
 
-  //删除投票选项
+  // 删除投票选项
   deleteVoteOption(e) {
     const self = this;
     console.log(self.data.voteOptionList.length);
@@ -152,7 +157,7 @@ Page({
     }
   },
 
-  //选项内容输入
+  // 选项内容输入
   bindVoteInput(e) {
     const self = this;
     let index = e.currentTarget.dataset.index;
@@ -162,7 +167,7 @@ Page({
     })
   },
 
-  //投票类型
+  // 投票类型
   radioChange(e) {
     const self = this;
     let voteType;

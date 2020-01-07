@@ -41,11 +41,6 @@ Page({
   },
 
   bindGetUserInfo: function (e) {
-<<<<<<< HEAD
-    const self = this;
-=======
-    // let 
->>>>>>> 13a4fdab08b074793d7e517abd1c207b0deca951
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var self = this;
