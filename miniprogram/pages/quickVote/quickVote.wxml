@@ -1,4 +1,4 @@
-<!--miniprogram/pages/quickVote/quickVote.wxml-->
+<!-- miniprogram/pages/quickVote/quickVote.wxml -->
 <text>miniprogram/pages/quickVote/quickVote.wxml</text>
 <view class="vote-add">
     <!-- 导航栏 -->

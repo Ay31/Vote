@@ -3,3 +3,5 @@ index => 简易投票 标题 选项 类型 是否单选
 		详细投票   标题 描述 类型 配图 选项 是否单选
 
 
+oppenid => openId
+id => voteId

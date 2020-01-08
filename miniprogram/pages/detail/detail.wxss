@@ -1,0 +1,13 @@
+/* miniprogram/pages/detail/detail.wxss */
+.desTextareaData,
+.voteTitle {
+  padding: 25rpx;
+}
+
+.desTextareaData {
+	line-height: 50rpx;
+}
+
+.progress {
+	margin: 0 50rpx;
+}

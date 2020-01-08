@@ -2,43 +2,52 @@
 
 const app = getApp();
 const db = wx.cloud.database();
-const vote = db.collection('vote');
+const vote = db.collection("vote");
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    openid: '',
+    openid: "",
     voteData: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     const self = this;
-    this.getOpenId();
-    vote.get().then(data => {
-      self.setData({
-        voteData: data.data
+    this.getOpenId().then(() => {
+      this.setData({
+        openid: this.data.openid
       });
+      vote
+        .where({
+          _openid: this.data.openid
+        })
+        .get()
+        .then(data => {
+          self.setData({
+            voteData: data.data
+          });
+        });
     });
   },
 
   getOpenId() {
     let self = this;
-    wx.cloud.callFunction({
-        name: 'login',
-      })
-      .then(data => {
-        console.log('云函数获取到的openid: ', data.result.openId)
-        // var openid = data.result.openId;
-        self.setData({
-          openid: data.result.openId
+    return new Promise(res => {
+      wx.cloud
+        .callFunction({
+          name: "login"
+        })
+        .then(data => {
+          console.log("云函数获取到的openid: ", data.result.openId);
+          this.data.openid = data.result.openId;
+          res();
         });
-      })
+    });
   },
 
   onShareAppMessage(data) {
@@ -49,15 +58,15 @@ Page({
     return {
       title: shareTitle,
       path: `/pages/share/share?voteId=${voteId}`,
-      success: function (res) {
+      success: function(res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));
       },
-      fail: function (res) {
+      fail: function(res) {
         // 转发失败
         console.log("转发失败:" + JSON.stringify(res));
       }
-    }
+    };
   },
 
   click(data) {
@@ -66,50 +75,43 @@ Page({
     console.log(data);
   },
 
+  targetToDetail(data) {
+    console.log(data);
+    wx.navigateTo({
+      url: `/pages/detail/detail?voteId=${data.currentTarget.dataset.id}`
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function() {}
 
   /**
    * 用户点击右上角分享
    */
-
-})
+});

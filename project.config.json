@@ -56,18 +56,28 @@
 					"id": -1,
 					"name": "快速投票页",
 					"pathName": "pages/quickVote/quickVote",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "我的",
 					"pathName": "pages/info/info",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "分享页",
 					"pathName": "pages/share/share",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "详情页",
+					"pathName": "pages/detail/detail",
+					"query": "voteId=f74aca2f5e15f1f7005c73426612a9fe",
 					"scene": null
 				}
 			]

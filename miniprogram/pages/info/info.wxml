@@ -5,13 +5,10 @@
         <view slot="content">创建投票</view>
     </cu-custom>
     <view>
-        <button bindtap="click">123</button>
-    </view>
-    <view>
         <view wx:for="{{voteData}}" wx:key="index">
-            <view class="cu-form-group margin-top">
+            <view class="cu-form-group margin-top" catchtap="targetToDetail" data-id="{{item._id}}">
                 {{item.voteTitle}}
-                <button class="cuIcon-share" open-type="share" data-data="{{item}}" data-voteid="{{item._id}}" data-title="{{item.voteTitle}}" data-img="{{item.imgList}}" bindtap="onShareAppMessage"></button>
+                <button class="cuIcon-share cu-btn round lg" open-type="share" data-data="{{item}}" data-voteid="{{item._id}}" data-title="{{item.voteTitle}}" data-img="{{item.imgList}}" catchtap="onShareAppMessage"></button>
             </view>
         </view>
     </view>
