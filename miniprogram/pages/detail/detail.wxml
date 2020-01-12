@@ -4,7 +4,6 @@
         <view slot="backText">返回</view>
         <view slot="content">投票详情</view>
     </cu-custom>
-    <button bindtap="getRetio">getRetio</button>
     <view class="cu-bar bg-white margin-top voteTitle">
         {{voteData.voteTitle}}
         <view class="padding-xs">
@@ -13,7 +12,9 @@
             </view>
         </view>
     </view>
-    <view class="cu-bar bg-white margin-top desTextareaData">{{voteData.desTextareaData}}</view>
+    <view class="cu-bar bg-white margin-top desTextareaData" wx:if="{{voteData.desTextareaData}}">
+        {{voteData.desTextareaData}}
+    </view>
     <view class="cu-bar bg-white margin-top" wx:for="{{voteData.voteOptionList}}" wx:key="index">
         <view class="action">
             <text class="cuIcon-title text-orange " />
@@ -23,9 +24,12 @@
             <view class="bg-green" style="width: {{ratioList[index]}}%;"></view>
         </view>
         <view class="action">
-            <button class="cu-btn bg-green shadow" catchtap="handleVote" data-index="{{index}}" data-target="Modal">
+            <button wx:if="{{!afterVote}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-index="{{index}}" data-target="Modal">
                 Vote
             </button>
+
+            <text class="text-df padding" wx:if="{{afterVote}}">{{ratioList[index]}}%</text>
+
         </view>
     </view>
     <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">

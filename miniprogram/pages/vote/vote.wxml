@@ -52,11 +52,6 @@
             </view>
         </view>
     </view>
-    <view>
-    {{imgList}}
-        {{imgIdList}}
-    </view>
-      
     <!-- 投票类型 -->
     <radio-group class="block" bindchange="radioChange">
         <view class="cu-form-group margin-top">

@@ -1,6 +1,6 @@
 <view class="vote-add">
     <!-- 导航栏 -->
-    <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <cu-custom bgColor="bg-gradual-blue">
         <view slot="backText">返回</view>
         <view slot="content">创建投票</view>
     </cu-custom>

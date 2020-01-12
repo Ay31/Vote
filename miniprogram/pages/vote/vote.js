@@ -35,19 +35,25 @@ Page({
   },
 
   // 提交投票
-  postVote() {
+  postVote: async function() {
     const self = this;
     let isPrivate = self.data.voteType === "private" ? true : false;
-    self.postImgae().then(() => {
-      vote.add({
-        data: {
-          voteTitle: self.data.newVoteTitle,
-          desTextareaData: self.data.desTextareaData,
-          isPrivate,
-          imgIdList: self.data.imgIdList,
-          voteOptionList: self.data.voteOptionList
-        }
-      });
+    await self.postImgae().then(() => {
+      vote
+        .add({
+          data: {
+            voteTitle: self.data.newVoteTitle,
+            desTextareaData: self.data.desTextareaData,
+            isPrivate,
+            imgIdList: self.data.imgIdList,
+            voteOptionList: self.data.voteOptionList
+          }
+        })
+        .then(data => {
+          wx.redirectTo({
+            url: `/pages/detail/detail?voteId=${data._id}`
+          });
+        });
     });
   },
 

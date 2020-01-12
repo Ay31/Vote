@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
   }, 0);
 
   const ratioList = res.data.voteOptionList.map(item => {
-    return (item.count / total) * 100;
+    return Math.round((item.count / total) * 100);
   });
 
   return {
