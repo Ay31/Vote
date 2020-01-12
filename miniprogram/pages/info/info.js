@@ -57,7 +57,7 @@ Page({
     let img = data.target.dataset.img;
     return {
       title: shareTitle,
-      path: `/pages/share/share?voteId=${voteId}`,
+      path: `/pages/detail/detail?voteId=${data.target.dataset.data._id}`,
       success: function(res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));

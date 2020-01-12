@@ -16,15 +16,15 @@
   <!-- 创建投票 -->
   <view class="option">
     <view class="flex-item">
-      <view class="option-item text-center margin-top-xl">
+      <view class="option-item text-center padding-top-xl margin-top-xl">
         <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-        <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToQuick">快速投票</button>
+        <button class="cu-btn bg-blue margin-tb-lg lg" bindtap="targetToQuick">快速投票</button>
       </view>
     </view>
     <view class="flex-item">
-      <view class="option-item text-center margin-top">
+      <view class="option-item text-center margin-top-lg">
         <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-        <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="targetToAdd">多项投票</button>
+        <button class="cu-btn bg-blue margin-tb-lg lg" bindtap="targetToAdd">多项投票</button>
       </view>
     </view>
   </view>
