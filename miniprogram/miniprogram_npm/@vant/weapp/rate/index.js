@@ -1,20 +1,17 @@
 import { VantComponent } from '../common/component';
+import { addUnit } from '../common/utils';
 VantComponent({
     field: true,
     classes: ['icon-class'],
     props: {
-        value: {
-            type: Number,
-            observer(value) {
-                if (value !== this.data.innerValue) {
-                    this.setData({ innerValue: value });
-                }
-            }
-        },
+        value: Number,
         readonly: Boolean,
         disabled: Boolean,
         allowHalf: Boolean,
-        size: null,
+        size: {
+            type: null,
+            observer: 'setSizeWithUnit'
+        },
         icon: {
             type: String,
             value: 'star'
@@ -39,16 +36,38 @@ VantComponent({
             type: Number,
             value: 5
         },
-        gutter: null,
+        gutter: {
+            type: null,
+            observer: 'setGutterWithUnit'
+        },
         touchable: {
             type: Boolean,
             value: true
         }
     },
     data: {
-        innerValue: 0
+        innerValue: 0,
+        gutterWithUnit: undefined,
+        sizeWithUnit: null
+    },
+    watch: {
+        value(value) {
+            if (value !== this.data.innerValue) {
+                this.setData({ innerValue: value });
+            }
+        }
     },
     methods: {
+        setGutterWithUnit(val) {
+            this.setData({
+                gutterWithUnit: addUnit(val)
+            });
+        },
+        setSizeWithUnit(size) {
+            this.setData({
+                sizeWithUnit: addUnit(size)
+            });
+        },
         onSelect(event) {
             const { data } = this;
             const { score } = event.currentTarget.dataset;

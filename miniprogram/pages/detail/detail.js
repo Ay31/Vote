@@ -11,6 +11,7 @@ Page({
   data: {
     voteData: {},
     swiperList: [],
+    ratioList: [],
     voteId: "",
     afterVote: false
   },
@@ -38,6 +39,7 @@ Page({
       cardCur: e.detail.current
     });
   },
+
   handleVote(data) {
     const option = `voteOptionList[${data.currentTarget.dataset.index}]`;
     vote
@@ -52,11 +54,24 @@ Page({
         }
       })
       .then(data => {
+        this.getRetio();
         this.setData({
           afterVote: true
         });
         console.log(data);
       });
+  },
+
+  getRetio: async function() {
+    const data = await wx.cloud.callFunction({
+      name: "ratio",
+      data: {
+        voteId: this.data.voteId
+      }
+    });
+    this.setData({
+      ratioList: data.result.ratioList
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

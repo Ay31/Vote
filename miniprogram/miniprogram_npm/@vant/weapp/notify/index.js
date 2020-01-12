@@ -33,8 +33,9 @@ VantComponent({
         show() {
             const { duration, onOpened } = this.data;
             clearTimeout(this.timer);
-            this.setData({ show: true });
-            wx.nextTick(onOpened);
+            this.setData({
+                show: true
+            }, onOpened);
             if (duration > 0 && duration !== Infinity) {
                 this.timer = setTimeout(() => {
                     this.hide();
@@ -44,8 +45,9 @@ VantComponent({
         hide() {
             const { onClose } = this.data;
             clearTimeout(this.timer);
-            this.setData({ show: false });
-            wx.nextTick(onClose);
+            this.setData({
+                show: false
+            }, onClose);
         },
         onTap(event) {
             const { onClick } = this.data;

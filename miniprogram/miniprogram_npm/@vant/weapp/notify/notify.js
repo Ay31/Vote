@@ -7,7 +7,6 @@ const defaultOptions = {
     duration: 3000,
     zIndex: 110,
     color: WHITE,
-    safeAreaInsetTop: false,
     onClick: () => { },
     onOpened: () => { },
     onClose: () => { }
@@ -26,7 +25,7 @@ export default function Notify(options) {
     delete options.context;
     delete options.selector;
     if (notify) {
-        notify.setData(options);
+        notify.set(options);
         notify.show();
         return notify;
     }

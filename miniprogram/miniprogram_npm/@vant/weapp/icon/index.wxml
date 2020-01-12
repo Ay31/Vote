@@ -1,8 +1,6 @@
-<wxs src="../wxs/utils.wxs" module="utils" />
-
 <view
   class="custom-class {{ classPrefix }} {{ isImageName ? 'van-icon--image' : classPrefix + '-' + name }}"
-  style="color: {{ color }};font-size: {{ utils.addUnit(size) }};{{ customStyle }}"
+  style="{{ color ? 'color: ' + color + ';' : '' }}{{ size ? 'font-size: ' + sizeWithUnit + ';' : '' }}{{ customStyle }}"
   bind:tap="onClick"
 >
   <van-info

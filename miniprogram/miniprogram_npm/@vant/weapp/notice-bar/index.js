@@ -51,9 +51,6 @@ VantComponent({
     watch: {
         text() {
             this.setData({}, this.init);
-        },
-        speed() {
-            this.setData({}, this.init);
         }
     },
     created() {

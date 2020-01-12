@@ -1,4 +1,5 @@
 import { VantComponent } from '../common/component';
+import { addUnit } from '../common/utils';
 function emit(target, value) {
     target.$emit('input', value);
     target.$emit('change', value);
@@ -29,8 +30,11 @@ VantComponent({
         },
         iconSize: {
             type: null,
-            value: 20
+            observer: 'setSizeWithUnit'
         }
+    },
+    data: {
+        sizeWithUnit: '20px'
     },
     methods: {
         emitChange(value) {
@@ -73,6 +77,11 @@ VantComponent({
                     emit(parent, parentValue);
                 }
             }
-        }
+        },
+        setSizeWithUnit(size) {
+            this.set({
+                sizeWithUnit: addUnit(size)
+            });
+        },
     }
 });

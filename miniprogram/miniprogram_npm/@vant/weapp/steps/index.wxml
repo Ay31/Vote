@@ -6,7 +6,6 @@
       wx:for="{{ steps }}"
       wx:key="index"
       class="{{ utils.bem('step', [direction, status(index, active)]) }} van-hairline"
-      style="{{ status(index, active) === 'inactive' ? 'color: ' + inactiveColor: '' }}"
     >
       <view class="van-step__title" style="{{ index === active ? 'color: ' + activeColor : '' }}">
         <view>{{ item.text }}</view>
@@ -16,14 +15,14 @@
         <block wx:if="{{ index !== active }}">
           <van-icon
             wx:if="{{ inactiveIcon }}"
-            color="{{ status(index, active) === 'inactive' ? inactiveColor: activeColor }}"
+            color="#969799"
             name="{{ inactiveIcon }}"
             custom-class="van-step__icon"
           />
           <view
             wx:else
             class="van-step__circle"
-            style="{{ 'background-color: ' + (index < active ? activeColor : inactiveColor) }}"
+            style="{{ index < active ? 'background-color: ' + activeColor : '' }}"
           />
         </block>
 
@@ -31,7 +30,7 @@
       </view>
       <view
         wx:if="{{ index !== steps.length - 1 }}"
-        class="van-step__line" style="{{ 'background-color: ' + (index < active ? activeColor : inactiveColor) }}"
+        class="van-step__line" style="{{ index < active ? 'background-color: ' + activeColor : '' }}"
       />
     </view>
   </view>
@@ -45,7 +44,7 @@ function get(index, active) {
     return 'process';
   }
 
-  return 'inactive';
+  return '';
 }
 
 module.exports = get;

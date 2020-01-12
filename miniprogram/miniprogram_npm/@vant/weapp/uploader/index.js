@@ -1,14 +1,17 @@
 import { VantComponent } from '../common/component';
 import { isImageFile } from './utils';
+import { addUnit } from '../common/utils';
 VantComponent({
     props: {
         disabled: Boolean,
         multiple: Boolean,
         uploadText: String,
+        useSlot: Boolean,
         useBeforeRead: Boolean,
         previewSize: {
             type: null,
-            value: 90
+            value: 90,
+            observer: 'setComputedPreviewSize'
         },
         name: {
             type: [Number, String],
@@ -17,14 +20,6 @@ VantComponent({
         accept: {
             type: String,
             value: 'image'
-        },
-        sizeType: {
-            type: Array,
-            value: ['original', 'compressed']
-        },
-        capture: {
-            type: Array,
-            value: ['album', 'camera']
         },
         fileList: {
             type: Array,
@@ -67,10 +62,15 @@ VantComponent({
             const lists = fileList.map(item => (Object.assign(Object.assign({}, item), { isImage: typeof item.isImage === 'undefined' ? isImageFile(item) : item.isImage })));
             this.setData({ lists, isInCount: lists.length < maxCount });
         },
+        setComputedPreviewSize(val) {
+            this.setData({
+                computedPreviewSize: addUnit(val)
+            });
+        },
         startUpload() {
             if (this.data.disabled)
                 return;
-            const { name = '', capture, maxCount, multiple, maxSize, accept, sizeType, lists, useBeforeRead = false // 是否定义了 beforeRead
+            const { name = '', capture = ['album', 'camera'], maxCount = 100, multiple = false, maxSize, accept, lists, useBeforeRead = false // 是否定义了 beforeRead
              } = this.data;
             let chooseFile = null;
             const newMaxCount = maxCount - lists.length;
@@ -80,7 +80,6 @@ VantComponent({
                     wx.chooseImage({
                         count: multiple ? (newMaxCount > 9 ? 9 : newMaxCount) : 1,
                         sourceType: capture,
-                        sizeType,
                         success: resolve,
                         fail: reject
                     });
@@ -96,8 +95,7 @@ VantComponent({
                     });
                 });
             }
-            chooseFile
-                .then((res) => {
+            chooseFile.then((res) => {
                 const file = multiple ? res.tempFiles : res.tempFiles[0];
                 // 检查文件大小
                 if (file instanceof Array) {
@@ -127,9 +125,6 @@ VantComponent({
                 else {
                     this.$emit('after-read', { file, name });
                 }
-            })
-                .catch(error => {
-                this.$emit('error', error);
             });
         },
         deleteItem(event) {

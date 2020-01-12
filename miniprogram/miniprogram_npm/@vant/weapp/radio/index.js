@@ -1,4 +1,5 @@
 import { VantComponent } from '../common/component';
+import { addUnit } from '../common/utils';
 VantComponent({
     field: true,
     relation: {
@@ -28,10 +29,18 @@ VantComponent({
         },
         iconSize: {
             type: null,
-            value: 20
+            observer: 'setIconSizeUnit'
         }
     },
+    data: {
+        iconSizeWithUnit: '20px'
+    },
     methods: {
+        setIconSizeUnit(val) {
+            this.setData({
+                iconSizeWithUnit: addUnit(val)
+            });
+        },
         emitChange(value) {
             const instance = this.parent || this;
             instance.$emit('input', value);
