@@ -35,6 +35,8 @@ Page({
     });
   },
 
+  
+
   getOpenId() {
     let self = this;
     return new Promise(res => {

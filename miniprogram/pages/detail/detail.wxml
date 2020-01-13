@@ -4,6 +4,9 @@
         <view slot="backText">返回</view>
         <view slot="content">投票详情</view>
     </cu-custom>
+    <button class="cu-btn bg-blue margin-tb-df lg" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+        授权登录
+    </button>
     <view class="cu-bar bg-white margin-top voteTitle">
         {{voteData.voteTitle}}
         <view class="padding-xs">
@@ -27,9 +30,7 @@
             <button wx:if="{{!afterVote}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-index="{{index}}" data-target="Modal">
                 Vote
             </button>
-
             <text class="text-df padding" wx:if="{{afterVote}}">{{ratioList[index]}}%</text>
-
         </view>
     </view>
     <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">

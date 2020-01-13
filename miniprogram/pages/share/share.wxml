@@ -4,14 +4,18 @@
         <view slot="backText">返回</view>
         <view slot="content">投票</view>
     </cu-custom>
-    <view class="column">
-        <view class="column-item">
-            <view class="title">投票标题</view>
-            <view class="content">{{voteData.voteTitle}}</view>
+    <view class="container">
+        <view class="userinfo">
+            <button wx:if="{{!hasUserInfo && canIUse && getUserInfoFail}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+                获取头像昵称
+            </button>
+            <block wx:if="{{hasUserInfo}}">
+                <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+                <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+            </block>
+        </view>
+        <view class="usermotto">
+            <text class="user-motto">{{motto}}</text>
         </view>
     </view>
-    <van-cell-group>
-        <van-cell title="单元格" value="内容" />
-        <van-cell title="单元格" value="{{voteData.desTextareaData}}" label="描述信息" border="{{ true }}" />
-    </van-cell-group>
 </view>
