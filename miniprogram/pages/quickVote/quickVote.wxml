@@ -11,11 +11,6 @@
         <view class="title">投标标题</view>
         <input placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
     </view>
-    <!-- 描述 -->
-    <!-- <view class="cu-form-group align-start margin-top">
-        <view class="title">投票描述</view>
-        <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="多行文本输入框" value="{{desTextareaData}}"></textarea>
-    </view> -->
     <!-- 投票选项标题 -->
     <view class="cu-form-group margin-top">
         <view class="title">设置选项</view>
@@ -36,24 +31,6 @@
             <span>添加选项</span>
         </view>
     </view>
-    <!-- 投票配图 -->
-    <!-- <view class="cu-bar bg-white margin-top">
-        <view class="action">投票配图</view>
-        <view class="action">{{imgList.length}}/4</view>
-    </view>
-    <view class="cu-form-group">
-        <view class="grid col-4 grid-square flex-sub">
-            <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
-                <image src='{{imgList[index]}}' mode='aspectFill'></image>
-                <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-                    <text class="cuIcon-close"></text>
-                </view>
-            </view>
-            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-                <text class="cuIcon-cameraadd"></text>
-            </view>
-        </view>
-    </view> -->
     <!-- 投票类型 -->
     <radio-group class="block" bindchange="radioChange">
         <view class="cu-form-group margin-top">

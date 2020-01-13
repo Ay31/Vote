@@ -27,9 +27,7 @@
             <button wx:if="{{!afterVote}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-index="{{index}}" data-target="Modal">
                 Vote
             </button>
-
             <text class="text-df padding" wx:if="{{afterVote}}">{{ratioList[index]}}%</text>
-
         </view>
     </view>
     <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">

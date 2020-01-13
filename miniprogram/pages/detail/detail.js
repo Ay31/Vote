@@ -13,7 +13,7 @@ Page({
     afterVote: false
   },
 
-  onLoad: function(options) {
+  onLoad(options) {
     const { voteId } = options;
     vote
       .doc(voteId)

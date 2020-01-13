@@ -10,7 +10,7 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    openid: '',
+    openId: '',
     isHide: false
 
   },
@@ -43,31 +43,23 @@ Page({
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
-      var self = this;
-      let userInfo = e.detail.userInfo;
+      const self = this;
+      const userInfo = e.detail.userInfo;
       // 获取到用户的信息了，打印到控制台上看下
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo);
-      self.setData({
-        userInfo: self.data.userInfo
-      });
       //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-      self.setData({
+      this.setData({
+        userInfo: self.data.userInfo,
         isHide: false
       });
       info.where({
-          // userInfo: {
-          //   avataUrl: userInfo.avataUrl,
-          //   nickName: userInfo.nickName,
-          //   country: userInfo.country,
-          //   city: userInfo.city
-          // }
-          openId: self.data.openid
+          openId: self.data.openId
         }).get()
         .then(res => {
           console.log(res);
           if (!res.data.length) {
-            console.log(self.data.openid);
+            console.log(self.data.openId);
             info.doc('dbff9fc75e017eab066a8023574270bc').update({
               data: {
                 userInfo: {
@@ -100,15 +92,15 @@ Page({
   },
 
   getOpenId() {
-    let self = this;
+    const self = this;
     wx.cloud.callFunction({
         name: 'login',
       })
       .then(data => {
-        console.log('云函数获取到的openid: ', data.result.openId)
-        // var openid = data.result.openId;
-        self.setData({
-          openid: data.result.openId
+        console.log('云函数获取到的openId: ', data.result.openId)
+        // const openId = data.result.openId;
+        this.setData({
+          openId: data.result.openId
         });
         info.where({
             oppeId: data.result.openId
@@ -118,7 +110,7 @@ Page({
             if (!data.data.length) {
               info.add({
                 data: {
-                  oppeId: self.data.openid
+                  oppeId: self.data.openId
                 }
               })
             }
@@ -126,7 +118,7 @@ Page({
       })
   },
 
-  //跳转至创建投票页
+  // 跳转至创建投票页
   targetToAdd() {
     wx.navigateTo({
       url: `/pages/vote/vote?`,
@@ -135,7 +127,8 @@ Page({
       },
     })
   },
-
+  
+  // 跳转至快速投票页
   targetToQuick() {
     wx.navigateTo({
       url: '/pages/quickVote/quickVote',

@@ -16,29 +16,25 @@ Page({
     ]
   },
 
-  onLoad(options) {},
-
   // 投票标题
   bindTitleInput(e) {
-    let self = this;
-    self.setData({
+    this.setData({
       newVoteTitle: e.detail.value
     });
   },
 
   // 投票描述
   bindDesTextAreaInput(e) {
-    let self = this;
-    self.setData({
+    this.setData({
       desTextareaData: e.detail.value
     });
   },
 
   // 提交投票
   postVote: async function() {
-    const self = this;
-    let isPrivate = self.data.voteType === "private" ? true : false;
-    await self.postImgae().then(() => {
+    let self = this;
+    let isPrivate = this.data.voteType === "private" ? true : false;
+    await this.postImgae().then(() => {
       vote
         .add({
           data: {
@@ -59,10 +55,9 @@ Page({
 
   // 上传图片
   postImgae() {
-    const self = this;
     return new Promise((res, rej) => {
       let arr = [];
-      self.data.imgList.forEach((tmpUrl, index) => {
+      this.data.imgList.forEach((tmpUrl, index) => {
         arr[index] = new Promise((res, rej) => {
           const tmp = tmpUrl.split("/");
           const name = tmp[tmp.length - 1];
@@ -73,14 +68,14 @@ Page({
               filePath: tmpUrl
             })
             .then(data => {
-              self.data.imgIdList.push(data.fileID);
+              this.data.imgIdList.push(data.fileID);
               res();
             });
         });
       });
       Promise.all(arr).then(() => {
-        self.setData({
-          imgIdList: self.data.imgIdList
+        this.setData({
+          imgIdList: this.data.imgIdList
         });
         res();
       });
@@ -135,21 +130,19 @@ Page({
 
   // 添加投票选项
   addVoteOption() {
-    let self = this;
-    self.data.voteOptionList.push({
+    this.data.voteOptionList.push({
       content: "",
       count: 0
     });
-    self.setData({
-      voteOptionList: self.data.voteOptionList
+    this.setData({
+      voteOptionList: this.data.voteOptionList
     });
   },
 
   // 删除投票选项
   deleteVoteOption(e) {
-    const self = this;
-    console.log(self.data.voteOptionList.length);
-    if (self.data.voteOptionList.length <= 2) {
+    console.log(this.data.voteOptionList.length);
+    if (this.data.voteOptionList.length <= 2) {
       wx.showToast({
         title: "选项至少为2项",
         icon: "none",
@@ -158,9 +151,9 @@ Page({
     } else {
       let index = e.currentTarget.dataset.index;
       // console.log(index);
-      let delData = self.data.voteOptionList;
+      let delData = this.data.voteOptionList;
       delData.splice(index, 1);
-      self.setData({
+      this.setData({
         voteOptionList: delData
       });
     }
@@ -168,21 +161,19 @@ Page({
 
   // 选项内容输入
   bindVoteInput(e) {
-    const self = this;
     let index = e.currentTarget.dataset.index;
-    self.data.voteOptionList[index].content = e.detail.value;
-    self.setData({
-      voteOptionList: self.data.voteOptionList
+    this.data.voteOptionList[index].content = e.detail.value;
+    this.setData({
+      voteOptionList: this.data.voteOptionList
     });
   },
 
   // 投票类型
   radioChange(e) {
-    const self = this;
     let voteType;
     if (e.detail.value === "公开") voteType = "public";
     else voteType = "pritvate";
-    self.setData({
+    this.setData({
       voteType: voteType
     });
   }

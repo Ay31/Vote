@@ -5,26 +5,20 @@ const db = wx.cloud.database();
 const vote = db.collection("vote");
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
-    openid: "",
+    openId: "",
     voteData: {}
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
+  onLoad: function () {
     const self = this;
     this.getOpenId().then(() => {
       this.setData({
-        openid: this.data.openid
+        openId: this.data.openId
       });
       vote
         .where({
-          _openid: this.data.openid
+          _openid: this.data.openId
         })
         .get()
         .then(data => {
@@ -36,7 +30,6 @@ Page({
   },
 
   getOpenId() {
-    let self = this;
     return new Promise(res => {
       wx.cloud
         .callFunction({
@@ -44,7 +37,7 @@ Page({
         })
         .then(data => {
           console.log("云函数获取到的openid: ", data.result.openId);
-          this.data.openid = data.result.openId;
+          this.data.openId = data.result.openId;
           res();
         });
     });
@@ -52,17 +45,17 @@ Page({
 
   onShareAppMessage(data) {
     console.log(data);
-    let shareTitle = data.target.dataset.title;
-    let voteId = data.target.dataset.voteid;
-    let img = data.target.dataset.img;
+    const shareTitle = data.target.dataset.title;
+    // const voteId = data.target.dataset.voteid;
+    const img = data.target.dataset.img;
     return {
       title: shareTitle,
       path: `/pages/detail/detail?voteId=${data.target.dataset.data._id}`,
-      success: function(res) {
+      success: function (res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));
       },
-      fail: function(res) {
+      fail: function (res) {
         // 转发失败
         console.log("转发失败:" + JSON.stringify(res));
       }
@@ -70,8 +63,7 @@ Page({
   },
 
   click(data) {
-    const self = this;
-    // console.log(self.data.voteData);
+    // console.log(this.data.voteData);
     console.log(data);
   },
 
@@ -81,37 +73,5 @@ Page({
       url: `/pages/detail/detail?voteId=${data.currentTarget.dataset.id}`
     });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {}
-
-  /**
-   * 用户点击右上角分享
-   */
 });
