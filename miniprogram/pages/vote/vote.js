@@ -8,11 +8,17 @@ Page({
     newVoteTitle: "",
     desTextareaData: "",
     voteType: "private",
+    enableTime: 3,
     imgList: [],
     imgIdList: [],
-    voteOptionList: [
-      { content: "", count: 0 },
-      { content: "", count: 0 }
+    voteOptionList: [{
+        content: "",
+        count: 0
+      },
+      {
+        content: "",
+        count: 0
+      }
     ]
   },
 
@@ -31,18 +37,21 @@ Page({
   },
 
   // 提交投票
-  postVote: async function() {
+  postVote: async function () {
     let self = this;
     let isPrivate = this.data.voteType === "private" ? true : false;
+    const createTime = Date.new();
     await this.postImgae().then(() => {
       vote
         .add({
           data: {
             voteTitle: self.data.newVoteTitle,
             desTextareaData: self.data.desTextareaData,
-            isPrivate,
+            voteOptionList: self.data.voteOptionList,
             imgIdList: self.data.imgIdList,
-            voteOptionList: self.data.voteOptionList
+            isPrivate,
+            createTime,
+            endingTime: createTime + self.data.enableTime * 86400000000
           }
         })
         .then(data => {
@@ -176,5 +185,11 @@ Page({
     this.setData({
       voteType: voteType
     });
+  },
+
+  changeEnableTime(e) {
+    this.setData({
+      enableTime: e.detail.value
+    })
   }
 });

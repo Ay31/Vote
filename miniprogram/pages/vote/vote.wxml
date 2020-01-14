@@ -52,6 +52,26 @@
             </view>
         </view>
     </view>
+    <!-- 生效时间 -->
+    <radio-group class="block" bindchange="changeEnableTime">
+        <view class="cu-form-group margin-top">
+            <view class="title">
+                生效时间
+                <label for="3" class="vote-type">
+                    <radio class="blue vote-radio" value="3" name="3" id="3" checked="true" />
+                    3天
+                </label>
+                <label for="7" class="vote-type">
+                    <radio class="blue vote-radio" value="7" name="7" id="7" />
+                    7天
+                </label>
+                <label for="30" class="vote-type">
+                    <radio class="blue vote-radio" value="30" name="30" id="30" />
+                    30天
+                </label>
+            </view>
+        </view>
+    </radio-group>
     <!-- 投票类型 -->
     <radio-group class="block" bindchange="radioChange">
         <view class="cu-form-group margin-top">
