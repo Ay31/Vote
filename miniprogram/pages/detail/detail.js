@@ -13,13 +13,12 @@ Page({
     userInfo: {},
     voteId: "",
     openId: "",
-    afterVote: false
+    beforeVote: true,
+    canVote: true
   },
 
   onLoad(options) {
-    const {
-      voteId
-    } = options;
+    const { voteId } = options;
     vote
       .doc(voteId)
       .get()
@@ -37,10 +36,12 @@ Page({
       })
       .then(data => {
         this.data.openId = data.result.openId;
+        this.confirmUserInfo();
+        this.getRetio();
       });
   },
 
-  bindGetUserInfo: function (e) {
+  bindGetUserInfo: function(e) {
     var self = this;
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
@@ -63,7 +64,7 @@ Page({
         content: "您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!",
         showCancel: false,
         confirmText: "返回授权",
-        success: function (res) {
+        success: function(res) {
           // 用户没有授权成功，不需要改变 isHide 的值
           if (res.confirm) {
             console.log("用户点击了“返回授权”");
@@ -80,47 +81,24 @@ Page({
     });
   },
 
-  // 投票
-  // handleVote: async function (data) {
-  //   const self = this;
-  //   await vote.doc(this.data.voteId).update({
-  //     data: {
-  //       voteOptionList: {
-  //         [data.currentTarget.dataset.index]: {
-  //           count: _.inc(1),
-  //           // supporters: []
-  //         }
-  //       }
-  //     }
-  //   });
-  //   console.log(self.data.userInfo);
-  //   await info.add({
-  //     data: self.data.userInfo
-  //   });
-  //   this.setData({
-  //     afterVote: true
-  //   });
-  //   this.getRetio();
-
-  //   console.log(this.data.ratioList);
-  // },
-
-  handleVote: async function (data) { // this指向可能有错
+  // 响应投票
+  handleVote: async function(data) {
+    // this指向可能有错
     const self = this;
-    this.submitVote(data)
-    await info.add({
-      data: self.data.userInfo
-    });
-    // console.log(self.data.userInfo);
-    this.setData({
-      afterVote: true
-    });
+    this.submitVote(data);
+    // await info.add({
+    //   data: self.data.userInfo
+    // });
     this.getRetio();
-    // console.log(this.data.ratioList);
+    this.setData({
+      beforeVote: false
+    });
+    console.log("setData");
   },
 
   // 获取选项占比
-  getRetio: async function () {
+  getRetio: async function() {
+    // return new Promise(reslove => {
     const data = await wx.cloud.callFunction({
       name: "ratio",
       data: {
@@ -130,16 +108,35 @@ Page({
     this.setData({
       ratioList: data.result.ratioList
     });
+    console.log("getRetio");
+    // reslove()
+    // })
   },
 
+  // 提交投票
   submitVote(data) {
     wx.cloud.callFunction({
-      name: 'submitVote',
+      name: "submitVote",
       data: {
         voteId: this.data.voteId,
         openId: this.data.openId,
         index: data.currentTarget.dataset.index
       }
-    })
+    });
+    console.log("submitVote");
+  },
+
+  // 确认用户信息
+  confirmUserInfo: async function() {
+    const res = await wx.cloud.callFunction({
+      name: "confirmUserInfo",
+      data: {
+        voteId: this.data.voteId,
+        openId: this.data.openId
+      }
+    });
+    this.setData({
+      canVote: res.result
+    });
   }
 });

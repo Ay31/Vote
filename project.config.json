@@ -79,6 +79,13 @@
 					"pathName": "pages/detail/detail",
 					"query": "voteId=f74aca2f5e15f1f7005c73426612a9fe",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "快速投票测试",
+					"pathName": "pages/detail/detail",
+					"query": "voteId=1acf1de95e1b2593012acaf81e7a7883",
+					"scene": null
 				}
 			]
 		}
