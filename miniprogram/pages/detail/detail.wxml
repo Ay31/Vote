@@ -4,6 +4,9 @@
         <view slot="backText">返回</view>
         <view slot="content">投票详情</view>
     </cu-custom>
+    <button class="cu-btn bg-blue margin-tb-df lg" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+        授权登录
+    </button>
     <view class="cu-bar bg-white margin-top voteTitle">
         {{voteData.voteTitle}}
         <view class="padding-xs">

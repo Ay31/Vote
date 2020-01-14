@@ -29,6 +29,8 @@ Page({
     });
   },
 
+  
+
   getOpenId() {
     return new Promise(res => {
       wx.cloud
