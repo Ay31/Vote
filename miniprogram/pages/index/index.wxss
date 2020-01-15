@@ -5,14 +5,6 @@ page {
   height: 100%;
   background: linear-gradient(#0081ff, #f8f8ff);
 }
-/* 
-.image {
-  width: 300rpx;
-}
-
-.vote-item {
-	margin: 30rpx 0;
-} */
 
 .button1 {
   background: linear-gradient(rgb(25, 141, 255), rgb(214, 230, 255));
