@@ -1,22 +1,22 @@
 // miniprogram/pages/vote/vote.js
 const app = getApp();
 const db = wx.cloud.database();
-const vote = db.collection("vote");
+const vote = db.collection('vote');
 
 Page({
   data: {
-    newVoteTitle: "",
-    desTextareaData: "",
+    newVoteTitle: '',
+    desTextareaData: '',
     isPrivate: true,
     enableTime: 3,
     imgList: [],
     imgIdList: [],
     voteOptionList: [{
-        content: "",
+        content: '',
         count: 0
       },
       {
-        content: "",
+        content: '',
         count: 0
       }
     ]
@@ -64,7 +64,7 @@ Page({
       let arr = [];
       this.data.imgList.forEach((tmpUrl, index) => {
         arr[index] = new Promise(async resolve => {
-          const tmp = tmpUrl.split("/");
+          const tmp = tmpUrl.split('/');
           const name = tmp[tmp.length - 1];
           const path = `images/${name}`;
           const res = await wx.cloud
@@ -95,10 +95,10 @@ Page({
   // 删除图片
   DelImg(e) {
     wx.showModal({
-      title: "确认删除",
-      content: "确定要删除该照片吗？",
-      cancelText: "取消",
-      confirmText: "删除",
+      title: '确认删除',
+      content: '确定要删除该照片吗？',
+      cancelText: '取消',
+      confirmText: '删除',
       success: res => {
         if (res.confirm) {
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
@@ -114,8 +114,8 @@ Page({
   ChooseImage() {
     wx.chooseImage({
       count: 4,
-      sizeType: ["original", "compressed"],
-      sourceType: ["album"],
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album'],
       success: res => {
         if (this.data.imgList.length != 0) {
           this.setData({
@@ -133,7 +133,7 @@ Page({
   // 添加投票选项
   addVoteOption() {
     this.data.voteOptionList.push({
-      content: "",
+      content: '',
       count: 0
     });
     this.setData({
@@ -146,8 +146,8 @@ Page({
     console.log(this.data.voteOptionList.length);
     if (this.data.voteOptionList.length <= 2) {
       wx.showToast({
-        title: "选项至少为2项",
-        icon: "none",
+        title: '选项至少为2项',
+        icon: 'none',
         duration: 1000
       });
     } else {
@@ -171,7 +171,7 @@ Page({
   // 投票类型
   radioChange(e) {
     this.setData({
-      isPrivate: e.detail.value === "私密" ? true : false
+      isPrivate: e.detail.value === '私密' ? true : false
     });
   },
 

@@ -1,8 +1,8 @@
 // miniprogram/pages/detail/detail.js
 const app = getApp();
 const db = wx.cloud.database();
-const vote = db.collection("vote");
-const info = db.collection("info");
+const vote = db.collection('vote');
+const info = db.collection('info');
 const _ = db.command;
 
 Page({
@@ -11,20 +11,19 @@ Page({
     swiperList: [],
     ratioList: [],
     userInfo: {},
-    voteId: "",
-    openId: "",
+    voteId: '',
+    openId: '',
     hasUserInfo: false,
     beforeVote: true,
     enableTime: true,
   },
 
-  onLoad(options) {
+  onLoad: async function (options) {
     this.getVoteData(options.voteId);
-    this.getOpenId().then(() => {
-      this.confirmEnableTime();
-      this.confirmUserInfo();
-      this.getRetio();
-    });
+    await this.getOpenId();
+    this.confirmEnableTime();
+    this.confirmUserInfo();
+    this.getRetio();
     this.bindUserInfo();
   },
 
@@ -109,7 +108,7 @@ Page({
   // 获取选项占比
   getRetio: async function () {
     const data = await wx.cloud.callFunction({
-      name: "ratio",
+      name: 'ratio',
       data: {
         voteId: this.data.voteId
       }
@@ -123,7 +122,7 @@ Page({
   // 提交投票
   submitVote(data) {
     wx.cloud.callFunction({
-      name: "submitVote",
+      name: 'submitVote',
       data: {
         voteId: this.data.voteId,
         openId: this.data.openId,
@@ -135,7 +134,7 @@ Page({
   // 确认用户信息
   confirmUserInfo: async function () {
     const res = await wx.cloud.callFunction({
-      name: "confirmUserInfo",
+      name: 'confirmUserInfo',
       data: {
         voteId: this.data.voteId,
         openId: this.data.openId

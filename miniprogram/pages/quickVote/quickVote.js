@@ -2,19 +2,19 @@
 
 const app = getApp();
 const db = wx.cloud.database();
-const vote = db.collection("vote");
+const vote = db.collection('vote');
 
 Page({
   data: {
-    newVoteTitle: "",
-    voteType: "private",
+    newVoteTitle: '',
+    voteType: 'private',
     isPrivate: true,
     voteOptionList: [{
-        content: "YES",
+        content: 'YES',
         count: 0
       },
       {
-        content: "NO",
+        content: 'NO',
         count: 0
       }
     ]
@@ -48,7 +48,7 @@ Page({
   //添加投票选项
   addVoteOption() {
     this.data.voteOptionList.push({
-      content: ""
+      content: ''
     });
     this.setData({
       voteOptionList: this.data.voteOptionList
@@ -60,8 +60,8 @@ Page({
     console.log(this.data.voteOptionList.length);
     if (this.data.voteOptionList.length <= 2) {
       wx.showToast({
-        title: "选项至少为2项",
-        icon: "none",
+        title: '选项至少为2项',
+        icon: 'none',
         duration: 1000
       });
     } else {
@@ -84,7 +84,7 @@ Page({
   //投票类型
   radioChange(e) {
     this.setData({
-      isPrivate: e.detail.value === "私密" ? true : false
+      isPrivate: e.detail.value === '私密' ? true : false
     });
   }
 });

@@ -2,20 +2,19 @@
 
 const app = getApp();
 const db = wx.cloud.database();
-const vote = db.collection("vote");
+const vote = db.collection('vote');
 
 Page({
   data: {
-    openId: "",
+    openId: '',
     voteData: {},
     userInfo: {},
     hasUserInfo: false
   },
 
-  onLoad: function () {
-    this.getOpenId().then(() => {
-      this.getVoteList()
-    })
+  onLoad: async function () {
+    await this.getOpenId();
+    this.getVoteList();
   },
 
   onShow() {
