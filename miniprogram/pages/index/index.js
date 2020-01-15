@@ -75,7 +75,7 @@ Page({
   // 跳转至创建投票页
   targetToAdd() {
     wx.navigateTo({
-      url: `/pages/vote/vote?`,
+      url: `/pages/createVote/createVote?`,
       success(data) {
         console.log(data);
       },

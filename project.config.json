@@ -41,7 +41,7 @@
 				{
 					"id": 0,
 					"name": "投票页",
-					"pathName": "pages/vote/vote",
+					"pathName": "pages/createVote/createVote",
 					"query": "",
 					"scene": null
 				},

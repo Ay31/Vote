@@ -3,18 +3,16 @@
     <cu-custom bgColor="bg-gradual-blue">
         <view slot="backText">返回</view>
     </cu-custom>
-    <!-- <view class=""> -->
     <view class="cu-form-group " hidden="{{hasUserInfo}}">
         <view class="login">
             <image src="../../style/icon/login.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
             <view class="solid-bottom text-df padding">需要您的授权才能使用</view>
         </view>
     </view>
-        <view wx:for="{{voteData}}" wx:key="index" hidden="{{!hasUserInfo}}">
-            <view class="cu-form-group margin-top" catchtap="targetToDetail" data-id="{{item._id}}">
-                {{item.voteTitle}}
-                <button class="cuIcon-share cu-btn round lg" open-type="share" data-data="{{item}}" data-voteid="{{item._id}}" data-title="{{item.voteTitle}}" data-img="{{item.imgList}}" catchtap="onShareAppMessage"></button>
-            </view>
+    <view wx:for="{{voteData}}" wx:key="index" hidden="{{!hasUserInfo}}">
+        <view class="cu-form-group margin-top" catchtap="targetToDetail" data-id="{{item._id}}">
+            {{item.voteTitle}}
+            <button class="cuIcon-share cu-btn round lg" open-type="share" data-voteId="{{item._id}}" data-title="{{item.voteTitle}}" data-img="{{item.imgIdList}}" catchtap="onShareAppMessage"></button>
         </view>
-    <!-- </view> -->
+    </view>
 </view>

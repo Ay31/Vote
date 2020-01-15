@@ -23,20 +23,19 @@ Page({
   // 提交投票
   postVote: async function () {
     const self = this;
-    // const isPrivate = this.data.voteType === "private" ? true : false;
-    vote
-      .add({
-        data: {
-          voteTitle: self.data.newVoteTitle,
-          isPrivate: self.data.isPrivate,
-          voteOptionList: self.data.voteOptionList
-        }
-      })
-      .then(data => {
-        wx.redirectTo({
-          url: `/pages/detail/detail?voteId=${data._id}`
-        });
-      });
+    const createTime = Date.parse(new Date());
+    const res = await vote.add({
+      data: {
+        voteTitle: self.data.newVoteTitle,
+        isPrivate: self.data.isPrivate,
+        voteOptionList: self.data.voteOptionList,
+        createTime,
+        endingTime: createTime + self.data.enableTime * 86400000
+      }
+    })
+    wx.redirectTo({
+      url: `/pages/detail/detail?voteId=${res._id}`
+    });
   },
 
   //投票标题
@@ -67,11 +66,7 @@ Page({
       });
     } else {
       const index = e.currentTarget.dataset.index;
-      // console.log(index);
-      // const delData = this.data.voteOptionList;
-      // delData.splice(index, 1);
       this.setData({
-        // voteOptionList: delData
         voteOptionList: this.data.voteOptionList.splice(index, 1)
       });
     }

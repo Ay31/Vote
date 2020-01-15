@@ -13,23 +13,9 @@ Page({
   },
 
   onLoad: function () {
-    const self = this;
-    console.log(this.data.userInfo);
     this.getOpenId().then(() => {
-      this.setData({
-        openId: this.data.openId
-      });
-      vote
-        .where({
-          _openid: this.data.openId
-        })
-        .get()
-        .then(data => {
-          self.setData({
-            voteData: data.data
-          });
-        });
-    });
+      this.getVoteList()
+    })
   },
 
   onShow() {
@@ -50,48 +36,44 @@ Page({
     console.log('bindUserInfo');
   },
 
-  getOpenId() {
-    return new Promise(res => {
-      wx.cloud
-        .callFunction({
-          name: "login"
-        })
-        .then(data => {
-          console.log("云函数获取到的openid: ", data.result.openId);
-          this.data.openId = data.result.openId;
-          res();
-        });
+  // 获取投票列表
+  getVoteList: async function () {
+    const res = await vote.where({
+      _openid: this.data.openId
+    }).get();
+    this.setData({
+      voteData: res.data
     });
+    console.log('getVoteList');
   },
 
-  onShareAppMessage(data) {
-    console.log(data);
-    const shareTitle = data.target.dataset.title;
-    // const voteId = data.target.dataset.voteid;
-    const img = data.target.dataset.img;
+  // 获取用户openId
+  getOpenId: async function () {
+    const res = await wx.cloud.callFunction({
+      name: 'login'
+    });
+    this.setData({
+      openId: res.result.openId
+    })
+    console.log('getOpenId');
+    return new Promise((res) => res());
+  },
+
+  // 分享投票
+  onShareAppMessage(res) {
+    console.log(res);
     return {
-      title: shareTitle,
-      path: `/pages/detail/detail?voteId=${data.target.dataset.data._id}`,
-      success: function (res) {
-        // 转发成功
-        console.log("转发成功:" + JSON.stringify(res));
-      },
-      fail: function (res) {
-        // 转发失败
-        console.log("转发失败:" + JSON.stringify(res));
-      }
+      title: res.target.dataset.title,
+      imageUrl: res.target.dataset.img[0],
+      path: `/pages/detail/detail?voteId=${res.target.dataset.voteId}`,
     };
   },
 
-  click(data) {
-    // console.log(this.data.voteData);
-    console.log(data);
-  },
-
-  targetToDetail(data) {
-    console.log(data);
+  // 跳转至投票页
+  targetToDetail(res) {
+    console.log(res);
     wx.navigateTo({
-      url: `/pages/detail/detail?voteId=${data.currentTarget.dataset.id}`
+      url: `/pages/detail/detail?voteId=${res.currentTarget.dataset.id}`
     });
   },
 

@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/vote/vote",
+    "pages/createVote/createVote",
     "pages/detail/detail",
     "pages/info/info",
     "pages/quickVote/quickVote",

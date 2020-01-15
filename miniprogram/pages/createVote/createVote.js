@@ -7,7 +7,7 @@ Page({
   data: {
     newVoteTitle: "",
     desTextareaData: "",
-    voteType: "private",
+    isPrivate: true,
     enableTime: 3,
     imgList: [],
     imgIdList: [],
@@ -39,57 +39,48 @@ Page({
   // 提交投票
   postVote: async function () {
     let self = this;
-    let isPrivate = this.data.voteType === "private" ? true : false;
     const createTime = Date.parse(new Date());
-    console.log(createTime);
-    await this.postImgae().then(() => {
-      vote
-        .add({
-          data: {
-            voteTitle: self.data.newVoteTitle,
-            desTextareaData: self.data.desTextareaData,
-            voteOptionList: self.data.voteOptionList,
-            imgIdList: self.data.imgIdList,
-            isPrivate,
-            enable: true,
-            createTime,
-            endingTime: createTime + self.data.enableTime * 86400000
-          }
-        })
-        .then(data => {
-          wx.redirectTo({
-            url: `/pages/detail/detail?voteId=${data._id}`
-          });
-        });
+    await this.postImage()
+    const res = await vote.add({
+      data: {
+        voteTitle: self.data.newVoteTitle,
+        desTextareaData: self.data.desTextareaData,
+        voteOptionList: self.data.voteOptionList,
+        imgIdList: self.data.imgIdList,
+        isPrivate: self.data.isPrivate,
+        enable: true,
+        createTime,
+        endingTime: createTime + self.data.enableTime * 86400000
+      }
+    })
+    wx.redirectTo({
+      url: `/pages/detail/detail?voteId=${res._id}`
     });
   },
 
   // 上传图片
-  postImgae() {
-    return new Promise((res, rej) => {
+  postImage() {
+    return new Promise(async resolve => {
       let arr = [];
       this.data.imgList.forEach((tmpUrl, index) => {
-        arr[index] = new Promise((res, rej) => {
+        arr[index] = new Promise(async resolve => {
           const tmp = tmpUrl.split("/");
           const name = tmp[tmp.length - 1];
           const path = `images/${name}`;
-          wx.cloud
+          const res = await wx.cloud
             .uploadFile({
               cloudPath: path,
               filePath: tmpUrl
             })
-            .then(data => {
-              this.data.imgIdList.push(data.fileID);
-              res();
-            });
+          this.data.imgIdList.push(res.fileID);
+          resolve();
         });
       });
-      Promise.all(arr).then(() => {
-        this.setData({
-          imgIdList: this.data.imgIdList
-        });
-        res();
+      await Promise.all(arr)
+      this.setData({
+        imgIdList: this.data.imgIdList
       });
+      resolve();
     });
   },
 
@@ -104,10 +95,10 @@ Page({
   // 删除图片
   DelImg(e) {
     wx.showModal({
-      title: "召唤师",
-      content: "确定要删除这段回忆吗？",
-      cancelText: "再看看",
-      confirmText: "再见",
+      title: "确认删除",
+      content: "确定要删除该照片吗？",
+      cancelText: "取消",
+      confirmText: "删除",
       success: res => {
         if (res.confirm) {
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
@@ -122,9 +113,9 @@ Page({
   // 选择图片
   ChooseImage() {
     wx.chooseImage({
-      count: 4, //默认9
-      sizeType: ["original", "compressed"], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ["album"], //从相册选择
+      count: 4,
+      sizeType: ["original", "compressed"],
+      sourceType: ["album"],
       success: res => {
         if (this.data.imgList.length != 0) {
           this.setData({
@@ -160,19 +151,17 @@ Page({
         duration: 1000
       });
     } else {
-      let index = e.currentTarget.dataset.index;
-      // console.log(index);
-      let delData = this.data.voteOptionList;
-      delData.splice(index, 1);
+      const index = e.currentTarget.dataset.index;
+      this.data.voteOptionList.splice(index, 1);
       this.setData({
-        voteOptionList: delData
+        voteOptionList: this.data.voteOptionList
       });
     }
   },
 
   // 选项内容输入
   bindVoteInput(e) {
-    let index = e.currentTarget.dataset.index;
+    const index = e.currentTarget.dataset.index;
     this.data.voteOptionList[index].content = e.detail.value;
     this.setData({
       voteOptionList: this.data.voteOptionList
@@ -181,11 +170,8 @@ Page({
 
   // 投票类型
   radioChange(e) {
-    let voteType;
-    if (e.detail.value === "公开") voteType = "public";
-    else voteType = "pritvate";
     this.setData({
-      voteType: voteType
+      isPrivate: e.detail.value === "私密" ? true : false
     });
   },
 
