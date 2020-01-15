@@ -1,0 +1,23 @@
+/* miniprogram/pages/login/login.wxss */
+page {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#0081ff, #f8f8ff);
+}
+
+.index-wrapper {
+	height: 100%;
+}
+image {
+  height: 350rpx;
+  margin-bottom: 10rpx;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-80%);
+}

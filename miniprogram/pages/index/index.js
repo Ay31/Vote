@@ -1,16 +1,38 @@
-//index.js
+// miniprogram/pages/newIndex/newIndex.js
 const app = getApp();
 const db = wx.cloud.database();
-const info = db.collection('info');
+const info = db.collection("info");
 
 Page({
   data: {
+    swiperList: [
+      {
+        id: 0,
+        type: "image",
+        url: "../../style/img/vote1.jpg"
+      },
+      {
+        id: 1,
+        type: "image",
+        url: "../../style/img/vote2.jpg"
+      },
+      {
+        id: 2,
+        type: "image",
+        url: "../../style/img/vote3.jpg"
+      },
+      {
+        id: 3,
+        type: "image",
+        url: "../../style/img/vote4.jpg"
+      }
+    ],
     userInfo: {},
-    openId: '',
+    openId: "",
     hasUserInfo: false
   },
 
-  onLoad: function () {
+  onLoad: function() {
     this.getOpenId();
     this.bindUserInfo();
   },
@@ -19,14 +41,14 @@ Page({
   bindUserInfo() {
     const self = this;
     wx.getUserInfo({
-      success: function (res) {
+      success: function(res) {
         self.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
-        })
+        });
       }
-    })
-    console.log('bindUserInfo');
+    });
+    console.log("bindUserInfo");
   },
 
   // 用户授权
@@ -36,49 +58,83 @@ Page({
       this.setData({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
-      })
-      console.log('getUserInfo');
+      });
+      console.log("getUserInfo");
       console.log(this.data.userInfo);
     } else {
       wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入',
+        title: "警告",
+        content: "您点击了拒绝授权，将无法进入小程序，请授权之后再进入",
         showCancel: false,
-        confirmText: '返回授权',
-      })
+        confirmText: "返回授权"
+      });
     }
   },
 
-
   // 获取用户openId
-  getOpenId: async function () {
+  getOpenId: async function() {
     const res = await wx.cloud.callFunction({
-      name: 'login'
+      name: "login"
     });
     this.setData({
       openId: res.result.openId
-    })
-    console.log('getOpenId');
-    return new Promise((res) => res());
+    });
+    console.log("getOpenId");
+    return new Promise(res => res());
   },
 
   // 跳转至快速投票页
   targetToQuick() {
-    wx.navigateTo({
-      url: '/pages/quickVote/quickVote',
-      success(data) {
-        console.log(data);
-      },
-    })
+    if (!this.data.hasUserInfo) {
+      wx.navigateTo({
+        url: "/pages/login/login?target=quickVote"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/quickVote/quickVote",
+        success(data) {
+          console.log(data);
+        }
+      });
+    }
   },
 
   // 跳转至创建投票页
   targetToAdd() {
-    wx.navigateTo({
-      url: `/pages/createVote/createVote?`,
-      success(data) {
-        console.log(data);
-      },
-    })
+    if (!this.data.hasUserInfo) {
+      wx.navigateTo({
+        url: "/pages/login/login?target=createVote"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/createVote/createVote",
+        success(data) {
+          console.log(data);
+        }
+      });
+    }
   },
-})
+
+  // 跳转至创建投票页
+  targetToInfo() {
+    if (!this.data.hasUserInfo) {
+      wx.navigateTo({
+        url: "/pages/login/login?target=info"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/info/info",
+        success(data) {
+          console.log(data);
+        }
+      });
+    }
+  },
+
+  // 轮播
+  cardSwiper(e) {
+    this.setData({
+      cardCur: e.detail.current
+    });
+  }
+});

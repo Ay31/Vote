@@ -1,28 +1,35 @@
 /* miniprogram/pages/createVote/createVote.wxss */
 
 .minus-option {
-	color: #e54d42;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	margin: 1vw;
-	margin-right: 2vw;
+  color: #e54d42;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 1vw;
+  margin-right: 2vw;
 }
 
 .add-option {
-	color: royalblue;
-	margin: 1vw;
-	margin-right: 2vw;
+  color: royalblue;
+  margin: 1vw;
+  margin-right: 2vw;
 }
 
 .vote-option {
-	display: block;
+  display: block;
 }
 
 .content input {
-	display: inline-block;
+  display: inline-block;
 }
 
 .vote-type {
-	margin: 0 1vw;
+  margin: 0 1vw;
+}
+
+.cu-form-group {
+  margin: 35rpx 20rpx;
+  border: 1px solid white;
+  border-radius: 45rpx;
+  background: white;
 }

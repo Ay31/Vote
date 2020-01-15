@@ -1,13 +1,24 @@
 /* miniprogram/pages/detail/detail.wxss */
-.desTextareaData,
 .voteTitle {
-  padding: 25rpx;
+  padding-left: 60rpx;
 }
 
 .desTextareaData {
-	line-height: 50rpx;
+  line-height: 50rpx;
+  text-indent: 35rpx;
 }
 
 .progress {
-	margin: 0 50rpx;
+  margin: 0 50rpx;
 }
+
+.cu-form-group {
+  margin: 35rpx 20rpx;
+  border: 1px solid white;
+  border-radius: 45rpx;
+  background: white;
+}
+
+.opacity {
+	opacity: 0.85;
+  }

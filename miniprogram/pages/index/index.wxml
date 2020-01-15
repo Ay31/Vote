@@ -1,31 +1,38 @@
-<view class="index-wrapper">
-  <!-- 导航栏 -->
-  <cu-custom bgColor="bg-gradual-blue">
-    <view slot="content">首页</view>
-  </cu-custom>
-  <!-- 授权登录 -->
-  <view class="cu-form-group" hidden="{{hasUserInfo}}">
-    <view class="login">
-      <image src="../../style/icon/login.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-      <view class="solid-bottom text-df padding">需要您的授权才能使用</view>
-      <button class="cu-btn bg-blue margin-tb-df lg" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-        授权登录
-      </button>
+<!-- miniprogram/pages/newIndex/newIndex.wxml -->
+<view>
+    <!-- 导航栏 -->
+    <cu-custom bgColor="bg-blue">
+        <view slot="content">首页</view>
+    </cu-custom>
+    <view class="padding-lg">
+        <!-- <text class="text-white">You can vote something here.</text> -->
+        <text class="text-white text-sl">选你所想</text>
+        <view class="text-white slogan margin-top-sm">Choose what you want !</view>
     </view>
-  </view>
-  <!-- 创建投票 -->
-  <view class="option">
-    <view class="flex-item">
-      <view class="option-item text-center padding-top-xl margin-top-xl">
-        <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-        <button class="cu-btn bg-blue margin-tb-lg lg" bindtap="targetToQuick">快速投票</button>
-      </view>
+    <swiper class="card-swiper solid-bottom {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+        <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}} ">
+            <view class="swiper-item">
+                <image class="image" src="{{item.url}}" wx:if="{{item.type=='image'}}"></image>
+                <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view class="text-sl padding-left-lg vote-item">
+        <text class="text-white">Vote</text>
     </view>
-    <view class="flex-item">
-      <view class="option-item text-center margin-top-lg">
-        <image src="../../style/icon/file.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
-        <button class="cu-btn bg-blue margin-tb-lg lg" bindtap="targetToAdd">多项投票</button>
-      </view>
+    <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToQuick">
+        <text class="text-black text-xxl new-text padding-left">简单投票</text>
+        <text class="text-black text-xl en-text">Simple</text>
+        <view class="cuIcon-post cu-btn round bg-yellow text-white pandding-lg xl button1"></view>
     </view>
-  </view>
+    <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToAdd">
+        <text class="text-black text-xxl new-text padding-left">正常投票</text>
+        <text class="text-black text-xl en-text">Normal</text>
+        <view class="cuIcon-edit cu-btn round bg-purple text-white pandding-lg xl button2"></view>
+    </view>
+    <!-- <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToInfo">
+        <text class="text-black text-xxl new-text padding-left">我的投票</text>
+        <text class="text-black text-xl en-text">My vote</text>
+        <view class="cuIcon-profile cu-btn round bg-cyan text-blue pandding-lg xl button3"></view>
+    </view> -->
 </view>

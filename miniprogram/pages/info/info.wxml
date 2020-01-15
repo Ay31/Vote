@@ -1,15 +1,20 @@
-<view class="{{hasUserInfo ? '': 'index-wrapper' }}">
+<view class="{{hasUserInfo ? '': 'index-wrapper' }}" isBack="{{true}}">
     <!-- 导航栏 -->
-    <cu-custom bgColor="bg-gradual-blue">
+    <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
         <view slot="backText">返回</view>
     </cu-custom>
+    <view class="padding-lg">
+        <!-- <text class="text-white">You can vote something here.</text> -->
+        <text class="text-white text-sl">我的投票</text>
+        <view class="text-white slogan margin-top-sm">Look what you want !</view>
+    </view>
     <view class="cu-form-group " hidden="{{hasUserInfo}}">
         <view class="login">
             <image src="../../style/icon/login.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
             <view class="solid-bottom text-df padding">需要您的授权才能使用</view>
         </view>
     </view>
-    <view wx:for="{{voteData}}" wx:key="index" hidden="{{!hasUserInfo}}">
+    <view class="opacity" wx:for="{{voteData}}" wx:key="index" hidden="{{!hasUserInfo}}">
         <view class="cu-form-group margin-top" catchtap="targetToDetail" data-id="{{item._id}}">
             {{item.voteTitle}}
             <button class="cuIcon-share cu-btn round lg" open-type="share" data-voteId="{{item._id}}" data-title="{{item.voteTitle}}" data-img="{{item.imgIdList}}" catchtap="onShareAppMessage"></button>

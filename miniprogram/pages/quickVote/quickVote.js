@@ -9,7 +9,8 @@ Page({
     newVoteTitle: "",
     voteType: "private",
     isPrivate: true,
-    voteOptionList: [{
+    voteOptionList: [
+      {
         content: "YES",
         count: 0
       },
@@ -21,7 +22,7 @@ Page({
   },
 
   // 提交投票
-  postVote: async function () {
+  postVote: async function() {
     const self = this;
     const createTime = Date.parse(new Date());
     const res = await vote.add({
@@ -32,7 +33,7 @@ Page({
         createTime,
         endingTime: createTime + self.data.enableTime * 86400000
       }
-    })
+    });
     wx.redirectTo({
       url: `/pages/detail/detail?voteId=${res._id}`
     });
@@ -66,8 +67,9 @@ Page({
       });
     } else {
       const index = e.currentTarget.dataset.index;
+      this.data.voteOptionList.splice(index, 1);
       this.setData({
-        voteOptionList: this.data.voteOptionList.splice(index, 1)
+        voteOptionList: this.data.voteOptionList
       });
     }
   },
