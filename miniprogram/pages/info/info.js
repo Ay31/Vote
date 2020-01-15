@@ -7,11 +7,14 @@ const vote = db.collection("vote");
 Page({
   data: {
     openId: "",
-    voteData: {}
+    voteData: {},
+    userInfo: {},
+    hasUserInfo: false
   },
 
   onLoad: function () {
     const self = this;
+    console.log(this.data.userInfo);
     this.getOpenId().then(() => {
       this.setData({
         openId: this.data.openId
@@ -29,7 +32,23 @@ Page({
     });
   },
 
-  
+  onShow() {
+    this.bindUserInfo();
+  },
+
+  // 绑定用户信息
+  bindUserInfo() {
+    const self = this;
+    wx.getUserInfo({
+      success: function (res) {
+        self.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    })
+    console.log('bindUserInfo');
+  },
 
   getOpenId() {
     return new Promise(res => {

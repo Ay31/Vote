@@ -8,11 +8,11 @@ page {
   height: 100%;
   background: #ffffff;
   align-items: center;
-
 }
 
 image {
   height: 350rpx;
+  margin-bottom: 10rpx;
 }
 
 .option,
@@ -31,8 +31,4 @@ image {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-}
-
-image {
-  margin-bottom: 10rpx;
 }
