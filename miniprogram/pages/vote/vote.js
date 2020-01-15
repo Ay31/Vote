@@ -40,7 +40,8 @@ Page({
   postVote: async function () {
     let self = this;
     let isPrivate = this.data.voteType === "private" ? true : false;
-    const createTime = Date.new();
+    const createTime = Date.parse(new Date());
+    console.log(createTime);
     await this.postImgae().then(() => {
       vote
         .add({
@@ -50,8 +51,9 @@ Page({
             voteOptionList: self.data.voteOptionList,
             imgIdList: self.data.imgIdList,
             isPrivate,
+            enable: true,
             createTime,
-            endingTime: createTime + self.data.enableTime * 86400000000
+            endingTime: createTime + self.data.enableTime * 86400000
           }
         })
         .then(data => {
@@ -187,9 +189,11 @@ Page({
     });
   },
 
+  // 更改生效时间
   changeEnableTime(e) {
     this.setData({
       enableTime: e.detail.value
     })
-  }
+  },
+
 });

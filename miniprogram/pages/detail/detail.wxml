@@ -10,7 +10,11 @@
     <!-- <button catchtap="confirmUserInfo">confirmUserInfo</button> -->
     <view class="cu-bar bg-white margin-top voteTitle">
         {{voteData.voteTitle}}
+        <!-- <view class="padding-xs" wx:if="{{!enableTime}}">
+            <view class="cu-tag bg-gray">投票失效</view>
+        </view> -->
         <view class="padding-xs">
+            <view class="cu-tag bg-grey">投票失效</view>
             <view class="cu-tag bg-{{voteData.isPrivate ? 'red' : 'green'}}">
                 {{voteData.isPrivate ? '私密' : '公开'}}
             </view>
@@ -24,14 +28,14 @@
             <text class="cuIcon-title text-orange " />
             {{item.content}}
         </view>
-        <view class="cu-progress round sm striped progress" wx:if="{{!beforeVote||!canVote}}">
+        <view class="cu-progress round sm striped progress" wx:if="{{!beforeVote||!enableTime}}">
             <view class="bg-green" style="width: {{ratioList[index]}}%;"></view>
         </view>
         <view class="action">
-            <button wx:if="{{beforeVote&&canVote}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-index="{{index}}" data-target="Modal">
+            <button wx:if="{{beforeVote&&enableTime}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-index="{{index}}" data-target="Modal">
                 Vote
             </button>
-            <text class="text-df padding" wx:if="{{!beforeVote||!canVote}}">
+            <text class="text-df padding" wx:if="{{!beforeVote||!enableTime}}">
                 {{ratioList[index]}}%
             </text>
         </view>

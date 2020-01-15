@@ -86,6 +86,13 @@
 					"pathName": "pages/detail/detail",
 					"query": "voteId=1acf1de95e1b2593012acaf81e7a7883",
 					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "生效时间测试",
+					"pathName": "pages/detail/detail",
+					"query": "voteId=1acf1de95e1e81dc01f6008c62912397",
+					"scene": null
 				}
 			]
 		}

@@ -14,11 +14,13 @@ Page({
     voteId: "",
     openId: "",
     beforeVote: true,
-    canVote: true
+    enableTime: true,
   },
 
   onLoad(options) {
-    const { voteId } = options;
+    const {
+      voteId
+    } = options;
     vote
       .doc(voteId)
       .get()
@@ -36,12 +38,13 @@ Page({
       })
       .then(data => {
         this.data.openId = data.result.openId;
+        this.confirmEnableTime();
         this.confirmUserInfo();
         this.getRetio();
       });
   },
 
-  bindGetUserInfo: function(e) {
+  bindGetUserInfo: function (e) {
     var self = this;
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
@@ -64,7 +67,7 @@ Page({
         content: "您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!",
         showCancel: false,
         confirmText: "返回授权",
-        success: function(res) {
+        success: function (res) {
           // 用户没有授权成功，不需要改变 isHide 的值
           if (res.confirm) {
             console.log("用户点击了“返回授权”");
@@ -82,7 +85,7 @@ Page({
   },
 
   // 响应投票
-  handleVote: async function(data) {
+  handleVote: async function (data) {
     // this指向可能有错
     const self = this;
     this.submitVote(data);
@@ -97,7 +100,7 @@ Page({
   },
 
   // 获取选项占比
-  getRetio: async function() {
+  getRetio: async function () {
     // return new Promise(reslove => {
     const data = await wx.cloud.callFunction({
       name: "ratio",
@@ -108,7 +111,7 @@ Page({
     this.setData({
       ratioList: data.result.ratioList
     });
-    console.log("getRetio");
+    console.log(data);
     // reslove()
     // })
   },
@@ -127,7 +130,7 @@ Page({
   },
 
   // 确认用户信息
-  confirmUserInfo: async function() {
+  confirmUserInfo: async function () {
     const res = await wx.cloud.callFunction({
       name: "confirmUserInfo",
       data: {
@@ -136,7 +139,20 @@ Page({
       }
     });
     this.setData({
-      canVote: res.result
+      beforeVote: res.result
     });
-  }
+  },
+
+  // 确认生效状态
+  confirmEnableTime: async function () {
+    const res = await wx.cloud.callFunction({
+      name: 'confirmEnableTime',
+      data: {
+        voteId: this.data.voteId,
+      }
+    })
+    this.setData({
+      enableTime: res.result
+    })
+  },
 });
