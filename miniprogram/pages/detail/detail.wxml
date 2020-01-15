@@ -4,15 +4,16 @@
         <view slot="backText">返回</view>
         <view slot="content">投票详情</view>
     </cu-custom>
-    <!-- <button class="cu-btn bg-blue margin-tb-df lg" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+    <!-- <button catchtap="test">confirmUserInfo</button> -->
+    <!-- <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
         授权登录
-    </button> -->
-    <!-- <button catchtap="confirmUserInfo">confirmUserInfo</button> -->
+    </button>
+    <block wx:if="{{hasUserInfo}}">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block> -->
     <view class="cu-bar bg-white margin-top voteTitle">
         {{voteData.voteTitle}}
-        <!-- <view class="padding-xs" wx:if="{{!enableTime}}">
-            <view class="cu-tag bg-gray">投票失效</view>
-        </view> -->
         <view class="padding-xs">
             <view class="cu-tag bg-grey">投票失效</view>
             <view class="cu-tag bg-{{voteData.isPrivate ? 'red' : 'green'}}">
