@@ -1,42 +1,70 @@
 //app.js
+wx.cloud.init()
+
+const info = wx.cloud.database().collection('info')
+
 App({
   globalData: {
     // userInfo: null
     hasUserInfo: false
   },
 
-  onLaunch: function () {
+  onLaunch: function() {
+    this.getUserInfo()
+  },
 
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
-        // env 参数说明：
-        //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
-        //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
-        //   如不填则使用默认环境（第一个创建的环境）
-        // env: 'my-env-id',
-        traceUser: true,
-      })
-    }
-    // this.getUserInfo();
-    wx.getSystemInfo({
-      success: e => {
-        this.globalData.StatusBar = e.statusBarHeight;
-        let custom = wx.getMenuButtonBoundingClientRect();
-        this.globalData.Custom = custom;
-        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+  getUserInfo: function() {
+    var self = this
+    wx.getSetting({
+      success(res) {
+        //判断用户是否已授权获取用户信息
+        if (res.authSetting['scope.userInfo']) {
+          //已授权,可以直接获取用户信息不用弹框
+          self.userAuthCb()
+        } else {
+          //未授权
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              // 用户已经同意小程序获取用户信息
+              self.userAuthCb()
+            },
+            fail() {
+              //拒绝授权
+              wx.redirectTo({
+                url: '/pages/login/login'
+              })
+            }
+          })
+        }
       }
     })
   },
-  // getUserInfo() {
-  //   let self = this;
-  //   let demo = {};
-  //   wx.cloud.callFunction({ 
-  //     name: 'login'
-  //   })
-  //   .then(data => self.globalData.userInfo = data.result.event.userInfo)
-  //   // .then(data => console.log(data))
-  //   .catch(err => console.log(err));
-  // }
+
+  userAuthCb: function() {
+    let that = this
+    wx.showLoading({
+      title: '加载中'
+    })
+    wx.getUserInfo({
+      success: function(res) {
+        that.globalData.userInfo = res.userInfo
+        that.globalData.encryptedData = res.encryptedData
+        that.globalData.iv = res.iv
+        console.log(res.userInfo)
+        if (res.encryptedData && res.iv) {
+          wx.login({
+            success: function(res) {
+              if (res.code) {
+                console.log('ok')
+                info.add({
+                  data: that.globalData.userInfo
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+  }
 })
