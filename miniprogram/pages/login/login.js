@@ -10,7 +10,7 @@ Page({
     hasUserInfo: false,
     target: ""
   },
-  onLoad: async function(options) {
+  onLoad: async function (options) {
     console.log(options);
     this.setData({
       target: options.target

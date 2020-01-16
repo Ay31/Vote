@@ -96,16 +96,9 @@
 				},
 				{
 					"id": -1,
-					"name": "newIndex",
-					"pathName": "pages/newIndex/newIndex",
+					"name": "热门页",
+					"pathName": "pages/hot/hot",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": 9,
-					"name": "login",
-					"pathName": "pages/login/login",
-					"query": "target=info",
 					"scene": null
 				}
 			]

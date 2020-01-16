@@ -1,7 +1,7 @@
 /**app.wxss**/
-@import "colorui/main.wxss";
-@import "colorui/icon.wxss";
-@import "style/font-awesome.min.wxss";
+@import 'colorui/main.wxss';
+@import 'colorui/icon.wxss';
+@import 'style/font-awesome.min.wxss';
 
 .container {
   display: flex;
@@ -25,8 +25,9 @@ button::after {
 page {
   /* background: #f6f6f6;
    */
-  background: linear-gradient(#0081ff, #f8f8ff);
-  background-repeat:no-repeat;
+  /* background: linear-gradient(#0081ff, #f8f8ff); */
+  background-color: #dcdcdc;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

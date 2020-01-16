@@ -6,7 +6,8 @@
     "pages/info/info",
     "pages/quickVote/quickVote",
     "pages/share/share",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/hot/hot"
   ],
   "sitemapLocation": "sitemap.json",
   "window": {

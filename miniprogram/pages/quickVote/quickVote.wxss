@@ -29,7 +29,6 @@
 
 .cu-form-group {
   margin: 35rpx 20rpx;
-  border: 1px solid white;
   border-radius: 45rpx;
   background: white;
 }

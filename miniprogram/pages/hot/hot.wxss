@@ -1,0 +1,15 @@
+/* miniprogram/pages/hot/hot.wxss */
+
+.cu-list {
+  margin: 35rpx 20rpx;
+  border-radius: 45rpx;
+}
+
+.voteTitle {
+  padding-bottom: 7rpx;
+}
+
+.list-item {
+  background-color: white;
+  padding: 15rpx 30rpx;
+}
