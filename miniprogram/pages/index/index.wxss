@@ -1,34 +1,43 @@
+/* miniprogram/pages/newIndex/newIndex.wxss */
+
 page {
   width: 100%;
   height: 100%;
+  background: linear-gradient(#0081ff, #f8f8ff);
 }
 
-.index-wrapper {
-  display: flex;
-  height: 100%;
-  background: #ffffff;
-  align-items: center;
+.button1 {
+  background: linear-gradient(rgb(25, 141, 255), rgb(214, 230, 255));
+  /* background-color: #ffdead; */
+}
+.button2 {
+  background: linear-gradient(rgb(25, 141, 255), rgb(214, 230, 255));
+}
+.button3 {
+  background-color: #98f5ff;
+  background: linear-gradient(#98f5ff, #fffafa);
 }
 
-image {
-  height: 350rpx;
-  margin-bottom: 10rpx;
+.new-text,
+.en-text {
+  /* font-style: italic; */
+  color: #b5b5b5;
 }
 
-.option,
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.flex-item {
-  width: 100%;
-  height: 45vh;
-}
-
-.option-item {
+.en-text {
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 17%;
+  font-weight: 500;
+  /* font-style: italic; */
+}
+
+.slogan {
+  font-size: 63rpx;
+}
+
+.cu-form-group {
+  margin: 35rpx 20rpx;
+  border: 1px solid white;
+  border-radius: 45rpx;
+  background: white;
 }

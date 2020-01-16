@@ -93,6 +93,20 @@
 					"pathName": "pages/detail/detail",
 					"query": "voteId=1acf1de95e1e81dc01f6008c62912397",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "newIndex",
+					"pathName": "pages/newIndex/newIndex",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": "target=info",
+					"scene": null
 				}
 			]
 		}

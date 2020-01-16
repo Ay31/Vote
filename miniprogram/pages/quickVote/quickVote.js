@@ -32,7 +32,7 @@ Page({
         createTime,
         endingTime: createTime + self.data.enableTime * 86400000
       }
-    })
+    });
     wx.redirectTo({
       url: `/pages/detail/detail?voteId=${res._id}`
     });
@@ -66,8 +66,9 @@ Page({
       });
     } else {
       const index = e.currentTarget.dataset.index;
+      this.data.voteOptionList.splice(index, 1);
       this.setData({
-        voteOptionList: this.data.voteOptionList.splice(index, 1)
+        voteOptionList: this.data.voteOptionList
       });
     }
   },

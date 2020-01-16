@@ -35,7 +35,7 @@
         </view>
     </view>
     <!-- 投票配图 -->
-    <view class="cu-bar bg-white margin-top">
+    <view class="cu-bar bg-white margin-top image-bar">
         <view class="action">投票配图</view>
         <view class="action">{{imgList.length}}/4</view>
     </view>

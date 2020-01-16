@@ -12,7 +12,7 @@
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block> -->
-    <view class="cu-bar bg-white margin-top voteTitle">
+    <view class="cu-form-group bg-white margin-top voteTitle">
         {{voteData.voteTitle}}
         <view class="padding-xs">
             <view class="cu-tag bg-grey">投票失效</view>
@@ -21,13 +21,14 @@
             </view>
         </view>
     </view>
-    <view class="cu-bar bg-white margin-top desTextareaData" wx:if="{{voteData.desTextareaData}}">
+    <view class="cu-form-group bg-white margin-top desTextareaData" wx:if="{{voteData.desTextareaData}}">
         {{voteData.desTextareaData}}
     </view>
-    <view class="cu-bar bg-white margin-top" wx:for="{{voteData.voteOptionList}}" wx:key="index">
+    <view class="cu-form-group bg-white margin-top" wx:for="{{voteData.voteOptionList}}" wx:key="index">
         <view class="action">
-            <text class="cuIcon-title text-orange " />
-            {{item.content}}
+            <text class="cuIcon-title text-orange ">
+                <text class="text-black padding-sm">{{item.content}}</text>
+            </text>
         </view>
         <view class="cu-progress round sm striped progress" wx:if="{{!beforeVote||!enableTime}}">
             <view class="bg-green" style="width: {{ratioList[index]}}%;"></view>

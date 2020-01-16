@@ -1,0 +1,34 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.index-wrapper {
+  display: flex;
+  height: 100%;
+  background: #ffffff;
+  align-items: center;
+}
+
+image {
+  height: 350rpx;
+  margin-bottom: 10rpx;
+}
+
+.option,
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-item {
+  width: 100%;
+  height: 45vh;
+}
+
+.option-item {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

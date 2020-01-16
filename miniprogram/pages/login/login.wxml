@@ -1,0 +1,14 @@
+<!-- miniprogram/pages/newIndex/newIndex.wxml -->
+<view class="index-wrapper">
+    <!-- 导航栏 -->
+    <cu-custom bgColor="bg-blue">
+        <view slot="content">首页</view>
+    </cu-custom>
+    <view class="login">
+        <image src="../../style/icon/login.png" mode="aspectFit" lazy-load="false" binderror="" bindload="" />
+        <view class="solid-bottom text-df padding">需要您的授权才能使用</view>
+        <button class="cu-btn bg-blue margin-tb-df lg" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            授权登录
+        </button>
+    </view>
+</view>

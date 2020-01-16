@@ -1,24 +1,40 @@
 /* miniprogram/pages/info/info.wxss */
 
 page {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .index-wrapper {
-	display: flex;
-	height: 100%;
-	background: #ffffff;
-	/* align-items: center; */
+  display: flex;
+  height: 100%;
+  background: #ffffff;
+  align-items: center;
 }
 
 .login {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 image {
-	height: 350rpx;
-	margin-bottom: 10rpx;
+  height: 350rpx;
+  margin-bottom: 10rpx;
+}
+
+.slogan {
+  font-size: 63rpx;
+}
+
+.cu-form-group,
+.content {
+  margin: 35rpx 20rpx;
+  border: 1px solid white;
+  border-radius: 45rpx;
+  background: white;
+}
+
+.opacity {
+  opacity: 0.85;
 }
