@@ -1,4 +1,6 @@
 //app.js
+import { baseUrl } from './config'
+
 wx.cloud.init()
 
 const info = wx.cloud.database().collection('info')
@@ -68,7 +70,7 @@ App({
                 console.log(res)
                 //将用户基本信息回传给服务器，并获取assess_token
                 wx.request({
-                  url: 'http://192.168.1.105:8080' + '/api/token',
+                  url: baseUrl + '/api/users/login',
                   method: 'POST',
                   data: {
                     code: res.code,

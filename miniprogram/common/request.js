@@ -1,8 +1,10 @@
 const getHeader = () => {
   let authorization,
+    access_token,
     hasTokenOnStorage = true
   try {
     authorization = wx.getStorageSync('authorization')
+    access_token = wx.getStorageSync('access_token')
     hasTokenOnStorage = !!authorization
   } catch (e) {
     hasTokenOnStorage = false
@@ -12,7 +14,7 @@ const getHeader = () => {
 
   return {
     accept: 'application/json',
-    Authorization: authorization
+    Authorization: access_token
   }
 }
 

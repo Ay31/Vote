@@ -1,9 +1,6 @@
 // miniprogram/pages/newIndex/newIndex.js
-import { getRequest } from '../../common/util'
 
 const app = getApp()
-const db = wx.cloud.database()
-const info = db.collection('info')
 
 Page({
   data: {
@@ -36,58 +33,13 @@ Page({
   },
 
   onLoad: function() {
-    this.getOpenId()
-    this.bindUserInfo()
+    // 绑定信息
     this.data.globalData = app.globalData
-    getRequest('http://192.168.1.105:8080/api/users/test').then(res =>
-      console.log(res)
-    )
-  },
-
-  // 绑定用户信息
-  bindUserInfo() {
-    const self = this
-    wx.getUserInfo({
-      success: function(res) {
-        self.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-    console.log('bindUserInfo')
-  },
-
-  // 用户授权
-  getUserInfo(e) {
-    if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
-      })
-      console.log('getUserInfo')
-      console.log(this.data.userInfo)
-    } else {
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入',
-        showCancel: false,
-        confirmText: '返回授权'
-      })
-    }
-  },
-
-  // 获取用户openId
-  getOpenId: async function() {
-    const res = await wx.cloud.callFunction({
-      name: 'login'
-    })
     this.setData({
-      openId: res.result.openId
+      openId: app.globalData.openId,
+      userInfo: app.globalData.userInfo,
+      hasUserInfo: true
     })
-    console.log('getOpenId')
-    return new Promise(res => res())
   },
 
   // 跳转至快速投票页

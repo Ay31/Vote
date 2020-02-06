@@ -49,6 +49,6 @@
     </radio-group>
     <!-- 提交 -->
     <view class="padding flex flex-direction">
-        <button class="cu-btn bg-blue lg" bindtap="postVote">提交</button>
+        <button class="cu-btn bg-blue lg" bindtap="createVote">提交</button>
     </view>
 </view>
