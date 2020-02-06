@@ -11,6 +11,15 @@ App({
 
   onLaunch: function() {
     this.getUserInfo()
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight
+        let custom = wx.getMenuButtonBoundingClientRect()
+        this.globalData.Custom = custom
+        this.globalData.CustomBar =
+          custom.bottom + custom.top - e.statusBarHeight
+      }
+    })
   },
 
   getUserInfo: function() {
@@ -41,33 +50,6 @@ App({
     })
   },
 
-  // userAuthCb: function() {
-  //   let that = this
-  //   wx.showLoading({
-  //     title: '加载中'
-  //   })
-  //   wx.getUserInfo({
-  //     success: function(res) {
-  //       that.globalData.userInfo = res.userInfo
-  //       that.globalData.encryptedData = res.encryptedData
-  //       that.globalData.iv = res.iv
-  //       console.log(res.userInfo)
-  //       console.log(res.code);
-  //       if (res.encryptedData &&  res.iv) {
-  //         wx.login({
-  //           success: function(res) {
-  //             if (res.code) {
-  //               console.log(res.code)
-  //               info.add({
-  //                 data: that.globalData.userInfo
-  //               })
-  //             }
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
   userAuthCb: function() {
     let that = this
     // let baseUrl = config.getBaseUrl
@@ -83,14 +65,14 @@ App({
           wx.login({
             success: function(res) {
               if (res.code) {
-                console.log(res.code);
+                console.log(res)
                 //将用户基本信息回传给服务器，并获取assess_token
                 wx.request({
-                  // url: baseUrl + '/auth/api/token',
-                  url: 'http://localhost:8080' + '/api/token',
+                  url: 'http://192.168.1.105:8080' + '/api/token',
                   method: 'POST',
                   data: {
                     code: res.code,
+                    userInfo: that.globalData.userInfo
                     // encryptedData: that.globalData.encryptedData,
                     // iv: that.globalData.iv
                   },
@@ -98,8 +80,9 @@ App({
                     accept: 'application/json'
                   },
                   success: function(res) {
-                    console.log(res);
-                    let authorizationValue = res.data.access_token
+                    console.log(res)
+                    that.globalData.openId = res.data.openId
+                    let authorizationValue = res.data.token
                     let currentPagesLen = getCurrentPages().length
                     if (authorizationValue) {
                       wx.setStorageSync('access_token', authorizationValue)
