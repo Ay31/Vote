@@ -15,7 +15,7 @@
     <view class="cu-form-group bg-white margin-top voteTitle">
         {{voteData.voteTitle}}
         <view class="padding-xs">
-            <view class="cu-tag bg-grey">投票失效</view>
+            <view class="cu-tag bg-grey" wx:if="{{!enable}}">投票失效</view>
             <view class="cu-tag bg-{{voteData.isPrivate ? 'red' : 'green'}}">
                 {{voteData.isPrivate ? '私密' : '公开'}}
             </view>
@@ -30,14 +30,14 @@
                 <text class="text-black padding-sm">{{item.content}}</text>
             </text>
         </view>
-        <view class="cu-progress round sm striped progress" wx:if="{{!beforeVote||!enableTime}}">
+        <view class="cu-progress round sm striped progress" wx:if="{{!beforeVote||!enable}}">
             <view class="bg-green" style="width: {{ratioList[index]}}%;"></view>
         </view>
         <view class="action">
-            <button wx:if="{{beforeVote&&enableTime}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-index="{{index}}" data-target="Modal">
+            <button wx:if="{{beforeVote&&enable}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal">
                 Vote
             </button>
-            <text class="text-df padding" wx:if="{{!beforeVote||!enableTime}}">
+            <text class="text-df padding" wx:if="{{!beforeVote||!enable}}">
                 {{ratioList[index]}}%
             </text>
         </view>

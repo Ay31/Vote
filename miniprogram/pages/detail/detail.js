@@ -1,9 +1,6 @@
 // miniprogram/pages/detail/detail.js
+import { getVoteDetail, submitVote, getRetio } from '../../common/vote'
 const app = getApp()
-const db = wx.cloud.database()
-const vote = db.collection('vote')
-const info = db.collection('info')
-const _ = db.command
 
 Page({
   data: {
@@ -12,150 +9,63 @@ Page({
     ratioList: [],
     userInfo: {},
     voteId: '',
-    openId: '',
-    hasUserInfo: false,
     beforeVote: true,
-    enableTime: true
+    enable: true,
   },
 
   onLoad: async function(options) {
-    this.getVoteData(options.voteId)
-    await this.getOpenId()
-    this.confirmEnableTime()
-    this.confirmUserInfo()
+    this.setData({ voteId: options.voteId })
+    this.getVoteData(options.voteId, app.globalData.openId)
     this.getRetio()
-    this.bindUserInfo()
   },
 
   // 轮播
   cardSwiper(e) {
-    this.setData({
-      cardCur: e.detail.current
-    })
-  },
-
-  // 绑定用户信息
-  bindUserInfo() {
-    const self = this
-    wx.getUserInfo({
-      success: function(res) {
-        self.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-    console.log('bindUserInfo')
-  },
-
-  // 用户授权
-  getUserInfo(e) {
-    if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
-      })
-      console.log('getUserInfo')
-      console.log(this.data.userInfo)
-    } else {
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入',
-        showCancel: false,
-        confirmText: '返回授权'
-      })
-    }
+    this.setData({ cardCur: e.detail.current })
   },
 
   // 获取投票数据
-  getVoteData: async function(voteId) {
-    const res = await vote.doc(voteId).get()
-    this.setData({
-      voteData: res.data,
-      swiperList: res.data.imgIdList,
-      voteId
-    })
-    console.log('getVoteData')
-  },
-
-  // 获取用户openId
-  getOpenId: async function() {
-    const res = await wx.cloud.callFunction({
-      name: 'login'
-    })
-    this.setData({
-      openId: res.result.openId
-    })
-    console.log('getOpenId')
-    return new Promise(res => res())
+  getVoteData: async function(voteId, openId) {
+    try {
+      const res = await getVoteDetail({ voteId, openId })
+      this.setData({
+        voteData: res.data.voteDetail,
+        swiperList: res.data.voteDetail.imgIdList,
+        enable:
+          Date.parse(res.data.voteDetail.endingTime) > Date.parse(new Date()),
+        beforeVote: res.data.beforeVote,
+        voteId,
+      })
+      console.log('getVoteData')
+    } catch (error) {
+      console.error(error)
+    }
   },
 
   // 响应投票
   handleVote: async function(data) {
-    // const self = this;
     this.submitVote(data)
-    // await info.add({
-    //   data: self.data.userInfo
-    // });
     this.getRetio()
-    this.setData({
-      beforeVote: false
-    })
+    this.setData({ beforeVote: false })
   },
 
   // 获取选项占比
   getRetio: async function() {
-    const data = await wx.cloud.callFunction({
-      name: 'ratio',
-      data: {
-        voteId: this.data.voteId
-      }
-    })
-    this.setData({
-      ratioList: data.result.ratioList
-    })
-    console.log('getRetio')
+    try {
+      const res = await getRetio({ voteId: this.data.voteId })
+      this.setData({ ratioList: res.data.ratioList })
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   // 提交投票
   submitVote(data) {
-    wx.cloud.callFunction({
-      name: 'submitVote',
-      data: {
-        voteId: this.data.voteId,
-        openId: this.data.openId,
-        index: data.currentTarget.dataset.index
-      }
+    submitVote({
+      userInfo: app.globalData.userInfo,
+      voteId: this.data.voteId,
+      optionId: data.currentTarget.dataset.optionId,
+      openId: this.data.openId,
     })
   },
-
-  // 确认用户信息
-  confirmUserInfo: async function() {
-    const res = await wx.cloud.callFunction({
-      name: 'confirmUserInfo',
-      data: {
-        voteId: this.data.voteId,
-        openId: this.data.openId
-      }
-    })
-    this.setData({
-      beforeVote: res.result
-    })
-    console.log('confirmUserInfo')
-  },
-
-  // 确认生效状态
-  confirmEnableTime: async function() {
-    const res = await wx.cloud.callFunction({
-      name: 'confirmEnableTime',
-      data: {
-        voteId: this.data.voteId
-      }
-    })
-    this.setData({
-      enableTime: res.result
-    })
-    console.log('confirmEnableTime')
-  }
 })

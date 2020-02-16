@@ -110,6 +110,13 @@
 					"pathName": "pages/hot/hot",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "提交接口测试",
+					"pathName": "pages/detail/detail",
+					"query": "voteId=5e498a6449543e49a88ff9b7",
+					"scene": null
 				}
 			]
 		}
