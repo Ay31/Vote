@@ -8,8 +8,8 @@
     <view class="text-white slogan margin-top-sm">Look what you want !</view>
 </view>
 <view class="opacity" wx:for="{{voteData}}" wx:key="index">
-    <view class="cu-form-group margin-top" catchtap="targetToDetail" data-id="{{item._id}}">
+    <view class="cu-form-group margin-top" catchtap="targetToDetail" data-id="{{item.voteId}}">
         {{item.voteTitle}}
-        <button class="cuIcon-share cu-btn round lg" open-type="share" data-voteId="{{item._id}}" data-title="{{item.voteTitle}}" data-img="{{item.imgIdList}}" catchtap="onShareAppMessage"></button>
+        <button class="cuIcon-share cu-btn round lg" open-type="share" data-voteId="{{item.voteId}}" data-title="{{item.voteTitle}}" data-img="{{item.imgIdList}}" catchtap="onShareAppMessage"></button>
     </view>
 </view>

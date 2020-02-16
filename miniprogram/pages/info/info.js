@@ -34,7 +34,7 @@ Page({
     console.log(res)
     return {
       title: res.target.dataset.title,
-      imageUrl: res.target.dataset.img[0],
+      // imageUrl: res.target.dataset.img[0] ? res.target.dataset.img[0] : '',
       path: `/pages/detail/detail?voteId=${res.target.dataset.voteId}`,
     }
   },
