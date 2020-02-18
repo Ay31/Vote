@@ -1,5 +1,5 @@
 // miniprogram/pages/detail/detail.js
-import { getVoteDetail, submitVote, getRetio } from '../../common/vote'
+import { getVoteDetail, submitVote, getRetio } from '../../common/api'
 const app = getApp()
 
 Page({

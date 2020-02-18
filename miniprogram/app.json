@@ -5,11 +5,9 @@
     "pages/detail/detail",
     "pages/info/info",
     "pages/quickVote/quickVote",
-    "pages/share/share",
     "pages/login/login",
     "pages/hot/hot"
   ],
-  "sitemapLocation": "sitemap.json",
   "window": {
     "navigationStyle": "custom"
   },
@@ -25,6 +23,12 @@
         "text": "首 页",
         "iconPath": "/style/icon/home.png",
         "selectedIconPath": "/style/icon/home2.png"
+      },
+      {
+        "pagePath": "pages/hot/hot",
+        "text": "热 门",
+        "iconPath": "/style/icon/me.png",
+        "selectedIconPath": "/style/icon/me2.png"
       },
       {
         "pagePath": "pages/info/info",

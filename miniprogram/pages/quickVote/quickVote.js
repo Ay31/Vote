@@ -1,5 +1,5 @@
 // miniprogram/pages/quickVote/quickVote.js
-import { createVote } from '../../common/vote'
+import { createVote } from '../../common/api'
 
 const app = getApp()
 

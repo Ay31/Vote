@@ -18,15 +18,25 @@ const getHeader = () => {
   }
 }
 
-const requestAll = (url, data, method, header) => {
+const uploadFile = (
+  url,
+  filePath,
+  name,
+  formData,
+  timeout,
+  header = getHeader()
+) => {
   return new Promise((reslove, reject) => {
-    wx.request({
+    wx.uploadFile({
       url,
-      data,
-      method,
+      filePath,
+      name,
+      formData,
+      timeout,
       header,
       success: res => {
         if (res.statusCode === 200) {
+          res.data = JSON.parse(res.data)
           reslove(res)
         } else {
           reject(res)
@@ -37,12 +47,4 @@ const requestAll = (url, data, method, header) => {
   })
 }
 
-const getRequest = (url, data, header = getHeader()) => {
-  return requestAll(url, data, 'GET', header)
-}
-
-const postRequest = (url, data, header = getHeader()) => {
-  return requestAll(url, data, 'POST', header)
-}
-
-export { getRequest, postRequest }
+export { uploadFile }

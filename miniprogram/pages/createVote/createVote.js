@@ -1,5 +1,5 @@
 // miniprogram/pages/vote/vote.js
-import { createVote } from '../../common/vote'
+import { createVote, uploadImage } from '../../common/api'
 
 const app = getApp()
 const db = wx.cloud.database()
@@ -42,6 +42,7 @@ Page({
   // 提交投票
   postVote: async function() {
     const createTime = Date.parse(new Date())
+    await this.uploadImage(this.data.imgList)
     try {
       const res = await createVote({
         openId: app.globalData.openId,
@@ -53,37 +54,12 @@ Page({
         createTime,
         endingTime: createTime + this.data.enableTime * 86400000,
       })
-      wx.redirectTo({
-        url: `/pages/detail/detail?voteId=${res.data.result._id}`,
-      })
+      // wx.redirectTo({
+      //   url: `/pages/detail/detail?voteId=${res.data.result._id}`,
+      // })
     } catch (error) {
       console.error(error)
     }
-  },
-
-  // 上传图片
-  postImage() {
-    return new Promise(async resolve => {
-      let arr = []
-      this.data.imgList.forEach((tmpUrl, index) => {
-        arr[index] = new Promise(async resolve => {
-          const tmp = tmpUrl.split('/')
-          const name = tmp[tmp.length - 1]
-          const path = `images/${name}`
-          const res = await wx.cloud.uploadFile({
-            cloudPath: path,
-            filePath: tmpUrl,
-          })
-          this.data.imgIdList.push(res.fileID)
-          resolve()
-        })
-      })
-      await Promise.all(arr)
-      this.setData({
-        imgIdList: this.data.imgIdList,
-      })
-      resolve()
-    })
   },
 
   // 预览图片
@@ -129,6 +105,34 @@ Page({
           })
         }
       },
+    })
+  },
+
+  // 上传图片
+  uploadImage(imgList) {
+    return new Promise(async (resolve, reject) => {
+      let arr = []
+      imgList.forEach((imgTmpUrl, index) => {
+        arr[index] = new Promise(async (resolve, reject) => {
+          try {
+            const res = await await uploadImage(imgTmpUrl, 'image')
+            console.log(res)
+            this.data.imgIdList.push(res.data.url)
+            resolve()
+          } catch (error) {
+            reject(error)
+          }
+        })
+      })
+      try {
+        await Promise.all(arr)
+        this.setData({
+          imgIdList: this.data.imgIdList,
+        })
+        resolve()
+      } catch (error) {
+        reject(error)
+      }
     })
   },
 

@@ -1,4 +1,5 @@
 import { postRequest, getRequest } from './request'
+import { uploadFile } from './upload'
 import { baseUrl } from '../config'
 
 export const testVote = () => {
@@ -28,6 +29,11 @@ export const getRetio = data => {
 // 获取投票列表
 export const getVoteList = data => {
   return getRequest(`${baseUrl}/api/vote/getVoteList?openId=${data.openId}`)
+}
+
+// 上传图片
+export const uploadImage = (filePath, name, formData) => {
+  return uploadFile(`${baseUrl}/source/uploadImage`, filePath, name, formData)
 }
 
 // export default *
