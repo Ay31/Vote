@@ -30,7 +30,7 @@ Page({
       const res = await getVoteDetail({ voteId, openId })
       this.setData({
         voteData: res.data.voteDetail,
-        swiperList: res.data.voteDetail.imgIdList,
+        swiperList: res.data.voteDetail.imageList,
         enable:
           Date.parse(res.data.voteDetail.endingTime) > Date.parse(new Date()),
         beforeVote: res.data.beforeVote,

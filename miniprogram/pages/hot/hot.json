@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "vote-item": "../../components/voteItem/voteItem"
+  }
 }

@@ -12,7 +12,7 @@ Page({
     isPrivate: true,
     enableTime: 3,
     imgList: [],
-    imgIdList: [],
+    imageList: [],
     voteOptionList: [
       {
         content: '',
@@ -50,13 +50,15 @@ Page({
         desTextareaData: this.data.desTextareaData,
         isPrivate: this.data.isPrivate,
         voteOptionList: this.data.voteOptionList,
-        imgIdList: this.data.imgIdList,
+        userInfo: app.globalData.userInfo,
+        votersCount: 0,
+        imageList: this.data.imageList,
         createTime,
         endingTime: createTime + this.data.enableTime * 86400000,
       })
-      // wx.redirectTo({
-      //   url: `/pages/detail/detail?voteId=${res.data.result._id}`,
-      // })
+      wx.redirectTo({
+        url: `/pages/detail/detail?voteId=${res.data.result._id}`,
+      })
     } catch (error) {
       console.error(error)
     }
@@ -117,7 +119,7 @@ Page({
           try {
             const res = await await uploadImage(imgTmpUrl, 'image')
             console.log(res)
-            this.data.imgIdList.push(res.data.url)
+            this.data.imageList.push(res.data.url)
             resolve()
           } catch (error) {
             reject(error)
@@ -127,7 +129,7 @@ Page({
       try {
         await Promise.all(arr)
         this.setData({
-          imgIdList: this.data.imgIdList,
+          imageList: this.data.imageList,
         })
         resolve()
       } catch (error) {

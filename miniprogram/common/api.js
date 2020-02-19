@@ -31,6 +31,11 @@ export const getVoteList = data => {
   return getRequest(`${baseUrl}/api/vote/getVoteList?openId=${data.openId}`)
 }
 
+// 获取热门投票列表
+export const getHotVoteList = data => {
+  return getRequest(`${baseUrl}/api/vote/getHotVoteList?openId=${data.openId}`)
+}
+
 // 上传图片
 export const uploadImage = (filePath, name, formData) => {
   return uploadFile(`${baseUrl}/source/uploadImage`, filePath, name, formData)

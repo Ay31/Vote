@@ -1,9 +1,9 @@
 <!-- miniprogram/pages/newIndex/newIndex.wxml -->
 <view>
     <!-- 导航栏 -->
-    <cu-custom bgColor="bg-blue">
+    <!-- <cu-custom bgColor="bg-black">
         <view slot="content">首页</view>
-    </cu-custom>
+    </cu-custom> -->
     <!-- <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
         <view slot="backText">返回</view>
         <view slot="content">导航栏</view>

@@ -1,6 +1,6 @@
 <view class="vote-detail">
     <!-- 导航栏 -->
-    <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <cu-custom bgColor="bg-gradual-blue">
         <view slot="backText">返回</view>
         <view slot="content">投票详情</view>
     </cu-custom>

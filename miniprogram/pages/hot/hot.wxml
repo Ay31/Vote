@@ -1,8 +1,5 @@
 <!-- miniprogram/pages/hot/hot.wxml -->
-<view>
-  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
-    <view slot="backText">返回</view>
-  </cu-custom>
+<!-- <view>
   <view class="cu-list menu margin-top" wx:for="{{voteData}}">
     <view class="list-item">{{item._oppenid}}</view>
     <view class="list-item voteTitle">{{item.voteTitle}}</view>
@@ -10,4 +7,5 @@
     <view class="list-item solid-bottom" wx:for="{{item.voteOptionList}}">{{item.content}}</view>
     <view class="list-item">more share</view>
   </view>
-</view>
+</view> -->
+<vote-item wx:for="{{voteData}}" voteItem="{{item}}" pageType="HOT"></vote-item>

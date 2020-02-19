@@ -27,6 +27,8 @@ page {
    */
   /* background: linear-gradient(#0081ff, #f8f8ff); */
   background-color: #dcdcdc;
+  background: linear-gradient(#8799a3, #f8f8ff);
+
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;

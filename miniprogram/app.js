@@ -8,20 +8,20 @@ const info = wx.cloud.database().collection('info')
 App({
   globalData: {
     // userInfo: null
-    hasUserInfo: false
+    hasUserInfo: false,
   },
 
   onLaunch: function() {
     this.getUserInfo()
-    wx.getSystemInfo({
-      success: e => {
-        this.globalData.StatusBar = e.statusBarHeight
-        let custom = wx.getMenuButtonBoundingClientRect()
-        this.globalData.Custom = custom
-        this.globalData.CustomBar =
-          custom.bottom + custom.top - e.statusBarHeight
-      }
-    })
+    // wx.getSystemInfo({
+    //   success: e => {
+    //     this.globalData.StatusBar = e.statusBarHeight
+    //     let custom = wx.getMenuButtonBoundingClientRect()
+    //     this.globalData.Custom = custom
+    //     this.globalData.CustomBar =
+    //       custom.bottom + custom.top - e.statusBarHeight
+    //   }
+    // })
   },
 
   getUserInfo: function() {
@@ -43,12 +43,12 @@ App({
             fail() {
               //拒绝授权
               wx.redirectTo({
-                url: '/pages/login/login'
+                url: '/pages/login/login',
               })
-            }
+            },
           })
         }
-      }
+      },
     })
   },
 
@@ -56,7 +56,7 @@ App({
     let that = this
     // let baseUrl = config.getBaseUrl
     wx.showLoading({
-      title: '加载中'
+      title: '加载中',
     })
     wx.getUserInfo({
       success: function(res) {
@@ -74,12 +74,12 @@ App({
                   method: 'POST',
                   data: {
                     code: res.code,
-                    userInfo: that.globalData.userInfo
+                    userInfo: that.globalData.userInfo,
                     // encryptedData: that.globalData.encryptedData,
                     // iv: that.globalData.iv
                   },
                   header: {
-                    accept: 'application/json'
+                    accept: 'application/json',
                   },
                   success: function(res) {
                     console.log(res)
@@ -102,13 +102,13 @@ App({
                     } else {
                       console.log('身份验证失败')
                     }
-                  }
+                  },
                 })
               }
-            }
+            },
           })
         }
-      }
+      },
     })
-  }
+  },
 })

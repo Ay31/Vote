@@ -9,14 +9,17 @@
     "pages/hot/hot"
   ],
   "window": {
-    "navigationStyle": "custom"
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#8799a3",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
   },
   "tabBar": {
-    "color": "#8799a3",
-    "selectedColor": "#0081ff",
+    "color": "#cdcdcd",
+    "selectedColor": "#8a8a8a",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -27,8 +30,8 @@
       {
         "pagePath": "pages/hot/hot",
         "text": "热 门",
-        "iconPath": "/style/icon/me.png",
-        "selectedIconPath": "/style/icon/me2.png"
+        "iconPath": "/style/icon/hot.png",
+        "selectedIconPath": "/style/icon/hot2.png"
       },
       {
         "pagePath": "pages/info/info",
@@ -37,5 +40,6 @@
         "selectedIconPath": "/style/icon/me2.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

@@ -1,9 +1,7 @@
 // miniprogram/pages/info/info.js
-import { getVoteList } from '../../common/vote'
+import { getVoteList } from '../../common/api'
 
 const app = getApp()
-const db = wx.cloud.database()
-const vote = db.collection('vote')
 
 Page({
   data: {
