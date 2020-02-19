@@ -20,5 +20,44 @@
 }
 
 .opacity {
-	opacity: 0.85;
-  }
+  opacity: 0.85;
+}
+
+.vote-title {
+  font-size: medium;
+}
+
+.form-item {
+  padding: 40rpx;
+  margin: 16rpx;
+  background-color: #ffffff;
+  box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.06), 0 -2rpx 2rpx rgba(0, 0, 0, 0.06);
+}
+
+textarea {
+  height: 120rpx;
+}
+
+.vote-title-bar,
+.vote-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress {
+  width: 200rpx;
+}
+
+.vote-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100rpx;
+}
+
+.text-item {
+  width: 30rpx;
+  position: relative;
+  top: 50%;
+  transform: translateY(-25%);
+}

@@ -15,6 +15,7 @@ Page({
 
   onLoad: async function(options) {
     this.setData({ voteId: options.voteId })
+    console.log(app.globalData.openId)
     this.getVoteData(options.voteId, app.globalData.openId)
     this.getRetio()
   },

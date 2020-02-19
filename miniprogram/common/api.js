@@ -13,7 +13,10 @@ export const createVote = data => {
 
 // 获取投票详情
 export const getVoteDetail = data => {
-  return getRequest(`${baseUrl}/api/vote/getVoteDetail?voteId=${data.voteId}`)
+  console.log(data)
+  return getRequest(
+    `${baseUrl}/api/vote/getVoteDetail?voteId=${data.voteId}&openId=${data.openId}`
+  )
 }
 
 // 提交投票
