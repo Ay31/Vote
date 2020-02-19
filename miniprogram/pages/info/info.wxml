@@ -16,7 +16,7 @@
             </view>
         </view>
         <view class="vote-item-con">
-            <view class="vote-item-con-hd bottom-line">
+            <view class="vote-item-con-hd bottom-line" catchtap="targetToDetail" data-id="{{item.voteData._id}}">
                 <view class="vote-des-content" wx:if="{{item.voteData.desTextareaData}}">
                     {{item.voteData.desTextareaData}}
                 </view>
