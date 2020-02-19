@@ -1,95 +1,84 @@
 <view class="vote-add">
-    <!-- 导航栏 -->
-    <!-- <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
-        <view slot="backText">返回</view>
-        <view slot="content">创建投票</view>
-    </cu-custom> -->
-    <!-- 标题 -->
-    <view class="cu-form-group">
-        <view class="title">投标标题</view>
-        <input placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
+    <!-- 标题 描述 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+        <view class="vote-title solid-bottom padding-xs">
+            <input class="title" placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
+        </view>
+        <view class="vote-dsc margin-top padding-xs">
+            <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="补充描述（可选）" value="{{desTextareaData}}"></textarea>
+        </view>
     </view>
-    <!-- 描述 -->
-    <view class="cu-form-group align-start margin-top">
-        <view class="title">投票描述</view>
-        <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="补充描述" value="{{desTextareaData}}"></textarea>
-    </view>
-    <!-- 投票选项标题 -->
-    <view class="cu-form-group margin-top">
-        <view class="title">设置选项</view>
-    </view>
-    <!-- 选项渲染 -->
-    <view class="cu-list menu">
-        <view class="cu-item" wx:for="{{voteOptionList}}" wx:key="index">
+    <!-- 投票选项 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+        <view class=" margin-top padding-xs solid-bottom" wx:for="{{voteOptionList}}" wx:key="index">
             <view class="content">
                 <i class="minus-option fa fa-minus-circle fa-lg" bindtap="deleteVoteOption" data-index="{{index}}"></i>
                 <input placeholder="选项" bindinput="bindVoteInput" data-index="{{index}}" value="{{item.content}}"></input>
             </view>
         </view>
-    </view>
-    <!-- 添加选项 -->
-    <view class="cu-form-group">
-        <view class="title" bindtap="addVoteOption">
+        <view class="title margin-top padding-xs" bindtap="addVoteOption">
             <i class="add-option fa fa-plus-circle fa-lg"></i>
             <span>添加选项</span>
         </view>
     </view>
     <!-- 投票配图 -->
-    <view class="cu-bar bg-white margin-top image-bar">
-        <view class="action">投票配图</view>
-        <view class="action">{{imgList.length}}/4</view>
-    </view>
-    <view class="cu-form-group">
-        <view class="grid col-4 grid-square flex-sub">
-            <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
-                <image src='{{imgList[index]}}' mode='aspectFill'></image>
-                <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-                    <text class="cuIcon-close"></text>
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+        <view class="image-bar padding-xs solid-bottom">
+            <view class="action">投票配图（可选）</view>
+            <view class="action">{{imgList.length}}/4</view>
+        </view>
+        <view class="margin-top-xs padding-xs">
+            <view class="grid col-4 grid-square flex-sub">
+                <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+                    <image src='{{imgList[index]}}' mode='aspectFill'></image>
+                    <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                        <text class="cuIcon-close"></text>
+                    </view>
+                </view>
+                <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+                    <text class="cuIcon-cameraadd"></text>
                 </view>
             </view>
-            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-                <text class="cuIcon-cameraadd"></text>
-            </view>
         </view>
     </view>
-    <!-- 生效时间 -->
-    <radio-group class="block" bindchange="changeEnableTime">
-        <view class="cu-form-group margin-top">
-            <view class="title">
-                生效时间
-                <label for="3" class="vote-type">
-                    <radio class="blue vote-radio" value="3" name="3" id="3" checked="true" />
-                    3天
-                </label>
-                <label for="7" class="vote-type">
-                    <radio class="blue vote-radio" value="7" name="7" id="7" />
-                    7天
-                </label>
-                <label for="30" class="vote-type">
-                    <radio class="blue vote-radio" value="30" name="30" id="30" />
-                    30天
-                </label>
+    <!-- 状态 提交 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+        <radio-group class="block" bindchange="changeEnableTime">
+            <view class="padding-xs margin-bottom solid-bottom">
+                <view class="title">
+                    生效时间
+                    <label for="3" class="vote-type">
+                        <radio class="blue vote-radio" value="3" name="3" id="3" checked="true" />
+                        3天
+                    </label>
+                    <label for="7" class="vote-type">
+                        <radio class="blue vote-radio" value="7" name="7" id="7" />
+                        7天
+                    </label>
+                    <label for="30" class="vote-type">
+                        <radio class="blue vote-radio" value="30" name="30" id="30" />
+                        30天
+                    </label>
+                </view>
             </view>
-        </view>
-    </radio-group>
-    <!-- 投票类型 -->
-    <radio-group class="block" bindchange="radioChange">
-        <view class="cu-form-group margin-top">
-            <view class="title">
-                投票类型
-                <label for="public" class="vote-type">
-                    <radio class="blue vote-radio" value="公开" name="public" id="public" />
-                    公开
-                </label>
-                <label for="private" class="vote-type">
-                    <radio class="blue vote-radio" value="私密" name="private" id="private" checked="true" />
-                    私密
-                </label>
+        </radio-group>
+        <radio-group class="block" bindchange="radioChange">
+            <view class="padding-xs margin-bottom solid-bottom">
+                <view class="title">
+                    投票类型
+                    <label for="public" class="vote-type">
+                        <radio class="blue vote-radio" value="公开" name="public" id="public" />
+                        公开
+                    </label>
+                    <label for="private" class="vote-type">
+                        <radio class="blue vote-radio" value="私密" name="private" id="private" checked="true" />
+                        私密
+                    </label>
+                </view>
             </view>
+        </radio-group>
+        <view class="padding-xs flex flex-direction">
+            <button class="cu-btn bg-blue lg" bindtap="postVote">提交</button>
         </view>
-    </radio-group>
-    <!-- 提交 -->
-    <view class="padding flex flex-direction">
-        <button class="cu-btn bg-blue lg" bindtap="postVote">提交</button>
     </view>
 </view>

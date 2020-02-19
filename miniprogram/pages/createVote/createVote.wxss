@@ -31,12 +31,25 @@
   margin: 35rpx 20rpx;
   border: 1px solid white;
   border-radius: 45rpx;
-  background: white;
+  /* background: white; */
 }
 
-.cu-item,
+.vote-title {
+  font-size: medium;
+}
+
+.form-item {
+  padding: 40rpx;
+  margin: 16rpx;
+  background-color: #ffffff;
+  box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.06), 0 -2rpx 2rpx rgba(0, 0, 0, 0.06);
+}
+
+textarea {
+  height: 120rpx;
+}
+
 .image-bar {
-  margin: 35rpx 20rpx;
-  border-radius: 45rpx;
-  border: 1px solid white;
+  display: flex;
+  justify-content: space-between;
 }

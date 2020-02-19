@@ -8,6 +8,7 @@ Page({
     newVoteTitle: '',
     voteType: 'private',
     isPrivate: true,
+    enableTime: 3,
     voteOptionList: [
       {
         content: 'YES',
@@ -30,7 +31,7 @@ Page({
         isPrivate: this.data.isPrivate,
         voteOptionList: this.data.voteOptionList,
         createTime,
-        endingTime: createTime + 15 * 86400000,
+        endingTime: createTime + this.data.enableTime * 86400000,
       })
       wx.redirectTo({
         url: `/pages/detail/detail?voteId=${res.data.result._id}`,
@@ -88,6 +89,13 @@ Page({
   radioChange(e) {
     this.setData({
       isPrivate: e.detail.value === '私密' ? true : false,
+    })
+  },
+
+  // 更改生效时间
+  changeEnableTime(e) {
+    this.setData({
+      enableTime: e.detail.value,
     })
   },
 })
