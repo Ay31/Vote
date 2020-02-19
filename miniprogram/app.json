@@ -11,7 +11,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#8799a3",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Vote31",
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {

@@ -1,13 +1,37 @@
-<!-- 导航栏 -->
-<!-- <view class="padding-lg">
-    <text class="text-white">You can vote something here.</text>
+<view class="padding-lg">
     <text class="text-white text-sl">我的投票</text>
-    <view class="text-white slogan margin-top-sm">Look what you want !</view>
-</view> -->
-<vote-item wx:for="{{voteData}}" voteItem="{{item}}" pageType="MINE"></vote-item>
-<!-- <view class="opacity" wx:for="{{voteData}}" wx:key="index">
-    <view class="cu-form-group margin-top" catchtap="targetToDetail" data-id="{{item.voteId}}">
-        {{item.voteTitle}}
-        <button class="cuIcon-share cu-btn round lg" open-type="share" data-voteId="{{item.voteId}}" data-title="{{item.voteTitle}}" data-img="{{item.imageList}}" catchtap="onShareAppMessage"></button>
-    </view> -->
-<!-- </view> -->
+    <!-- <view class="text-white slogan margin-top-sm">Look what you want !</view> -->
+</view>
+<view class="vote" wx:for="{{voteData}}">
+    <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
+        <view class="vote-item-hd bottom-line">
+            <view class="vote-item-hd-info">
+                <view class="vote-title">{{item.voteData.voteTitle}}</view>
+                <view class="vote-time">{{item.voteData.createTime}}</view>
+            </view>
+            <view class="vote-item-hd-op vote-item-hd-op-hover" wx:if="{{true}}">
+                <view class="cu-tag bg-{{item.voteData.isPrivate ? 'red' : 'green'}}">
+                    {{item.voteData.isPrivate ? '私密' : '公开'}}
+                </view>
+            </view>
+        </view>
+        <view class="vote-item-con">
+            <view class="vote-item-con-hd bottom-line">
+                <view class="vote-des-content" wx:if="{{item.voteData.desTextareaData}}">
+                    {{item.voteData.desTextareaData}}
+                </view>
+            </view>
+        </view>
+        <view class="vote-item-ft top-line">
+            <i class="fa fa-align-left" bindtap="targetToVoteDetail" data-nickname="{{vote.data.user.nick_name}}" data-index="{{voteIndex}}" data-src="{{vote.data.id}}">
+                <text>{{item.voteData.votersCount}}</text>
+            </i>
+            <view>
+                <i class="fa fa-trash fa-lg"></i>
+                <button open-type="share" plain="true" data-voteid="{{vote.data.id}}" data-cover="{{filter.delWithPath(vote.data.images[0].path)}}" data-title="{{vote.data.title}}" data-nickname="{{vote.data.user.nick_name}}" bindtap="onShareAppMessage">
+                    <i class="fa fa-share-square-o"></i>
+                </button>
+            </view>
+        </view>
+    </view>
+</view>

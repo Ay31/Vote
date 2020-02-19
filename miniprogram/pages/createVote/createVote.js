@@ -25,6 +25,12 @@ Page({
     ],
   },
 
+  onLoad() {
+    wx.setNavigationBarTitle({
+      title: '创建投票',
+    })
+  },
+
   // 投票标题
   bindTitleInput(e) {
     this.setData({

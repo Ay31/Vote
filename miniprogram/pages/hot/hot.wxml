@@ -8,4 +8,7 @@
     <view class="list-item">more share</view>
   </view>
 </view> -->
+<view class="padding-lg">
+    <text class="text-white text-sl">热门投票</text>
+</view>
 <vote-item wx:for="{{voteData}}" voteItem="{{item}}" pageType="HOT"></vote-item>

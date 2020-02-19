@@ -8,28 +8,28 @@ Page({
       {
         id: 0,
         type: 'image',
-        url: '../../style/img/vote1.jpg'
+        url: '../../style/img/vote1.jpg',
       },
       {
         id: 1,
         type: 'image',
-        url: '../../style/img/vote2.jpg'
+        url: '../../style/img/vote2.jpg',
       },
       {
         id: 2,
         type: 'image',
-        url: '../../style/img/vote3.jpg'
+        url: '../../style/img/vote3.jpg',
       },
       {
         id: 3,
         type: 'image',
-        url: '../../style/img/vote4.jpg'
-      }
+        url: '../../style/img/vote4.jpg',
+      },
     ],
     userInfo: {},
     openId: '',
     hasUserInfo: false,
-    globalData: {}
+    globalData: {},
   },
 
   onLoad: function() {
@@ -38,7 +38,7 @@ Page({
     this.setData({
       openId: app.globalData.openId,
       userInfo: app.globalData.userInfo,
-      hasUserInfo: true
+      hasUserInfo: true,
     })
   },
 
@@ -46,14 +46,14 @@ Page({
   targetToQuick() {
     if (!this.data.hasUserInfo) {
       wx.navigateTo({
-        url: '/pages/login/login?target=quickVote'
+        url: '/pages/login/login?target=quickVote',
       })
     } else {
       wx.navigateTo({
         url: '/pages/quickVote/quickVote',
         success(data) {
           console.log(data)
-        }
+        },
       })
     }
   },
@@ -62,14 +62,14 @@ Page({
   targetToAdd() {
     if (!this.data.hasUserInfo) {
       wx.navigateTo({
-        url: '/pages/login/login?target=createVote'
+        url: '/pages/login/login?target=createVote',
       })
     } else {
       wx.navigateTo({
         url: '/pages/createVote/createVote',
         success(data) {
           console.log(data)
-        }
+        },
       })
     }
   },
@@ -78,14 +78,14 @@ Page({
   targetToInfo() {
     if (!this.data.hasUserInfo) {
       wx.navigateTo({
-        url: '/pages/login/login?target=info'
+        url: '/pages/login/login?target=info',
       })
     } else {
       wx.navigateTo({
         url: '/pages/info/info',
         success(data) {
           console.log(data)
-        }
+        },
       })
     }
   },
@@ -93,7 +93,7 @@ Page({
   // 轮播
   cardSwiper(e) {
     this.setData({
-      cardCur: e.detail.current
+      cardCur: e.detail.current,
     })
-  }
+  },
 })
