@@ -1,5 +1,5 @@
 // miniprogram/pages/hot/hot.js
-import { getHotVoteList } from '../../common/api'
+import { getHotVoteList, submitVote } from '../../common/api'
 
 const app = getApp()
 
@@ -34,26 +34,22 @@ Page({
     console.log(res)
   },
 
-  // 响应投票
-  handleVote: async function(data) {
-    const { index } = data.currentTarget.dataset
-    console.log(data)
-    console.log('tap')
-    console.log(index)
-    this.setData({
-      ['voteData[' + index + '].beforeVote']: false,
-    })
-    // this.submitVote(data)
-    // this.getRetio()
-  },
-
   // 提交投票
-  submitVote(data) {
-    submitVote({
-      userInfo: app.globalData.userInfo,
-      voteId: this.data.voteId,
-      optionId: data.currentTarget.dataset.optionId,
-      openId: app.globalData.openId,
-    })
+  async submitVote(data) {
+    const { index, optionId, voteid } = data.currentTarget.dataset
+    try {
+      const res = await submitVote({
+        userInfo: app.globalData.userInfo,
+        voteId: voteid,
+        optionId,
+        openId: app.globalData.openId,
+      })
+      this.setData({
+        ['voteData[' + index + '].voteData']: res.data.voteData,
+        ['voteData[' + index + '].beforeVote']: false,
+      })
+    } catch (error) {
+      console.error(error)
+    }
   },
 })

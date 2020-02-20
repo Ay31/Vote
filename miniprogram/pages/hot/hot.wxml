@@ -40,7 +40,7 @@
           <!-- <view wx:if="{{index === voteRecord.voteData.voteOptionList.length-1}}" bindtap="onVote" data-index="{{index}}" data-vindex="{{voteIndex}}" data-src="{{item.id}}" class="vote-item-data" hover-class="vote-item-data-active">
                     {{item.content}}
                 </view> -->
-          <view class="vote-item-data bottom-line" catchtap="handleVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-index="{{voteListIndex}}" hover-class="vote-item-data-active">
+          <view class="vote-item-data bottom-line" catchtap="submitVote" data-content="{{item.content}}" data-voteId="{{voteRecord.voteData._id}}" data-option-id="{{item._id}}" data-index="{{voteListIndex}}" hover-class="vote-item-data-active">
             {{item.content}}
           </view>
         </view>
