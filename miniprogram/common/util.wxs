@@ -1,0 +1,12 @@
+var uitl = {
+  numberToFix: function(value) {
+    return value.toFixed(1)
+  },
+  dateToString: function(value) {
+    return getDate(value).toLocaleDateString()
+  },
+}
+module.exports = {
+  numberToFix: uitl.numberToFix,
+  dateToString: uitl.dateToString,
+}

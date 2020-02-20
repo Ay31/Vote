@@ -52,4 +52,14 @@ Page({
       console.error(error)
     }
   },
+
+  // 分享投票
+  onShareAppMessage(res) {
+    console.log(res)
+    return {
+      title: res.target.dataset.title,
+      imageUrl: res.target.dataset.img ? res.target.dataset.img : '',
+      path: `/pages/detail/detail?voteId=${res.target.dataset.voteId}`,
+    }
+  },
 })

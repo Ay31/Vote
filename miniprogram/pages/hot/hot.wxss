@@ -107,9 +107,8 @@
 .vote-item-data-percent {
   display: table;
   position: absolute;
-  top: 0;
   right: 28rpx;
-  bottom: 0;
+  bottom: 20rpx;
   margin: auto;
   vertical-align: center;
   color: #7087f4;

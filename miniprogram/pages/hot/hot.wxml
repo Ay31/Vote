@@ -1,19 +1,20 @@
+<wxs module="util" src="../../common/util.wxs"></wxs>
 <view class="padding-lg">
   <text class="text-white text-sl">热门投票</text>
 </view>
 <view wx:for="{{voteData}}" wx:for-item="voteRecord" wx:for-index="voteListIndex">
   <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
+    <!-- 创建者信息 -->
     <view class="vote-item-hd bottom-line">
       <image src="{{voteRecord.userInfo.avatarUrl}}" lazy-load="true" mode="aspectFill"></image>
       <view class="vote-item-hd-info">
         <view class="nickname">{{voteRecord.userInfo.nickName}}</view>
-        <view>{{voteRecord.voteData.createTime}}</view>
+        <view>{{util.dateToString(voteRecord.voteData.createTime)}}</view>
       </view>
-      <!-- <view class="vote-item-hd-op {{delOpState?'vote-item-hd-op-hover':''}}" wx:if="{{true}}" data-index="{{voteIndex}}" data-voteid="{{voteRecord.voteData.id}}" bindtap="voteOP"> -->
     </view>
     <view class="vote-item-con">
+      <!-- 图片 -->
       <view class="vote-item-con-hd bottom-line">
-        <!-- 配图 begin -->
         <view class="vote-imgs {{voteRecord.voteData.imageList.length>=3?'vote-imgs-more':''}}" wx:if="{{voteRecord.voteData.imageList.length>0}}">
           <view wx:if="{{voteRecord.voteData.imageList.length<3}}" wx:for="{{voteRecord.voteData.imageList}}" wx:key="{{index}}" class="vote-img-box">
             <image data-src="{{item}}" lazy-load="true" data-images="{{voteRecord.voteData.imageList}}" src="{{item}}" mode="aspectFill" bindtap="bindPreviewImage"></image>
@@ -28,7 +29,7 @@
             </swiper>
           </view>
         </view>
-        <!-- 配图 end -->
+        <!-- 投票描述 -->
         <view class="vote-title">{{voteRecord.voteData.voteTitle}}</view>
         <view class="vote-des-content" wx:if="{{voteRecord.voteData.desTextareaData}}">
           {{voteRecord.voteData.desTextareaData}}
@@ -37,23 +38,20 @@
       <!-- 未投票 -->
       <view wx:if="{{voteRecord.beforeVote}}">
         <view wx:for="{{voteRecord.voteData.voteOptionList}}" wx:key="{{item.id}}">
-          <!-- <view wx:if="{{index === voteRecord.voteData.voteOptionList.length-1}}" bindtap="onVote" data-index="{{index}}" data-vindex="{{voteIndex}}" data-src="{{item.id}}" class="vote-item-data" hover-class="vote-item-data-active">
-                    {{item.content}}
-                </view> -->
           <view class="vote-item-data bottom-line" catchtap="submitVote" data-content="{{item.content}}" data-voteId="{{voteRecord.voteData._id}}" data-option-id="{{item._id}}" data-index="{{voteListIndex}}" hover-class="vote-item-data-active">
             {{item.content}}
           </view>
         </view>
       </view>
-      <!-- 当前用户已投票 begin -->
+      <!-- 已投票 -->
       <view wx:else>
         <view wx:for="{{voteRecord.voteData.voteOptionList}}" wx:key="{{item.id}}">
           <view class="vote-item-data vote-item-data-voted">
             {{item.content}}
             <text class="vote-item-data-percent">
-              {{((item.count/voteRecord.voteData.votersCount)*100)}}%
+              {{util.numberToFix(((item.count/voteRecord.voteData.votersCount)*100))}}%
             </text>
-            <view class="progress-state" style="width:{{((item.count/voteRecord.voteData.votersCount)*100)}}%;background-color:{{votedColor[index]}};"></view>
+            <view class="progress-state" style="width:{{util.numberToFix(((item.count/voteRecord.voteData.votersCount)*100))}}%;background-color:{{votedColor[index]}};"></view>
           </view>
         </view>
       </view>
@@ -61,9 +59,9 @@
     <!-- 跳转 -->
     <view class="vote-item-ft top-line">
       <i class="fa fa-align-left" bindtap="targetToVoteDetail" data-nickname="{{vote.data.user.nick_name}}" data-index="{{voteIndex}}" data-src="{{vote.data.id}}">
-        <text>{{vote.data.voters_count}}</text>
+        <text>{{voteRecord.voteData.votersCount}}</text>
       </i>
-      <button open-type="share" plain="true" data-voteid="{{vote.data.id}}" data-cover="{{filter.delWithPath(vote.data.images[0].path)}}" data-title="{{vote.data.title}}" data-nickname="{{vote.data.user.nick_name}}" bindtap="onShareAppMessage">
+      <button open-type="share" plain="true" data-voteId="{{voteRecord.voteData._id}}" data-img="{{voteRecord.voteData.imageList[0]}}" data-title="{{voteRecord.voteData.voteTitle}}" data-nickname="{{item.userInfo.nickName}}" bindtap="onShareAppMessage">
         <i class="fa fa-share-square-o"></i>
       </button>
     </view>
