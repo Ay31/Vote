@@ -1,18 +1,8 @@
-<!-- miniprogram/pages/hot/hot.wxml -->
-<!-- <view>
-  <view class="cu-list menu margin-top" wx:for="{{voteData}}">
-    <view class="list-item">{{item._oppenid}}</view>
-    <view class="list-item voteTitle">{{item.voteTitle}}</view>
-    <view class="cu-item">{{item.desTextareaData}}</view>
-    <view class="list-item solid-bottom" wx:for="{{item.voteOptionList}}">{{item.content}}</view>
-    <view class="list-item">more share</view>
-  </view>
-</view> -->
 <view class="padding-lg">
   <text class="text-white text-sl">热门投票</text>
 </view>
 <view wx:for="{{voteData}}">
-  <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
+  <view class="vote-item padding-xs radius shadow-warp bg-white margin-top" wx:if="{{nowTime < item.voteData.endingTime}}">
     <view class="vote-item-hd bottom-line">
       <image src="{{item.userInfo.avatarUrl}}" lazy-load="true" mode="aspectFill"></image>
       <view class="vote-item-hd-info">
