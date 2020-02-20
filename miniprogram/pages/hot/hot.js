@@ -8,7 +8,6 @@ Page({
     openId: '',
     voteData: {},
     userInfo: {},
-    nowTime: Date.now(),
     hasUserInfo: false,
   },
 

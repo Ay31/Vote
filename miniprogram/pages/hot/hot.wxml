@@ -2,7 +2,7 @@
   <text class="text-white text-sl">热门投票</text>
 </view>
 <view wx:for="{{voteData}}">
-  <view class="vote-item padding-xs radius shadow-warp bg-white margin-top" wx:if="{{nowTime < item.voteData.endingTime}}">
+  <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
     <view class="vote-item-hd bottom-line">
       <image src="{{item.userInfo.avatarUrl}}" lazy-load="true" mode="aspectFill"></image>
       <view class="vote-item-hd-info">
