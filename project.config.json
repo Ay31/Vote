@@ -84,21 +84,21 @@
 				{
 					"id": 5,
 					"name": "详情页",
-					"pathName": "pages/detail/detail",
+					"pathName": "pages/vote/vote",
 					"query": "voteId=5e4e417eaae0e552140fd5df",
 					"scene": null
 				},
 				{
 					"id": 6,
 					"name": "快速投票测试",
-					"pathName": "pages/detail/detail",
+					"pathName": "pages/vote/vote",
 					"query": "voteId=5e4e95b0d46f4a1614e0d493",
 					"scene": null
 				},
 				{
 					"id": 7,
 					"name": "生效时间测试",
-					"pathName": "pages/detail/detail",
+					"pathName": "pages/vote/vote",
 					"query": "voteId=1acf1de95e1e81dc01f6008c62912397",
 					"scene": null
 				},
@@ -112,8 +112,15 @@
 				{
 					"id": 9,
 					"name": "提交接口测试",
-					"pathName": "pages/detail/detail",
+					"pathName": "pages/vote/vote",
 					"query": "voteId=5e498a6449543e49a88ff9b7",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "快速投票场景",
+					"pathName": "pages/createVote/createVote",
+					"query": "target=SIMPLE",
 					"scene": null
 				}
 			]

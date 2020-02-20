@@ -43,35 +43,23 @@ Page({
   },
 
   // 跳转至快速投票页
-  targetToQuick() {
-    if (!this.data.hasUserInfo) {
-      wx.navigateTo({
-        url: '/pages/login/login?target=quickVote',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/quickVote/quickVote',
-        success(data) {
-          console.log(data)
-        },
-      })
-    }
+  targetToSimple() {
+    wx.navigateTo({
+      url: '/pages/createVote/createVote?target=SIMPLE',
+      success(data) {
+        console.log(data)
+      },
+    })
   },
 
   // 跳转至创建投票页
-  targetToAdd() {
-    if (!this.data.hasUserInfo) {
-      wx.navigateTo({
-        url: '/pages/login/login?target=createVote',
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/createVote/createVote',
-        success(data) {
-          console.log(data)
-        },
-      })
-    }
+  targetToNormal() {
+    wx.navigateTo({
+      url: '/pages/createVote/createVote?target=NORMAL',
+      success(data) {
+        console.log(data)
+      },
+    })
   },
 
   // 跳转至创建投票页

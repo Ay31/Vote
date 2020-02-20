@@ -5,6 +5,7 @@ const app = getApp()
 
 Page({
   data: {
+    target: 'NORMAL',
     newVoteTitle: '',
     desTextareaData: '',
     isPrivate: true,
@@ -23,7 +24,24 @@ Page({
     ],
   },
 
-  onLoad() {
+  onLoad(option) {
+    this.setData({
+      target: option.target,
+    })
+    if (option.target === 'SIMPLE') {
+      this.setData({
+        voteOptionList: [
+          {
+            content: 'YES',
+            count: 0,
+          },
+          {
+            content: 'NO',
+            count: 0,
+          },
+        ],
+      })
+    }
     wx.setNavigationBarTitle({
       title: '创建投票',
     })
@@ -61,7 +79,7 @@ Page({
         endingTime: createTime + this.data.enableTime * 86400000,
       })
       wx.redirectTo({
-        url: `/pages/detail/detail?voteId=${res.data.result._id}`,
+        url: `/pages/vote/vote?voteId=${res.data.result._id}`,
       })
     } catch (error) {
       console.error(error)

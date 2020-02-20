@@ -67,7 +67,7 @@ Page({
     return {
       title: res.target.dataset.title,
       imageUrl: res.target.dataset.img ? res.target.dataset.img : '',
-      path: `/pages/detail/detail?voteId=${res.target.dataset.voteId}`,
+      path: `/pages/vote/vote?voteId=${res.target.dataset.voteId}`,
     }
   },
 
@@ -75,7 +75,7 @@ Page({
   targetToDetail(res) {
     console.log(res)
     wx.navigateTo({
-      url: `/pages/detail/detail?voteId=${res.currentTarget.dataset.id}`,
+      url: `/pages/vote/vote?voteId=${res.currentTarget.dataset.id}`,
     })
   },
 })

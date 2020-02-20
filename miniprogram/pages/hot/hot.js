@@ -59,7 +59,7 @@ Page({
     return {
       title: res.target.dataset.title,
       imageUrl: res.target.dataset.img ? res.target.dataset.img : '',
-      path: `/pages/detail/detail?voteId=${res.target.dataset.voteId}`,
+      path: `/pages/vote/vote?voteId=${res.target.dataset.voteId}`,
     }
   },
 })

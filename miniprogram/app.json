@@ -2,9 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/createVote/createVote",
-    "pages/detail/detail",
+    "pages/vote/vote",
     "pages/info/info",
-    "pages/quickVote/quickVote",
     "pages/login/login",
     "pages/hot/hot"
   ],
@@ -40,6 +39,5 @@
         "selectedIconPath": "/style/icon/me2.png"
       }
     ]
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

@@ -4,7 +4,7 @@
         <view class="vote-title solid-bottom padding-xs">
             <input class="title" placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
         </view>
-        <view class="vote-dsc margin-top padding-xs">
+        <view class="vote-dsc margin-top padding-xs" wx:if="{{target === 'NORMAL'}}">
             <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="补充描述（可选）" value="{{desTextareaData}}"></textarea>
         </view>
     </view>
@@ -22,7 +22,7 @@
         </view>
     </view>
     <!-- 投票配图 -->
-    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top" wx:if="{{target === 'NORMAL'}}">
         <view class="image-bar padding-xs solid-bottom">
             <view class="action">投票配图（可选）</view>
             <view class="action">{{imgList.length}}/4</view>

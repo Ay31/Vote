@@ -1,4 +1,3 @@
-/* miniprogram/pages/detail/detail.wxss */
 .voteTitle {
   padding-left: 60rpx;
 }

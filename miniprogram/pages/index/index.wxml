@@ -24,12 +24,12 @@
     <view class="text-sl padding-left-lg vote-item">
         <text class="text-white">Vote</text>
     </view>
-    <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToQuick">
+    <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToSimple">
         <text class="text-black text-xxl new-text padding-left">简单投票</text>
         <text class="text-black text-xl en-text">Simple</text>
         <view class="cuIcon-post cu-btn round bg-yellow text-white pandding-lg xl button1"></view>
     </view>
-    <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToAdd">
+    <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToNormal">
         <text class="text-black text-xxl new-text padding-left">正常投票</text>
         <text class="text-black text-xl en-text">Normal</text>
         <view class="cuIcon-edit cu-btn round bg-purple text-white pandding-lg xl button2"></view>
