@@ -6,7 +6,9 @@
     <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
         <view class="vote-item-hd bottom-line">
             <view class="vote-item-hd-info">
-                <view class="vote-title">{{item.voteData.voteTitle}}</view>
+                <view class="vote-title" catchtap="targetToDetail" data-id="{{item.voteData._id}}">
+                    {{item.voteData.voteTitle}}
+                </view>
                 <view class="vote-time">{{item.voteData.createTime}}</view>
             </view>
             <view class="vote-item-hd-op vote-item-hd-op-hover" wx:if="{{true}}">
@@ -27,8 +29,8 @@
                 <text>{{item.voteData.votersCount}}</text>
             </i>
             <view>
-                <i class="fa fa-trash fa-lg"></i>
-                <button open-type="share" plain="true" data-voteid="{{vote.data.id}}" data-cover="{{filter.delWithPath(vote.data.images[0].path)}}" data-title="{{vote.data.title}}" data-nickname="{{vote.data.user.nick_name}}" bindtap="onShareAppMessage">
+                <i class="fa fa-trash fa-lg" bindtap="deleteVote" data-voteId="{{item.voteData._id}}" data-index="{{index}}"></i>
+                <button open-type="share" plain="true" data-voteId="{{item.voteData._id}}" data-img="{{item.voteData.imageList[0]}}" data-title="{{item.voteData.voteTitle}}" data-nickname="{{item.userInfo.nickName}}" bindtap="onShareAppMessage">
                     <i class="fa fa-share-square-o"></i>
                 </button>
             </view>

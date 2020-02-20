@@ -1,4 +1,4 @@
-import { postRequest, getRequest } from './request'
+import { postRequest, getRequest, deleteRequest } from './request'
 import { uploadFile } from './upload'
 import { baseUrl } from '../config'
 
@@ -9,6 +9,11 @@ export const testVote = () => {
 // 创建投票
 export const createVote = data => {
   return postRequest(`${baseUrl}/api/vote/createVote`, data)
+}
+
+// 删除投票
+export const deleteVote = data => {
+  return deleteRequest(`${baseUrl}/api/vote/deleteVote`, data)
 }
 
 // 获取投票详情

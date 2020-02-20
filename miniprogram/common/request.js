@@ -19,6 +19,7 @@ const getHeader = () => {
 }
 
 const requestAll = (url, data, method, header) => {
+  console.log(data)
   return new Promise((reslove, reject) => {
     wx.request({
       url,
@@ -45,4 +46,8 @@ const postRequest = (url, data, header = getHeader()) => {
   return requestAll(url, data, 'POST', header)
 }
 
-export { getRequest, postRequest }
+const deleteRequest = (url, data, header = getHeader()) => {
+  return requestAll(url, data, 'DELETE', header)
+}
+
+export { getRequest, postRequest, deleteRequest }

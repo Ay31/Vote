@@ -364,4 +364,5 @@ page {
 .fa-trash {
   position: absolute;
   right: 80rpx;
+  top: 23rpx;
 }
