@@ -31,8 +31,7 @@ Page({
       this.setData({
         voteData: res.data.voteDetail,
         swiperList: res.data.voteDetail.imageList,
-        enable:
-          Date.parse(res.data.voteDetail.endingTime) > Date.parse(new Date()),
+        enable: res.data.voteDetail.endingTime > Date.now(),
         beforeVote: res.data.beforeVote,
         voteId,
       })
