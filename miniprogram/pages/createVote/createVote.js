@@ -6,9 +6,10 @@ const app = getApp()
 Page({
   data: {
     target: 'NORMAL',
-    newVoteTitle: '',
+    voteTitle: '',
     desTextareaData: '',
-    isPrivate: true,
+    isPrivate: false,
+    isAnonymous: false,
     enableTime: 3,
     imgList: [],
     imageList: [],
@@ -50,7 +51,7 @@ Page({
   // 投票标题
   bindTitleInput(e) {
     this.setData({
-      newVoteTitle: e.detail.value,
+      voteTitle: e.detail.value,
     })
   },
 
@@ -64,19 +65,29 @@ Page({
   // 提交投票
   postVote: async function() {
     const createTime = Date.parse(new Date())
+    const {
+      voteTitle,
+      desTextareaData,
+      isPrivate,
+      isAnonymous,
+      voteOptionList,
+      imageList,
+      enableTime,
+    } = this.data
     await this.uploadImage(this.data.imgList)
     try {
       const res = await createVote({
         openId: app.globalData.openId,
-        voteTitle: this.data.newVoteTitle,
-        desTextareaData: this.data.desTextareaData,
-        isPrivate: this.data.isPrivate,
-        voteOptionList: this.data.voteOptionList,
+        voteTitle,
+        desTextareaData,
+        isPrivate,
+        isAnonymous,
+        voteOptionList,
         userInfo: app.globalData.userInfo,
         votersCount: 0,
-        imageList: this.data.imageList,
+        imageList,
         createTime,
-        endingTime: createTime + this.data.enableTime * 86400000,
+        endingTime: createTime + enableTime * 86400000,
       })
       wx.redirectTo({
         url: `/pages/vote/vote?voteId=${res.data.result._id}`,
@@ -201,7 +212,7 @@ Page({
   // 投票类型
   radioChange(e) {
     this.setData({
-      isPrivate: e.detail.value === '私密' ? true : false,
+      isPrivate: Boolean(e.detail.value),
     })
   },
 
@@ -209,6 +220,14 @@ Page({
   changeEnableTime(e) {
     this.setData({
       enableTime: e.detail.value,
+    })
+  },
+
+  // 是否匿名投票
+  changeAnonymous(e) {
+    console.log(e)
+    this.setData({
+      isAnonymous: Boolean(e.detail.value),
     })
   },
 })

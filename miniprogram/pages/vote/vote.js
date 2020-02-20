@@ -8,6 +8,7 @@ Page({
     ratioList: [],
     userInfo: {},
     voteId: '',
+    votedColor: ['#9dc8c8', '#58c9b9', '#519d9e', '#d1b6e1'],
     beforeVote: true,
     enable: true,
   },

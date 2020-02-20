@@ -85,7 +85,7 @@
 					"id": 5,
 					"name": "详情页",
 					"pathName": "pages/vote/vote",
-					"query": "voteId=5e4e417eaae0e552140fd5df",
+					"query": "voteId=5e4eaf02a829a85120bcb1d3",
 					"scene": null
 				},
 				{

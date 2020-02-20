@@ -5,6 +5,7 @@
             <view>{{voteData.voteTitle}}</view>
             <view>
                 <view class="cu-tag bg-grey" wx:if="{{!enable}}">投票失效</view>
+                <view class="cu-tag bg-gray" wx:if="{{voteData.isAnonymous}}">匿名</view>
                 <view class="cu-tag bg-{{voteData.isPrivate ? 'red' : 'green'}}">
                     {{voteData.isPrivate ? '私密' : '公开'}}
                 </view>
@@ -20,7 +21,7 @@
             <text class="cuIcon-title text-orange "></text>
             <view class="cu-progress round xl striped progress">
                 <text class="text-black padding-sm vote-option-content">{{item.content}}</text>
-                <view class="bg-grey" style="width: {{ratioList[index]}}%;" wx:if="{{!beforeVote||!enable}}"></view>
+                <view class="bg-grey" style="width: {{ratioList[index]}}%;background-color:{{votedColor[index]}};" wx:if="{{!beforeVote||!enable}}"></view>
             </view>
             <button wx:if="{{beforeVote&&enable}}" class="cu-btn bg-grey shadow" catchtap="submitVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal">
                 Vote

@@ -53,3 +53,17 @@ textarea {
   display: flex;
   justify-content: space-between;
 }
+
+.first-radio {
+  position: relative;
+}
+
+.second-radio {
+  position: absolute;
+  left: 270rpx;
+}
+
+.third-radio {
+  position: absolute;
+  left: 400rpx;
+}
