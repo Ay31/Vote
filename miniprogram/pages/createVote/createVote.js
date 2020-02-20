@@ -64,36 +64,38 @@ Page({
 
   // 提交投票
   postVote: async function() {
-    const createTime = Date.parse(new Date())
-    const {
-      voteTitle,
-      desTextareaData,
-      isPrivate,
-      isAnonymous,
-      voteOptionList,
-      imageList,
-      enableTime,
-    } = this.data
-    await this.uploadImage(this.data.imgList)
-    try {
-      const res = await createVote({
-        openId: app.globalData.openId,
+    if (this.checkVoteTitle() && this.checkVoteOption() && this.checkDec()) {
+      const createTime = Date.parse(new Date())
+      const {
         voteTitle,
         desTextareaData,
         isPrivate,
         isAnonymous,
         voteOptionList,
-        userInfo: app.globalData.userInfo,
-        votersCount: 0,
         imageList,
-        createTime,
-        endingTime: createTime + enableTime * 86400000,
-      })
-      wx.redirectTo({
-        url: `/pages/vote/vote?voteId=${res.data.result._id}`,
-      })
-    } catch (error) {
-      console.error(error)
+        enableTime,
+      } = this.data
+      await this.uploadImage(this.data.imgList)
+      try {
+        const res = await createVote({
+          openId: app.globalData.openId,
+          voteTitle,
+          desTextareaData,
+          isPrivate,
+          isAnonymous,
+          voteOptionList,
+          userInfo: app.globalData.userInfo,
+          votersCount: 0,
+          imageList,
+          createTime,
+          endingTime: createTime + enableTime * 86400000,
+        })
+        wx.redirectTo({
+          url: `/pages/vote/vote?voteId=${res.data.result._id}`,
+        })
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
 
@@ -173,13 +175,21 @@ Page({
 
   // 添加投票选项
   addVoteOption() {
-    this.data.voteOptionList.push({
-      content: '',
-      count: 0,
-    })
-    this.setData({
-      voteOptionList: this.data.voteOptionList,
-    })
+    if (this.data.voteOptionList.length >= 4) {
+      wx.showToast({
+        title: '选项至多为4项',
+        icon: 'none',
+        duration: 1000,
+      })
+    } else {
+      this.data.voteOptionList.push({
+        content: '',
+        count: 0,
+      })
+      this.setData({
+        voteOptionList: this.data.voteOptionList,
+      })
+    }
   },
 
   // 删除投票选项
@@ -229,5 +239,66 @@ Page({
     this.setData({
       isAnonymous: Boolean(e.detail.value),
     })
+  },
+
+  // 标题校验
+  checkVoteTitle() {
+    const title = this.data.voteTitle
+    if (title.length < 2) {
+      wx.showToast({
+        title: '投票标题至少2字',
+        icon: 'none',
+        duration: 1000,
+      })
+      return false
+    } else if (title.length > 10) {
+      wx.showToast({
+        title: '投票标题至多10字',
+        icon: 'none',
+        duration: 1000,
+      })
+      return false
+    } else return true
+  },
+
+  // 校验描述
+  checkDec() {
+    const dec = this.data.desTextareaData
+    if (dec.length > 100) {
+      wx.showToast({
+        title: '描述内容至多50字',
+        icon: 'none',
+        duration: 1000,
+      })
+      return false
+    } else return true
+  },
+
+  // 校验选项
+  checkVoteOption() {
+    const options = this.data.voteOptionList
+    const spaceArr = options.filter(item => {
+      return item.content === '' || item.content.indexOf(' ') === 0
+    })
+    const lengthArr = options.filter(item => {
+      return item.content.length > 20
+    })
+    if (spaceArr.length > 0) {
+      wx.showToast({
+        title: '选项不能为空',
+        icon: 'none',
+        duration: 1000,
+      })
+      return false
+    }
+    if (lengthArr.length > 0) {
+      wx.showToast({
+        title: '选项至多10中文长度',
+        icon: 'none',
+        duration: 1000,
+      })
+      return false
+    }
+    return true
   },
 })

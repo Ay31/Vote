@@ -2,10 +2,10 @@
     <!-- 标题 描述 -->
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
         <view class="vote-title solid-bottom padding-xs">
-            <input class="title" placeholder="请输入投票标题,至少3个字" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
+            <input class="title" placeholder="请输入投票标题（2至10字）" bindinput="bindTitleInput" value="{{newVoteTitle}}"></input>
         </view>
         <view class="vote-dsc margin-top padding-xs" wx:if="{{target === 'NORMAL'}}">
-            <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="补充描述（可选）" value="{{desTextareaData}}"></textarea>
+            <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="bindDesTextAreaInput" placeholder="补充描述（可选，50字以内）" value="{{desTextareaData}}"></textarea>
         </view>
     </view>
     <!-- 投票选项 -->
@@ -18,7 +18,7 @@
         </view>
         <view class="title margin-top padding-xs" bindtap="addVoteOption">
             <i class="add-option fa fa-plus-circle fa-lg"></i>
-            <span>添加选项</span>
+            <span>添加选项（选项内容10字以内）</span>
         </view>
     </view>
     <!-- 投票配图 -->

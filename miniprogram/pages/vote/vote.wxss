@@ -23,7 +23,7 @@
 }
 
 .form-item {
-  padding: 60rpx;
+  padding: 40rpx;
   margin: 16rpx;
   background-color: #ffffff;
   box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.06), 0 -2rpx 2rpx rgba(0, 0, 0, 0.06);
