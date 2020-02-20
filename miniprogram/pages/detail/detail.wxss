@@ -8,10 +8,6 @@
   text-indent: 35rpx;
 }
 
-.progress {
-  margin: 0 50rpx;
-}
-
 .cu-form-group {
   margin: 35rpx 20rpx;
   border: 1px solid white;
@@ -28,7 +24,7 @@
 }
 
 .form-item {
-  padding: 40rpx;
+  padding: 60rpx;
   margin: 16rpx;
   background-color: #ffffff;
   box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.06), 0 -2rpx 2rpx rgba(0, 0, 0, 0.06);
@@ -45,7 +41,9 @@ textarea {
 }
 
 .progress {
-  width: 200rpx;
+  height: 65rpx;
+  margin: 0 25rpx;
+  /* width: 200rpx; */
 }
 
 .vote-item-content {
@@ -60,4 +58,10 @@ textarea {
   position: relative;
   top: 50%;
   transform: translateY(-25%);
+}
+.vote-option-content {
+  position: absolute;
+}
+.cu-progress text {
+  font-size: 24rpx;
 }

@@ -15,13 +15,12 @@
     </view>
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
         <view class="vote-item-content solid-bottom" wx:for="{{voteData.voteOptionList}}" wx:key="index">
-            <text class="cuIcon-title text-orange ">
-                <text class="text-black padding-sm">{{item.content}}</text>
-            </text>
-            <view class="cu-progress round sm striped progress" wx:if="{{!beforeVote||!enable}}">
-                <view class="bg-grey" style="width: {{ratioList[index]}}%;"></view>
+            <text class="cuIcon-title text-orange "></text>
+            <view class="cu-progress round xl striped progress">
+                <text class="text-black padding-sm vote-option-content">{{item.content}}</text>
+                <view class="bg-grey" style="width: {{ratioList[index]}}%;" wx:if="{{!beforeVote||!enable}}"></view>
             </view>
-            <button wx:if="{{beforeVote&&enable}}" class="cu-btn bg-grey shadow" catchtap="handleVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal">
+            <button wx:if="{{beforeVote&&enable}}" class="cu-btn bg-grey shadow" catchtap="submitVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal">
                 Vote
             </button>
             <text class="text-df text-item" wx:if="{{!beforeVote||!enable}}">
@@ -29,7 +28,7 @@
             </text>
         </view>
     </view>
-    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top" wx:if="{{swiperList.length > 0}}">
         <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
             <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
                 <view class="swiper-item">

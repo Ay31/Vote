@@ -41,13 +41,6 @@ Page({
     }
   },
 
-  // 响应投票
-  handleVote: async function(data) {
-    this.submitVote(data)
-    this.getRetio()
-    this.setData({ beforeVote: false })
-  },
-
   // 获取选项占比
   getRetio: async function() {
     try {
@@ -59,12 +52,18 @@ Page({
   },
 
   // 提交投票
-  submitVote(data) {
-    submitVote({
-      userInfo: app.globalData.userInfo,
-      voteId: this.data.voteId,
-      optionId: data.currentTarget.dataset.optionId,
-      openId: app.globalData.openId,
-    })
+  async submitVote(data) {
+    try {
+      await submitVote({
+        userInfo: app.globalData.userInfo,
+        voteId: this.data.voteId,
+        optionId: data.currentTarget.dataset.optionId,
+        openId: app.globalData.openId,
+      })
+      await this.getRetio()
+      this.setData({ beforeVote: false })
+    } catch (error) {
+      console.error(error)
+    }
   },
 })

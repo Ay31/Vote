@@ -52,6 +52,7 @@ Page({
   addVoteOption() {
     this.data.voteOptionList.push({
       content: '',
+      count: 0,
     })
     this.setData({
       voteOptionList: this.data.voteOptionList,
