@@ -13,29 +13,6 @@
             {{voteData.desTextareaData}}
         </view>
     </view>
-    <!-- <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
-        <view class="padding-xs margin-top" wx:for="{{voteData.voteOptionList}}" wx:key="index">
-            <view class="cu-form-group">
-                <view class="">
-                    <text class="cuIcon-title text-orange ">
-                        <text class="text-black padding-sm">{{item.content}}</text>
-                    </text>
-                    <view class="cu-progress round sm striped">
-                        <view class="bg-red" style="width: {{ratioList[index]}}%;"></view>
-                    </view>
-                    <view class="cu-progress round sm striped" wx:if="{{!beforeVote||!enable}}">
-                </view>
-                <view>
-                    <button wx:if="{{beforeVote&&enable}}" class="cu-btn bg-green shadow" catchtap="handleVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal">
-                        Vote
-                    </button>
-                    <text class="text-df padding" wx:if="{{!beforeVote||!enable}}">
-                        {{ratioList[index]}}%
-                    </text>
-                </view>
-            </view>
-        </view>
-    </view> -->
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
         <view class="vote-item-content solid-bottom" wx:for="{{voteData.voteOptionList}}" wx:key="index">
             <text class="cuIcon-title text-orange ">
@@ -44,8 +21,7 @@
             <view class="cu-progress round sm striped progress" wx:if="{{!beforeVote||!enable}}">
                 <view class="bg-grey" style="width: {{ratioList[index]}}%;"></view>
             </view>
-            <!-- <button wx:if="{{beforeVote&&enable}}" class="cu-btn bg-grey shadow" catchtap="handleVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal"> -->
-            <button wx:if="{{beforeVote}}" class="cu-btn bg-grey shadow" catchtap="handleVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal">
+            <button wx:if="{{beforeVote&&enable}}" class="cu-btn bg-grey shadow" catchtap="handleVote" data-content="{{item.content}}" data-option-id="{{item._id}}" data-target="Modal">
                 Vote
             </button>
             <text class="text-df text-item" wx:if="{{!beforeVote||!enable}}">
