@@ -5,6 +5,7 @@ const app = getApp()
 
 Page({
   data: {
+    nowTime: Date.now(),
     voteData: {},
   },
 

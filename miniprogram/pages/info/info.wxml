@@ -12,6 +12,9 @@
                 <view class="vote-time">{{item.voteData.createTime}}</view>
             </view>
             <view class="vote-item-hd-op vote-item-hd-op-hover" wx:if="{{true}}">
+                <view class="cu-tag bg-grey" wx:if="{{ nowTime > item.voteData.endingTime }}">
+                    投票失效
+                </view>
                 <view class="cu-tag bg-{{item.voteData.isPrivate ? 'red' : 'green'}}">
                     {{item.voteData.isPrivate ? '私密' : '公开'}}
                 </view>
