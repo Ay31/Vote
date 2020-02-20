@@ -1,7 +1,5 @@
 // miniprogram/pages/login/login.js
 const app = getApp()
-const db = wx.cloud.database()
-const info = db.collection('info')
 
 Page({
   data: {

@@ -1,10 +1,6 @@
 //app.js
 import { baseUrl } from './config'
 
-wx.cloud.init()
-
-const info = wx.cloud.database().collection('info')
-
 App({
   globalData: {
     // userInfo: null

@@ -2,8 +2,6 @@
 import { createVote, uploadImage } from '../../common/api'
 
 const app = getApp()
-const db = wx.cloud.database()
-const vote = db.collection('vote')
 
 Page({
   data: {

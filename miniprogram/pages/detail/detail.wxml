@@ -1,4 +1,5 @@
 <view class="vote-detail">
+    <!-- 投票描述 -->
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
         <view class="vote-title-bar padding-xs solid-bottom">
             <view>{{voteData.voteTitle}}</view>
@@ -13,6 +14,7 @@
             {{voteData.desTextareaData}}
         </view>
     </view>
+    <!-- 投票选项 -->
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
         <view class="vote-item-content solid-bottom" wx:for="{{voteData.voteOptionList}}" wx:key="index">
             <text class="cuIcon-title text-orange "></text>
@@ -28,6 +30,7 @@
             </text>
         </view>
     </view>
+    <!-- 投票配图 -->
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top" wx:if="{{swiperList.length > 0}}">
         <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
             <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
