@@ -1,0 +1,43 @@
+<!-- miniprogram/pages/detail/detail.wxml -->
+<view class="vote-detail">
+    <!-- 投票描述 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+        <view class="vote-title-bar padding-xs solid-bottom">
+            <view>{{voteData.voteTitle}}</view>
+            <view>
+                <view class="cu-tag bg-grey" wx:if="{{!enable}}">投票失效</view>
+                <view class="cu-tag bg-gray" wx:if="{{voteData.isAnonymous}}">匿名</view>
+                <view class="cu-tag bg-{{voteData.isPrivate ? 'red' : 'green'}}">
+                    {{voteData.isPrivate ? '私密' : '公开'}}
+                </view>
+            </view>
+        </view>
+        <view class="padding-xs margin-top-xs" wx:if="{{voteData.desTextareaData}}">
+            {{voteData.desTextareaData}}
+        </view>
+    </view>
+    <!-- 投票选项 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+        <view class="vote-item-content solid-bottom" wx:for="{{voteData.voteOptionList}}" wx:key="index">
+            <view class="cu-progress round xl striped progress">
+                <text class="text-black padding-sm vote-option-content">{{item.content}}</text>
+                <view class="bg-grey" style="width: {{ratioList[index]}}%;background-color:{{votedColor[index]}};"></view>
+            </view>
+            <text class="text-df text-item">{{ratioList[index]}}%</text>
+        </view>
+    </view>
+    <!-- 投票配图 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white margin-top" bindtap="changeViable" wx:for="{{voteData.voteOptionList}}" data-index="{{index}}">
+        <view class="vote-option-title-bar">
+            <view class="solid-bottom vote-option-title">
+                <text class="cuIcon-title text-orange "></text>
+                {{item.content}}
+            </view>
+            <view>
+                <!-- <i class="fa fa-angle-right"></i> -->
+                <i class="fa {{item.visable? 'fa-angle-down':'fa-angle-right'}}"></i>
+            </view>
+        </view>
+        <view wx:if="{{item.visable}}">visable</view>
+    </view>
+</view>

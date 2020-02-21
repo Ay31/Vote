@@ -6,7 +6,7 @@
     <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
         <view class="vote-item-hd bottom-line">
             <view class="vote-item-hd-info">
-                <view class="vote-title" catchtap="targetToDetail" data-id="{{item.voteData._id}}">
+                <view class="vote-title" catchtap="targetToVote" data-id="{{item.voteData._id}}">
                     {{item.voteData.voteTitle}}
                 </view>
                 <view class="vote-time">{{item.voteData.createTime}}</view>
@@ -22,14 +22,14 @@
             </view>
         </view>
         <view class="vote-item-con">
-            <view class="vote-item-con-hd bottom-line" catchtap="targetToDetail" data-id="{{item.voteData._id}}">
+            <view class="vote-item-con-hd bottom-line" catchtap="targetToVote" data-id="{{item.voteData._id}}">
                 <view class="vote-des-content" wx:if="{{item.voteData.desTextareaData}}">
                     {{item.voteData.desTextareaData}}
                 </view>
             </view>
         </view>
         <view class="vote-item-ft top-line">
-            <i class="fa fa-align-left" bindtap="targetToVoteDetail" data-nickname="{{vote.data.user.nick_name}}" data-index="{{voteIndex}}" data-src="{{vote.data.id}}">
+            <i class="fa fa-align-left" catchtap="targetToDetail" data-id="{{item.voteData._id}}" data-index="{{index}}">
                 <text>{{item.voteData.votersCount}}</text>
             </i>
             <view>

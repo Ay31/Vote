@@ -72,10 +72,18 @@ Page({
   },
 
   // 跳转至投票页
-  targetToDetail(res) {
+  targetToVote(res) {
     console.log(res)
     wx.navigateTo({
       url: `/pages/vote/vote?voteId=${res.currentTarget.dataset.id}`,
+    })
+  },
+
+  // 跳转至详情页
+  targetToDetail(res) {
+    console.log(res)
+    wx.navigateTo({
+      url: `/pages/detail/detail?voteId=${res.currentTarget.dataset.id}`,
     })
   },
 })

@@ -5,7 +5,8 @@
     "pages/vote/vote",
     "pages/info/info",
     "pages/login/login",
-    "pages/hot/hot"
+    "pages/hot/hot",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

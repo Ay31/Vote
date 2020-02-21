@@ -47,23 +47,9 @@
 			"current": -1,
 			"list": [
 				{
-					"id": 0,
-					"name": "投票页",
-					"pathName": "pages/createVote/createVote",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": 3,
 					"name": "首页",
 					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "快速投票页",
-					"pathName": "pages/quickVote/quickVote",
 					"query": "",
 					"scene": null
 				},
@@ -75,31 +61,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "分享页",
-					"pathName": "pages/share/share",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 5,
-					"name": "详情页",
+					"id": 2,
+					"name": "投票页",
 					"pathName": "pages/vote/vote",
 					"query": "voteId=5e4e4fb956cf965740e40924",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "快速投票测试",
-					"pathName": "pages/vote/vote",
-					"query": "voteId=5e4e95b0d46f4a1614e0d493",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "生效时间测试",
-					"pathName": "pages/vote/vote",
-					"query": "voteId=1acf1de95e1e81dc01f6008c62912397",
 					"scene": null
 				},
 				{
@@ -110,17 +75,24 @@
 					"scene": null
 				},
 				{
-					"id": 9,
-					"name": "提交接口测试",
-					"pathName": "pages/vote/vote",
-					"query": "voteId=5e498a6449543e49a88ff9b7",
+					"id": -1,
+					"name": "创建正常投票",
+					"pathName": "pages/createVote/createVote",
+					"query": "target=NORMAL",
 					"scene": null
 				},
 				{
-					"id": 10,
-					"name": "快速投票场景",
+					"id": -1,
+					"name": "创建简单投票",
 					"pathName": "pages/createVote/createVote",
 					"query": "target=SIMPLE",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "详情页",
+					"pathName": "pages/detail/detail",
+					"query": "voteId=5e4e4fb956cf965740e40924",
 					"scene": null
 				}
 			]
