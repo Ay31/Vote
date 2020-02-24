@@ -1,25 +1,5 @@
-.voteTitle {
-  padding-left: 60rpx;
-}
-
-.desTextareaData {
-  line-height: 50rpx;
-  text-indent: 35rpx;
-}
-
-.cu-form-group {
-  margin: 35rpx 20rpx;
-  border: 1px solid white;
-  border-radius: 45rpx;
-  background: white;
-}
-
-.opacity {
-  opacity: 0.85;
-}
-
-.vote-title {
-  font-size: medium;
+textarea {
+  height: 120rpx;
 }
 
 .form-item {
@@ -29,8 +9,22 @@
   box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.06), 0 -2rpx 2rpx rgba(0, 0, 0, 0.06);
 }
 
-textarea {
-  height: 120rpx;
+.text-item {
+  width: 30rpx;
+  position: relative;
+  top: 50%;
+  transform: translateY(-25%);
+}
+
+.vote-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100rpx;
+}
+
+.vote-option-content {
+  position: absolute;
 }
 
 .vote-title-bar,
@@ -42,25 +36,8 @@ textarea {
 .progress {
   height: 65rpx;
   margin: 0 25rpx;
-  /* width: 200rpx; */
 }
 
-.vote-item-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 100rpx;
-}
-
-.text-item {
-  width: 30rpx;
-  position: relative;
-  top: 50%;
-  transform: translateY(-25%);
-}
-.vote-option-content {
-  position: absolute;
-}
 .cu-progress text {
   font-size: 24rpx;
 }

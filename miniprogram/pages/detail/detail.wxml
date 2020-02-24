@@ -38,6 +38,36 @@
                 <i class="fa {{item.visable? 'fa-angle-down':'fa-angle-right'}}"></i>
             </view>
         </view>
-        <view wx:if="{{item.visable}}">visable</view>
+        <view class="vote-option-detail" wx:if="{{item.visable}}">
+            <!-- 测试1 -->
+            <view class="detail-item solid-bottom margin-bottom margin-top">
+                <view class="canvas-container">
+                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ecPie }}"></ec-canvas>
+                </view>
+                <view class="text-container">
+                    <view>
+                        <text>省区分布</text>
+                    </view>
+                    <view>
+                        <text>省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布</text>
+                    </view>
+                </view>
+            </view>
+            <!-- 测试2 -->
+            <view class="detail-item">
+                <view class="canvas-container">
+                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ecPie}}"></ec-canvas>
+                    <!-- <ec-canvas id="mychart-dom-multi-bar" canvas-id="mychart-multi-bar" ec="{{ ecBar }}"></ec-canvas> -->
+                </view>
+                <view class="text-container">
+                    <view>
+                        <text>省区分布</text>
+                    </view>
+                    <view>
+                        <text>省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布</text>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

@@ -40,5 +40,6 @@
         "selectedIconPath": "/style/icon/me2.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

@@ -12,9 +12,6 @@ Page({
   },
 
   async onLoad() {
-    wx.setNavigationBarTitle({
-      title: '热门投票',
-    })
     // this.getPublicVote()
     const res = await getHotVoteList({
       openId: app.globalData.openId,

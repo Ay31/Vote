@@ -1,13 +1,5 @@
 <!-- miniprogram/pages/newIndex/newIndex.wxml -->
 <view>
-    <!-- 导航栏 -->
-    <!-- <cu-custom bgColor="bg-black">
-        <view slot="content">首页</view>
-    </cu-custom> -->
-    <!-- <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
-        <view slot="backText">返回</view>
-        <view slot="content">导航栏</view>
-    </cu-custom> -->
     <view class="padding-lg">
         <!-- <text class="text-white">You can vote something here.</text> -->
         <text class="text-white text-sl">选你所想</text>
@@ -25,17 +17,17 @@
         <text class="text-white">Vote</text>
     </view>
     <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToSimple">
-        <text class="text-black text-xxl new-text padding-left">简单投票</text>
+        <text class="text-black text-xxl ch-text padding-left">简单投票</text>
         <text class="text-black text-xl en-text">Simple</text>
         <view class="cuIcon-post cu-btn round bg-yellow text-white pandding-lg xl button1"></view>
     </view>
     <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToNormal">
-        <text class="text-black text-xxl new-text padding-left">正常投票</text>
+        <text class="text-black text-xxl ch-text padding-left">正常投票</text>
         <text class="text-black text-xl en-text">Normal</text>
         <view class="cuIcon-edit cu-btn round bg-purple text-white pandding-lg xl button2"></view>
     </view>
     <!-- <view class="cu-form-group margin-top-lg vote-item" bindtap="targetToInfo">
-        <text class="text-black text-xxl new-text padding-left">我的投票</text>
+        <text class="text-black text-xxl ch-text padding-left">我的投票</text>
         <text class="text-black text-xl en-text">My vote</text>
         <view class="cuIcon-profile cu-btn round bg-cyan text-blue pandding-lg xl button3"></view>
     </view> -->

@@ -4,13 +4,16 @@
 </view>
 <view class="vote" wx:for="{{voteData}}">
     <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
-        <view class="vote-item-hd bottom-line">
+       <!-- 头部 -->
+       <view class="vote-item-hd bottom-line">
+           <!-- 标题 & 时间 -->
             <view class="vote-item-hd-info">
                 <view class="vote-title" catchtap="targetToVote" data-id="{{item.voteData._id}}">
                     {{item.voteData.voteTitle}}
                 </view>
                 <view class="vote-time">{{item.voteData.createTime}}</view>
             </view>
+            <!-- 状态标签 -->
             <view class="vote-item-hd-op vote-item-hd-op-hover" wx:if="{{true}}">
                 <view class="cu-tag bg-grey" wx:if="{{ nowTime > item.voteData.endingTime }}">
                     投票失效
@@ -21,6 +24,7 @@
                 </view>
             </view>
         </view>
+        <!-- 补充描述 -->
         <view class="vote-item-con">
             <view class="vote-item-con-hd bottom-line" catchtap="targetToVote" data-id="{{item.voteData._id}}">
                 <view class="vote-des-content" wx:if="{{item.voteData.desTextareaData}}">
@@ -28,12 +32,16 @@
                 </view>
             </view>
         </view>
+        <!-- 底部 -->
         <view class="vote-item-ft top-line">
+            <!-- 详情 -->
             <i class="fa fa-align-left" catchtap="targetToDetail" data-id="{{item.voteData._id}}" data-index="{{index}}">
                 <text>{{item.voteData.votersCount}}</text>
             </i>
             <view>
+                <!-- 删除 -->
                 <i class="fa fa-trash fa-lg" bindtap="deleteVote" data-voteId="{{item.voteData._id}}" data-index="{{index}}"></i>
+                <!-- 分享 -->
                 <button open-type="share" plain="true" data-voteId="{{item.voteData._id}}" data-img="{{item.voteData.imageList[0]}}" data-title="{{item.voteData.voteTitle}}" data-nickname="{{item.userInfo.nickName}}" bindtap="onShareAppMessage">
                     <i class="fa fa-share-square-o"></i>
                 </button>
