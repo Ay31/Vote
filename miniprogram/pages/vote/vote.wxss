@@ -41,3 +41,7 @@ textarea {
 .cu-progress text {
   font-size: 24rpx;
 }
+
+.fa-share-square-o {
+  margin-left: 20rpx;
+}

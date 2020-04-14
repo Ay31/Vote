@@ -21,16 +21,6 @@ Page({
     })
   },
 
-  async getPublicVote() {
-    const res = await wx.cloud.callFunction({
-      name: 'getPublicVote',
-    })
-    this.setData({
-      voteData: res.result.data,
-    })
-    console.log(res)
-  },
-
   // 提交投票
   async submitVote(data) {
     const { index, optionId, voteid } = data.currentTarget.dataset

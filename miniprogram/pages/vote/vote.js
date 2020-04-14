@@ -66,4 +66,14 @@ Page({
       console.error(error)
     }
   },
+
+  // 分享投票
+  onShareAppMessage(res) {
+    console.log(res)
+    return {
+      title: res.target.dataset.title,
+      imageUrl: res.target.dataset.img ? res.target.dataset.img : '',
+      path: `/pages/vote/vote?voteId=${res.target.dataset.voteId}`,
+    }
+  },
 })

@@ -152,7 +152,7 @@ Page({
       imgList.forEach((imgTmpUrl, index) => {
         arr[index] = new Promise(async (resolve, reject) => {
           try {
-            const res = await await uploadImage(imgTmpUrl, 'image')
+            const res = await uploadImage(imgTmpUrl, 'image')
             console.log(res)
             this.data.imageList.push(res.data.url)
             resolve()
