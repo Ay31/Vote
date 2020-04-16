@@ -85,23 +85,24 @@ ec-canvas {
 .detail-item {
   position: relative;
   width: 100%;
-  height: 350rpx;
+  height: 300rpx;
 }
 
 .text-container {
   position: absolute;
-  top: 0;
+  /* top: 0;
   bottom: 0;
-  left: 450rpx;
-  right: 0;
+  left: 0; */
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .canvas-container {
   position: absolute;
   top: 0;
-  bottom: 100rpx;
+  bottom: 0;
   left: 0;
-  right: 200rpx;
+  right: 0;
 
   display: flex;
   flex-direction: column;

@@ -1,7 +1,7 @@
 <!-- miniprogram/pages/detail/detail.wxml -->
 <view class="vote-detail">
     <!-- 投票描述 -->
-    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+    <view class="form-item padding-xs radius shadow-warp bg-white ">
         <view class="vote-title-bar padding-xs solid-bottom">
             <view>{{voteData.voteTitle}}</view>
             <view>
@@ -12,12 +12,12 @@
                 </view>
             </view>
         </view>
-        <view class="padding-xs margin-top-xs" wx:if="{{voteData.desTextareaData}}">
+        <view class="padding-xs -xs" wx:if="{{voteData.desTextareaData}}">
             {{voteData.desTextareaData}}
         </view>
     </view>
-    <!-- 投票选项 -->
-    <view class="form-item padding-xs radius shadow-warp bg-white margin-top">
+    <!-- 投票选项结果 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white ">
         <view class="vote-item-content solid-bottom" wx:for="{{voteData.voteOptionList}}" wx:key="index">
             <view class="cu-progress round xl striped progress">
                 <text class="text-black padding-sm vote-option-content">{{item.content}}</text>
@@ -26,45 +26,49 @@
             <text class="text-df text-item">{{ratioList[index]}}%</text>
         </view>
     </view>
-    <!-- 投票配图 -->
-    <view class="form-item padding-xs radius shadow-warp bg-white margin-top" bindtap="changeViable" wx:for="{{voteData.voteOptionList}}" data-index="{{index}}">
-        <view class="vote-option-title-bar">
-            <view class="solid-bottom vote-option-title">
+    <!-- 选项数据图表 -->
+    <view class="form-item padding-xs radius shadow-warp bg-white " wx:for="{{voteData.voteOptionList}}">
+        <!-- 选项标题栏 -->
+        <view class="vote-option-title-bar {{item.visable?'solid-bottom':''}}" catchtap="changeViable" data-index="{{index}}">
+            <view class=" vote-option-title">
                 <text class="cuIcon-title text-orange "></text>
                 {{item.content}}
             </view>
             <view>
-                <!-- <i class="fa fa-angle-right"></i> -->
                 <i class="fa {{item.visable? 'fa-angle-down':'fa-angle-right'}}"></i>
             </view>
         </view>
         <view class="vote-option-detail" wx:if="{{item.visable}}">
-            <!-- 测试1 -->
-            <view class="detail-item solid-bottom margin-bottom margin-top">
+            <!-- 城市分布图表 -->
+            <view class="detail-item solid-bottom margin-bottom ">
                 <view class="canvas-container">
-                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ecPie }}"></ec-canvas>
+                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ cityEc }}"></ec-canvas>
                 </view>
                 <view class="text-container">
                     <view>
-                        <text>省区分布</text>
-                    </view>
-                    <view>
-                        <text>省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布</text>
+                        <text>城市分布</text>
                     </view>
                 </view>
             </view>
-            <!-- 测试2 -->
-            <view class="detail-item">
+            <!-- 省份分布图表 -->
+            <view class="detail-item solid-bottom margin-bottom ">
                 <view class="canvas-container">
-                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ecPie}}"></ec-canvas>
-                    <!-- <ec-canvas id="mychart-dom-multi-bar" canvas-id="mychart-multi-bar" ec="{{ ecBar }}"></ec-canvas> -->
+                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{provinceEc}}"></ec-canvas>
                 </view>
                 <view class="text-container">
                     <view>
-                        <text>省区分布</text>
+                        <text>省份分布</text>
                     </view>
+                </view>
+            </view>
+            <!-- 性别比例图表 -->
+            <view class="detail-item solid-bottom margin-bottom ">
+                <view class="canvas-container">
+                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{genderEc}}"></ec-canvas>
+                </view>
+                <view class="text-container">
                     <view>
-                        <text>省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布省区分布</text>
+                        <text>性别比例</text>
                     </view>
                 </view>
             </view>

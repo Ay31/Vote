@@ -1,9 +1,4 @@
-import {
-  getVoteDetail,
-  submitVote,
-  getRetio,
-  getVoteAnalysis,
-} from '../../common/api'
+import { getVoteDetail, getRetio, getVoteAnalysis } from '../../common/api'
 import * as echarts from '../../ec-canvas/echarts'
 
 const app = getApp()
@@ -11,54 +6,51 @@ const app = getApp()
 Page({
   data: {
     voteData: {},
-    swiperList: [],
     ratioList: [],
-    userInfo: {},
     voteId: '',
     votedColor: ['#9dc8c8', '#58c9b9', '#519d9e', '#d1b6e1'],
     beforeVote: true,
     enable: true,
-    detailData: [],
-    ec: {},
-    ecPie: {
+    cityEc: { // 城市图表
       onInit: function (canvas, width, height) {
         const pieChart = echarts.init(canvas, null, {
           width: width,
           height: height,
         })
-        canvas.setChart(pieChart)
-        pieChart.setOption(getPieOption(pieChart))
+        canvas.setChart()
+        pieChart.setOption(getCityOption())
+        return pieChart
+      },
+    },
+    provinceEc: { // 省份图表
+      onInit: function (canvas, width, height) {
+        const pieChart = echarts.init(canvas, null, {
+          width: width,
+          height: height,
+        })
+        canvas.setChart()
+        pieChart.setOption(getProvinceOption())
+        return pieChart
+      },
+    },
+    genderEc: { // 性别图表
+      onInit: function (canvas, width, height) {
+        const pieChart = echarts.init(canvas, null, {
+          width: width,
+          height: height,
+        })
+        canvas.setChart()
+        pieChart.setOption(getGenderOption())
         return pieChart
       },
     },
   },
 
-  ecPie: function (index) {
-    console.log(123)
-    console.log(index)
-    return {
-      onInit: function (canvas, width, height) {
-        const pieChart = echarts.init(canvas, null, {
-          width: width,
-          height: height,
-        })
-        canvas.setChart(pieChart)
-        pieChart.setOption(getPieOption())
-
-        return pieChart
-      },
-    }
-  },
   onLoad: async function (options) {
     this.setData({ voteId: options.voteId })
     this.getVoteData(options.voteId, app.globalData.openId)
     this.getRetio()
     this.getVoteAnalysis()
-  },
-
-  // 轮播
-  cardSwiper(e) {
-    this.setData({ cardCur: e.detail.current })
   },
 
   // 获取投票数据
@@ -80,8 +72,6 @@ Page({
       this.setData({
         voteData: this.data.voteData,
       })
-      demo = this.data.voteData
-      console.log(demo)
       console.log('getVoteData')
     } catch (error) {
       console.error(error)
@@ -112,22 +102,6 @@ Page({
     }
   },
 
-  // 提交投票
-  async submitVote(data) {
-    try {
-      await submitVote({
-        userInfo: app.globalData.userInfo,
-        voteId: this.data.voteId,
-        optionId: data.currentTarget.dataset.optionId,
-        openId: app.globalData.openId,
-      })
-      await this.getRetio()
-      this.setData({ beforeVote: false })
-    } catch (error) {
-      console.error(error)
-    }
-  },
-
   // 改变显示状态
   changeViable(data) {
     const index = data.currentTarget.dataset.index
@@ -138,55 +112,21 @@ Page({
       voteData: this.data.voteData,
     })
   },
-
-  echartInit(e) {
-    initChart(e.detail.canvas, e.detail.width, e.detail.height)
-  },
-
-  // 初始化统计数据
-  initChartData() {
-    const optionData = this.data.voteData.voteOptionList
-  },
 })
+
+// 图表部分
+
 let VisIndex = 0
 let detailData = []
-function setData(res) {
-  demo = res
+
+// 获取图表数据
+function getOptionData(key) {
+  return detailData[VisIndex][`${key}Data`]
 }
-function getData(pieChart) {
-  console.log(VisIndex)
-  console.log(pieChart)
-  // set!!!!!!!!!!!!!!!!!
-  // pieChart.setOption(getPieOption)
-  // return [
-  //   {
-  //     count: 55,
-  //     value: 55,
-  //     // name: this.data.voteData.voteTitle,
-  //     name: VisIndex,
-  //   },
-  //   {
-  //     count: 55,
-  //     value: 20,
-  //     name: '武汉',
-  //   },
-  //   {
-  //     value: 10,
-  //     name: '杭州',
-  //   },
-  //   {
-  //     value: 20,
-  //     name: '广州',
-  //   },
-  //   {
-  //     value: 38,
-  //     name: '上海',
-  //   },
-  // ]
-  return detailData[VisIndex].cityData
-}
-let demo = 'hahahaha'
-function getPieOption(pieChart) {
+
+// 获取图表显示参数
+
+function getCityOption() {
   return {
     backgroundColor: '#ffffff',
     color: ['#37A2DA', '#32C5E9', '#67E0E3', '#91F2DE', '#FFDB5C', '#FF9F7F'],
@@ -195,12 +135,69 @@ function getPieOption(pieChart) {
         label: {
           normal: {
             fontSize: 14,
+            rich: {},
           },
         },
         type: 'pie',
         center: ['50%', '50%'],
         radius: [0, '60%'],
-        data: getData(pieChart),
+        data: getOptionData('city'),
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 2, 2, 0.3)',
+          },
+        },
+      },
+    ],
+  }
+}
+
+function getProvinceOption() {
+  return {
+    backgroundColor: '#ffffff',
+    color: ['#37A2DA', '#32C5E9', '#67E0E3', '#91F2DE', '#FFDB5C', '#FF9F7F'],
+    series: [
+      {
+        label: {
+          normal: {
+            fontSize: 14,
+            rich: {},
+          },
+        },
+        type: 'pie',
+        center: ['50%', '50%'],
+        radius: [0, '60%'],
+        data: getOptionData('province'),
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 2, 2, 0.3)',
+          },
+        },
+      },
+    ],
+  }
+}
+
+function getGenderOption() {
+  return {
+    backgroundColor: '#ffffff',
+    color: ['#37A2DA', '#32C5E9', '#67E0E3', '#91F2DE', '#FFDB5C', '#FF9F7F'],
+    series: [
+      {
+        label: {
+          normal: {
+            fontSize: 14,
+            rich: {},
+          },
+        },
+        type: 'pie',
+        center: ['50%', '50%'],
+        radius: [0, '60%'],
+        data: getOptionData('gender'),
         itemStyle: {
           emphasis: {
             shadowBlur: 10,

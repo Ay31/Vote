@@ -49,4 +49,9 @@ Page({
       path: `/pages/vote/vote?voteId=${res.target.dataset.voteId}`,
     }
   },
+  targetToVoteDetail(res) {
+    wx.navigateTo({
+      url: `/pages/detail/detail?voteId=${res.currentTarget.dataset.voteid}`,
+    })
+  },
 })

@@ -7,7 +7,7 @@ App({
     hasUserInfo: false,
   },
 
-  onLaunch: function() {
+  onLaunch: function () {
     this.getUserInfo()
     // wx.getSystemInfo({
     //   success: e => {
@@ -20,7 +20,7 @@ App({
     // })
   },
 
-  getUserInfo: function() {
+  getUserInfo: function () {
     var self = this
     wx.getSetting({
       success(res) {
@@ -48,20 +48,21 @@ App({
     })
   },
 
-  userAuthCb: function() {
+  userAuthCb: function () {
     let that = this
     // let baseUrl = config.getBaseUrl
     wx.showLoading({
       title: '加载中',
     })
     wx.getUserInfo({
-      success: function(res) {
+      lang: 'zh_CN',
+      success: function (res) {
         that.globalData.userInfo = res.userInfo
         that.globalData.encryptedData = res.encryptedData
         that.globalData.iv = res.iv
         if (res.encryptedData && res.iv) {
           wx.login({
-            success: function(res) {
+            success: function (res) {
               if (res.code) {
                 console.log(res)
                 //将用户基本信息回传给服务器，并获取assess_token
@@ -77,7 +78,7 @@ App({
                   header: {
                     accept: 'application/json',
                   },
-                  success: function(res) {
+                  success: function (res) {
                     console.log(res)
                     that.globalData.openId = res.data.openId
                     let authorizationValue = res.data.token

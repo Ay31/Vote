@@ -58,7 +58,7 @@
     </view>
     <!-- 跳转 -->
     <view class="vote-item-ft top-line">
-      <i class="fa fa-align-left" bindtap="targetToVoteDetail" data-nickname="{{vote.data.user.nick_name}}" data-index="{{voteIndex}}" data-src="{{vote.data.id}}">
+      <i class="fa fa-align-left" bindtap="targetToVoteDetail" data-nickname="{{vote.data.user.nick_name}}" data-index="{{voteIndex}}" data-voteId="{{voteRecord.voteData._id}}" data-src="{{vote.data.id}}">
         <text>{{voteRecord.voteData.votersCount}}</text>
       </i>
       <button open-type="share" plain="true" data-voteId="{{voteRecord.voteData._id}}" data-img="{{voteRecord.voteData.imageList[0]}}" data-title="{{voteRecord.voteData.voteTitle}}" data-nickname="{{item.userInfo.nickName}}" bindtap="onShareAppMessage">
