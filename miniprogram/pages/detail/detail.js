@@ -70,7 +70,7 @@ Page({
       })
       this.data.voteData.voteOptionList.forEach((element) => {
         element = Object.assign(element, {
-          visable: true,
+          visable: false,
         })
       })
       this.setData({

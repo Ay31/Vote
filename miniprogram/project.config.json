@@ -89,6 +89,13 @@
 					"pathName": "pages/hot/hot",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "详情页（缺）",
+					"pathName": "pages/detail/detail",
+					"query": "voteId=5e9810509614d86c40106144",
+					"scene": null
 				}
 			]
 		}

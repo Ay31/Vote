@@ -39,55 +39,60 @@
             </view>
         </view>
         <view class="vote-option-detail" wx:if="{{item.visable}}">
-            <!-- 投票用户头像 -->
-            <view class="solid-bottom margin-bottom">
-                <view class="img-item-title">
-                    <text>投票用户({{voteData.isAnonymous?'匿名投票':'非匿名投票'}})</text>
-                </view>
-                <view class="voter-img-list" wx:if="{{!voteData.isAnonymous}}">
-                    <view wx:for="{{detailData[index].avatarData}}" wx:key="{{index}}">
-                        <image wx:if="{{item}}" src="{{item}}" mode="aspectFill"></image>
-                        <image wx:elif="{{item == ''}}" src="../../style/img/default.png" mode="aspectFill"></image>
+            <view wx:if="{{detailData[index].avatarData.length}}">
+                <!-- 投票用户头像 -->
+                <view class="solid-bottom margin-bottom">
+                    <view class="img-item-title">
+                        <text>投票用户({{voteData.isAnonymous?'匿名投票':'非匿名投票'}})</text>
+                    </view>
+                    <view class="voter-img-list" wx:if="{{!voteData.isAnonymous}}">
+                        <view wx:for="{{detailData[index].avatarData}}" wx:key="{{index}}">
+                            <image wx:if="{{item}}" src="{{item}}" mode="aspectFill"></image>
+                            <image wx:elif="{{item == ''}}" src="../../style/img/default.png" mode="aspectFill"></image>
+                        </view>
+                    </view>
+                    <view class="voter-img-list" wx:else>
+                        <view wx:for="{{detailData[index].avatarData}}" wx:key="{{index}}">
+                            <image src="../../style/img/default.png" mode="aspectFill"></image>
+                        </view>
                     </view>
                 </view>
-                <view class="voter-img-list" wx:else>
-                    <view wx:for="{{detailData[index].avatarData}}" wx:key="{{index}}">
-                        <image src="../../style/img/default.png" mode="aspectFill"></image>
+                <!-- 城市分布图表 -->
+                <view class="detail-item solid-bottom margin-bottom ">
+                    <view class="canvas-container">
+                        <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ cityEc }}"></ec-canvas>
+                    </view>
+                    <view class="text-container">
+                        <view>
+                            <text>城市分布</text>
+                        </view>
+                    </view>
+                </view>
+                <!-- 省份分布图表 -->
+                <view class="detail-item solid-bottom margin-bottom ">
+                    <view class="canvas-container">
+                        <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{provinceEc}}"></ec-canvas>
+                    </view>
+                    <view class="text-container">
+                        <view>
+                            <text>省份分布</text>
+                        </view>
+                    </view>
+                </view>
+                <!-- 性别比例图表 -->
+                <view class="detail-item solid-bottom margin-bottom ">
+                    <view class="canvas-container">
+                        <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{genderEc}}"></ec-canvas>
+                    </view>
+                    <view class="text-container">
+                        <view>
+                            <text>性别比例</text>
+                        </view>
                     </view>
                 </view>
             </view>
-            <!-- 城市分布图表 -->
-            <view class="detail-item solid-bottom margin-bottom ">
-                <view class="canvas-container">
-                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ cityEc }}"></ec-canvas>
-                </view>
-                <view class="text-container">
-                    <view>
-                        <text>城市分布</text>
-                    </view>
-                </view>
-            </view>
-            <!-- 省份分布图表 -->
-            <view class="detail-item solid-bottom margin-bottom ">
-                <view class="canvas-container">
-                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{provinceEc}}"></ec-canvas>
-                </view>
-                <view class="text-container">
-                    <view>
-                        <text>省份分布</text>
-                    </view>
-                </view>
-            </view>
-            <!-- 性别比例图表 -->
-            <view class="detail-item solid-bottom margin-bottom ">
-                <view class="canvas-container">
-                    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{genderEc}}"></ec-canvas>
-                </view>
-                <view class="text-container">
-                    <view>
-                        <text>性别比例</text>
-                    </view>
-                </view>
+            <view class="no-choose"wx:else>
+                当前选项无用户选择
             </view>
         </view>
     </view>

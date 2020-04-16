@@ -129,3 +129,8 @@ ec-canvas {
   margin-top: 25rpx;
   text-align: center;
 }
+
+.no-choose {
+  margin: 30rpx 0;
+  text-align: center;
+}
