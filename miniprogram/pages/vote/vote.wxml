@@ -35,16 +35,17 @@
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top" wx:if="{{swiperList.length > 0}}">
         <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
             <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
-                <view class="swiper-item">
-                    <image src="{{item}}" mode="aspectFill" />
+                <view class="swiper-item" bindtap="ViewImage" data-urls="{{swiperList}}" data-url="{{item}}">
+                    <image src="{{item}}" width="100%" height="auto" mode="aspectFill" />
                 </view>
             </swiper-item>
         </swiper>
     </view>
-    <!-- 投票配图 -->
+    <!-- 分享按钮 -->
     <view class="form-item padding-xs radius shadow-warp bg-white margin-top" wx:if="{{swiperList.length > 0}}">
         <button open-type="share" plain="true" data-voteId="{{voteId}}" data-img="{{swiperList[0]}}" data-title="{{voteData.voteTitle}}" data-nickname="{{item.userInfo.nickName}}" bindtap="onShareAppMessage">
-            分享<i class="fa fa-share-square-o"></i>
+            分享
+            <i class="fa fa-share-square-o"></i>
         </button>
     </view>
 </view>

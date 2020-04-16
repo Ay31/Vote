@@ -17,13 +17,13 @@
       <view class="vote-item-con-hd bottom-line">
         <view class="vote-imgs {{voteRecord.voteData.imageList.length>=3?'vote-imgs-more':''}}" wx:if="{{voteRecord.voteData.imageList.length>0}}">
           <view wx:if="{{voteRecord.voteData.imageList.length<3}}" wx:for="{{voteRecord.voteData.imageList}}" wx:key="{{index}}" class="vote-img-box">
-            <image data-src="{{item}}" lazy-load="true" data-images="{{voteRecord.voteData.imageList}}" src="{{item}}" mode="aspectFill" bindtap="bindPreviewImage"></image>
+            <image data-src="{{item}}" lazy-load="true" data-images="{{voteRecord.voteData.imageList}}" src="{{item}}" mode="aspectFill" bindtap="ViewImage" data-urls="{{voteRecord.voteData.imageList}}" data-url="{{item}}"></image>
           </view>
           <view wx:if="{{voteRecord.voteData.imageList.length>=3}}">
             <swiper indicator-dots="true" indicator-color="#58c9b9" indicator-active-color="#d1b6e1">
               <block wx:for="{{voteRecord.voteData.imageList}}" wx:key="{{index}}">
                 <swiper-item>
-                  <image src="{{item}}" lazy-load="true" data-src="{{item}}" data-images="{{voteRecord.voteData.imageList}}" class="slide-image" width="100%" height="auto" mode="aspectFill" bindtap="bindPreviewImage"></image>
+                  <image src="{{item}}" lazy-load="true" data-src="{{item}}" data-images="{{voteRecord.voteData.imageList}}" class="slide-image" width="100%" height="auto" mode="aspectFill" bindtap="ViewImage" data-urls="{{voteRecord.voteData.imageList}}" data-url="{{item}}"></image>
                 </swiper-item>
               </block>
             </swiper>

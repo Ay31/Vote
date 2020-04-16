@@ -40,6 +40,14 @@ Page({
     }
   },
 
+  // 预览图片
+  ViewImage(e) {
+    wx.previewImage({
+      urls: e.currentTarget.dataset.urls,
+      current: e.currentTarget.dataset.url,
+    })
+  },
+
   // 分享投票
   onShareAppMessage(res) {
     console.log(res)

@@ -13,7 +13,7 @@ Page({
     enable: true,
   },
 
-  onLoad: async function(options) {
+  onLoad: async function (options) {
     this.setData({ voteId: options.voteId })
     this.getVoteData(options.voteId, app.globalData.openId)
     this.getRetio()
@@ -24,8 +24,16 @@ Page({
     this.setData({ cardCur: e.detail.current })
   },
 
+  // 预览图片
+  ViewImage(e) {
+    wx.previewImage({
+      urls: e.currentTarget.dataset.urls,
+      current: e.currentTarget.dataset.url,
+    })
+  },
+
   // 获取投票数据
-  getVoteData: async function(voteId, openId) {
+  getVoteData: async function (voteId, openId) {
     try {
       const res = await getVoteDetail({ voteId, openId })
       this.setData({
@@ -42,7 +50,7 @@ Page({
   },
 
   // 获取选项占比
-  getRetio: async function() {
+  getRetio: async function () {
     try {
       const res = await getRetio({ voteId: this.data.voteId })
       this.setData({ ratioList: res.data.ratioList })
