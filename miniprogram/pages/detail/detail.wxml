@@ -42,12 +42,17 @@
             <!-- 投票用户头像 -->
             <view class="solid-bottom margin-bottom">
                 <view class="img-item-title">
-                    <text>投票用户</text>
+                    <text>投票用户({{voteData.isAnonymous?'匿名投票':'非匿名投票'}})</text>
                 </view>
-                <view class="voter-img-list">
+                <view class="voter-img-list" wx:if="{{!voteData.isAnonymous}}">
                     <view wx:for="{{detailData[index].avatarData}}" wx:key="{{index}}">
                         <image wx:if="{{item}}" src="{{item}}" mode="aspectFill"></image>
                         <image wx:elif="{{item == ''}}" src="../../style/img/default.png" mode="aspectFill"></image>
+                    </view>
+                </view>
+                <view class="voter-img-list" wx:else>
+                    <view wx:for="{{detailData[index].avatarData}}" wx:key="{{index}}">
+                        <image src="../../style/img/default.png" mode="aspectFill"></image>
                     </view>
                 </view>
             </view>
