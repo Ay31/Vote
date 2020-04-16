@@ -39,6 +39,18 @@
             </view>
         </view>
         <view class="vote-option-detail" wx:if="{{item.visable}}">
+            <!-- 投票用户头像 -->
+            <view class="solid-bottom margin-bottom">
+                <view class="img-item-title">
+                    <text>投票用户</text>
+                </view>
+                <view class="voter-img-list">
+                    <view wx:for="{{detailData[index].avatarData}}" wx:key="{{index}}">
+                        <image wx:if="{{item}}" src="{{item}}" mode="aspectFill"></image>
+                        <image wx:elif="{{item == ''}}" src="../../style/img/default.png" mode="aspectFill"></image>
+                    </view>
+                </view>
+            </view>
             <!-- 城市分布图表 -->
             <view class="detail-item solid-bottom margin-bottom ">
                 <view class="canvas-container">

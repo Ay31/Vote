@@ -18,7 +18,8 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"enhance": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.0",
@@ -59,6 +60,34 @@
 					"name": "详情页",
 					"pathName": "pages/detail/detail",
 					"query": "voteId=5e4e4fb956cf965740e40924",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "正常投票",
+					"pathName": "pages/createVote/createVote",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "投票页",
+					"pathName": "pages/vote/vote",
+					"query": "voteId=5e9810509614d86c40106144",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "热门页",
+					"pathName": "pages/hot/hot",
+					"query": "",
 					"scene": null
 				}
 			]

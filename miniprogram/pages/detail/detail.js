@@ -9,9 +9,11 @@ Page({
     ratioList: [],
     voteId: '',
     votedColor: ['#9dc8c8', '#58c9b9', '#519d9e', '#d1b6e1'],
+    avatarData: [],
     beforeVote: true,
     enable: true,
-    cityEc: { // 城市图表
+    cityEc: {
+      // 城市图表
       onInit: function (canvas, width, height) {
         const pieChart = echarts.init(canvas, null, {
           width: width,
@@ -22,7 +24,8 @@ Page({
         return pieChart
       },
     },
-    provinceEc: { // 省份图表
+    provinceEc: {
+      // 省份图表
       onInit: function (canvas, width, height) {
         const pieChart = echarts.init(canvas, null, {
           width: width,
@@ -33,7 +36,8 @@ Page({
         return pieChart
       },
     },
-    genderEc: { // 性别图表
+    genderEc: {
+      // 性别图表
       onInit: function (canvas, width, height) {
         const pieChart = echarts.init(canvas, null, {
           width: width,

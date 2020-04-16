@@ -90,9 +90,9 @@ ec-canvas {
 
 .text-container {
   position: absolute;
-  /* top: 0;
+  top: 0;
   bottom: 0;
-  left: 0; */
+  /* left: 0; */
   right: 50%;
   transform: translateX(50%);
 }
@@ -109,4 +109,23 @@ ec-canvas {
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+}
+
+.voter-img-list {
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.voter-img-list image {
+  margin: 30rpx 0;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 18rpx;
+  border-radius: 60rpx;
+}
+
+.img-item-title {
+  margin-top: 25rpx;
+  text-align: center;
 }
