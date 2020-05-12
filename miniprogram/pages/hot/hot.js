@@ -7,6 +7,8 @@ Page({
   data: {
     openId: '',
     voteData: {},
+    voteDataArr: [],
+    index: 1,
     userInfo: {},
     votedColor: ['#9dc8c8', '#58c9b9', '#519d9e', '#d1b6e1'],
   },
@@ -16,9 +18,29 @@ Page({
     const res = await getHotVoteList({
       openId: app.globalData.openId,
     })
+    for (let i = 0; i < res.data.voteList.length; i += 10) {
+      this.data.voteDataArr.push(res.data.voteList.slice(i, i + 10))
+    }
     this.setData({
-      voteData: res.data.voteList,
+      voteData: this.data.voteDataArr[0],
     })
+  },
+
+  // 上拉刷新
+  onReachBottom: function () {
+    if (this.data.index < this.data.voteDataArr.length) {
+      this.setData({
+        voteData: this.data.voteData.concat(this.data.voteDataArr[1]),
+      })
+      this.data.index++
+    } else {
+      wx.showToast({
+        title: '已经到底了',
+        icon: 'none',
+        duration: 1500,
+        mask: true,
+      })
+    }
   },
 
   // 提交投票

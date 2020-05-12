@@ -1,3 +1,5 @@
+const app = getApp()
+
 const getHeader = () => {
   let authorization,
     access_token,
@@ -26,14 +28,19 @@ const requestAll = (url, data, method, header) => {
       data,
       method,
       header,
-      success: res => {
+      success: (res) => {
         if (res.statusCode === 200) {
           reslove(res)
         } else {
+          if (res.statusCode === 401) {
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          }
           reject(res)
         }
       },
-      fail: err => reject(err),
+      fail: (err) => reject(err),
     })
   })
 }

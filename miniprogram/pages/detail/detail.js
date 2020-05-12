@@ -133,7 +133,7 @@ function getOptionData(key) {
 function getCityOption() {
   return {
     backgroundColor: '#ffffff',
-    color: ['#37A2DA', '#32C5E9', '#67E0E3', '#91F2DE', '#FFDB5C', '#FF9F7F'],
+    color: ['#60acfc', '#32d3eb', '#5bc49f', '#feb64d', '#ff7c7c', '#9287e7'],
     series: [
       {
         label: {
@@ -161,7 +161,7 @@ function getCityOption() {
 function getProvinceOption() {
   return {
     backgroundColor: '#ffffff',
-    color: ['#37A2DA', '#32C5E9', '#67E0E3', '#91F2DE', '#FFDB5C', '#FF9F7F'],
+    color: ['#feb64d', '#ff7c7c', '#9287e7', '#60acfc', '#32d3eb', '#5bc49f'],
     series: [
       {
         label: {
@@ -189,7 +189,7 @@ function getProvinceOption() {
 function getGenderOption() {
   return {
     backgroundColor: '#ffffff',
-    color: ['#37A2DA', '#32C5E9', '#67E0E3', '#91F2DE', '#FFDB5C', '#FF9F7F'],
+    color: ['#9287e7', '#60acfc', '#feb64d', '#ff7c7c', '#32d3eb', '#5bc49f'],
     series: [
       {
         label: {

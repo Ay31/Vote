@@ -96,6 +96,20 @@
 					"pathName": "pages/detail/detail",
 					"query": "voteId=5e9810509614d86c40106144",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "信息页",
+					"pathName": "pages/info/info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "投票页（古诗）",
+					"pathName": "pages/vote/vote",
+					"query": "voteId=5e4e4fb956cf965740e40924",
+					"scene": null
 				}
 			]
 		}

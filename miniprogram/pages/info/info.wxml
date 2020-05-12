@@ -1,17 +1,18 @@
+<wxs module="util" src="../../common/util.wxs"></wxs>
 <view class="padding-lg">
     <text class="text-white text-sl">我的投票</text>
     <!-- <view class="text-white slogan margin-top-sm">Look what you want !</view> -->
 </view>
 <view class="vote" wx:for="{{voteData}}">
     <view class="vote-item padding-xs radius shadow-warp bg-white margin-top">
-       <!-- 头部 -->
-       <view class="vote-item-hd bottom-line">
-           <!-- 标题 & 时间 -->
+        <!-- 头部 -->
+        <view class="vote-item-hd bottom-line">
+            <!-- 标题 & 时间 -->
             <view class="vote-item-hd-info">
                 <view class="vote-title" catchtap="targetToVote" data-id="{{item.voteData._id}}">
                     {{item.voteData.voteTitle}}
                 </view>
-                <view class="vote-time">{{item.voteData.createTime}}</view>
+                <view class="vote-time">{{util.dateToString(item.voteData.createTime)}}</view>
             </view>
             <!-- 状态标签 -->
             <view class="vote-item-hd-op vote-item-hd-op-hover" wx:if="{{true}}">
